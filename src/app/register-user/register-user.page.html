@@ -12,6 +12,9 @@
       <div *ngIf="name.errors?.['required']" class="errors">
         Nombre requerido
       </div>
+      <div *ngIf="name.errors?.['pattern']" class="errors">
+        Nombre errado
+      </div>
     </div>
     <ion-item>
       <ion-select placeholder="Tipo" formControlName="type">

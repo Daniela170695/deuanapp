@@ -19,6 +19,9 @@ form{
 .errors{
   font-size: 13px;
   margin-top: 6px;
-  margin-left: 16px;
   color: red;
+}
+
+ion-item{
+ --padding-start: 0px;
 }

@@ -7,7 +7,13 @@ export interface Order {
   neighborhood: string;
   address: string;
   kg: number;
+  accepted: boolean;
+  cancelled: boolean;
   received: boolean;
   delivered: boolean;
-  cancelled: boolean;
+  created_datetime: Date;
+  accepted_datetime: Date;
+  cancelled_datetime: Date;
+  received_datetime: Date;
+  delivered_datetime: Date;
 }

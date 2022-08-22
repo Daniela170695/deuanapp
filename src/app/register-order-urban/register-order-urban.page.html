@@ -29,6 +29,9 @@
       <div *ngIf="neighborhood.errors?.['required']" class="errors">
         Barrio requerido
       </div>
+      <div *ngIf="neighborhood.errors?.['pattern']" class="errors">
+        Barrio errado
+      </div>
     </div>
     <ion-item>
       <ion-label position="floating">Direccion</ion-label>

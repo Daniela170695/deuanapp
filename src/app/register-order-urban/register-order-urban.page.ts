@@ -34,7 +34,7 @@ export class RegisterOrderUrbanPage implements OnInit {
   ngOnInit() {
     this.orderUrbanForm = this.formBuilder.group({
       city: ['', [Validators.required]],
-      neighborhood: ['', [Validators.required]],
+      neighborhood: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
       address: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\-_ ]+$')]],
       kg: ['', [Validators.pattern('^[0-9]+$')]]
     });
@@ -60,6 +60,7 @@ export class RegisterOrderUrbanPage implements OnInit {
     if(this.orderUrbanForm.valid){
       const establishment = localStorage.getItem('establishment');
       const kg = this.orderUrbanForm.value.kg ? this.orderUrbanForm.value.kg:null;
+      const now = new Date();
       const order:Order = {
         establishment: establishment,
         type: "jgZuLrPdP4SaRjWopSCh",
@@ -68,9 +69,15 @@ export class RegisterOrderUrbanPage implements OnInit {
         neighborhood: this.orderUrbanForm.value.neighborhood,
         address: this.orderUrbanForm.value.address,
         kg: kg,
+        cancelled: false,
+        accepted: false,
         received: false,
         delivered: false,
-        cancelled: false
+        created_datetime: now,
+        cancelled_datetime: null,
+        accepted_datetime: null,
+        received_datetime: null,
+        delivered_datetime: null
       };
       this.orderService.add(order);
       this.router.navigate(['order-urban']);

@@ -16,17 +16,16 @@ export class OrderUrbanDetailPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private orderService: OrderService) { }
-
-  ngOnInit() {
+    private orderService: OrderService) {
     const routeParams = this.route.snapshot.paramMap;
     const orderIdFromRoute = routeParams.get('id');
-    console.log(orderIdFromRoute);
-    // this.orderService.getOneOrder(orderIdFromRoute).subscribe(data=>{
-    //   console.log(data);
-    //   this.order = data;
-    //   console.log(this.order);
-    // })
+    this.orderService.getOneOrder(orderIdFromRoute).subscribe(data=>{
+      this.order = data;
+    })
+  }
+
+  ngOnInit() {
+
   }
 
 }

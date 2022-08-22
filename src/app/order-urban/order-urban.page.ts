@@ -21,6 +21,7 @@ export class OrderUrbanPage implements OnInit {
     const establishment = localStorage.getItem("establishment");
     this.orderService.getAllOrders(establishment).subscribe(orders=>{
       this.orders = orders;
+      console.log(this.orders);
     })
 
   }
@@ -33,8 +34,7 @@ export class OrderUrbanPage implements OnInit {
     this.router.navigate(['order-urban/register-order-urban']);
   }
 
-  openDetailOrder(){
-    const id = localStorage.getItem("establishment");
+  openDetailOrder(id:string){
     this.router.navigate(['order-urban/order-urban-detail/', id]);
   }
 

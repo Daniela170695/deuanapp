@@ -36,7 +36,7 @@ export class RegisterUserPage implements OnInit {
 
   ngOnInit(){
     this.establishmentForm = this.formBuilder.group({
-      name: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
       type: ['', [Validators.required]],
       city: ['', [Validators.required]],
       neighborhood: ['', [Validators.required]],
