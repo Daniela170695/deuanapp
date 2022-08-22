@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Mensajeria Urbana
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div *ngFor="let order of orders">
+    <ion-card>
+      <ion-card-header style="padding-bottom:0px">
+          <ion-card-title>{{ order.id }}</ion-card-title>
+          <ion-card-subtitle>
+            <div *ngIf="order.cancelled == true; else elseStates">
+              <p class="states">Cancelado</p>
+            </div>
+            <ng-template #elseStates>
+              <p *ngIf="order.courier == null && order.received == false && order.delivered == false" class="states">Pendiente</p>
+              <p *ngIf="order.courier != null && order.received == false && order.delivered == false" class="states">Aceptado</p>
+              <p *ngIf="order.courier != null && order.received == true && order.delivered == false" class="states">Recibido</p>
+              <p *ngIf="order.courier != null && order.received == true && order.delivered == true" class="states">Entregado</p>
+            </ng-template>
+          </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button (click)="openDetailOrder()">Detalles</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openRegisterOrder()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+<ion-content>

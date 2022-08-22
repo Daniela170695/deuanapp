@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Detalle del Pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <h6>Estado: </h6>
+    <div *ngIf="order.cancelled == true; else elseStates">
+      <p class="p-item">Cancelado</p>
+    </div>
+    <ng-template #elseStates>
+      <p *ngIf="order.courier == null && order.received == false && order.delivered == false" class="p-item">Pendiente</p>
+      <p *ngIf="order.courier != null && order.received == false && order.delivered == false" class="p-item">Aceptado</p>
+      <p *ngIf="order.courier != null && order.received == true && order.delivered == false" class="p-item">Recibido</p>
+      <p *ngIf="order.courier != null && order.received == true && order.delivered == true" class="p-item">Entregado</p>
+    </ng-template>
+  </ion-item>
+</ion-content>

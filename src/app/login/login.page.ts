@@ -1,0 +1,69 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AlertController} from '@ionic/angular';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+
+import { User } from '../interfaces/user';
+
+import { AuthService } from '../services/auth/auth.service';
+import { EstablishmentService } from '../services/establishment/establishment.service';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
+})
+export class LoginPage implements OnInit {
+  loginForm: FormGroup;
+
+  constructor(
+    private authService: AuthService,
+    private router:Router,
+    private formBuilder:FormBuilder,
+    private alertController: AlertController,
+    private establishmentService: EstablishmentService) { }
+
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
+
+  async login(){
+    if(this.loginForm.valid){
+      const user: User = {
+        email: this.loginForm.value.email,
+        password: this.loginForm.value.password
+      };
+
+      try {
+        const userCredential = await this.authService.signIn(user);
+        const uid = userCredential.user.uid;
+        const establishment = await this.establishmentService.getEstablishmentByUid(uid);
+        localStorage.setItem('establishment', establishment[0].id);
+        this.router.navigate(['home'])
+      } catch (error) {
+        const alert = await this.alertController.create({
+          header: ':(',
+          message: 'Correo o contraseña invalida, revisa e intentalo de nuevo',
+          buttons: ['OK'],
+        });
+        await alert.present();
+      }
+    }
+  }
+
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
+  }
+
+  openRegister(){
+    this.router.navigate(['/register'])
+  }
+
+}

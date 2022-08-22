@@ -1,0 +1,35 @@
+<ion-content>
+  <div style="text-align:center">
+    <img id="logo" src="assets/img/logotipo.png">
+    <h1>Iniciar sesion</h1>
+  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input formControlName="email"></ion-input>
+    </ion-item>
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+      <div *ngIf="email.errors?.['required']" class="errors">
+        Correo requerido
+      </div>
+      <div *ngIf="email.errors?.['email']" class="errors">
+        Email errado
+      </div>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input formControlName="password"></ion-input>
+    </ion-item>
+    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+      <div *ngIf="password.errors?.['required']" class="errors">
+        Contraseña requerida
+      </div>
+      <div *ngIf="password.errors?.['minlength']" class="errors">
+        La constraseña debe tener al menos 6 caracteres
+      </div>
+    </div>
+    <br>
+    <ion-button type="submit" expand="full" >Iniciar sesión</ion-button>
+  </form>
+  <a id="register" (click)="openRegister()">¿Aún no te has registrado? Regístrate aquí</a>
+</ion-content>

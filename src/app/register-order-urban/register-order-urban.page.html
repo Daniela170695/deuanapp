@@ -1,0 +1,57 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Registrar Pedido
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="orderUrbanForm" (ngSubmit)="registerOrder()">
+    <ion-item>
+      <ion-select placeholder="Ciudad" formControlName="city">
+        <!-- <div *ngFor="let city of cities">
+          <ion-select-option [value]="city.c_digo_dane_del_municipio">{{city.departamento}} - {{city.municipio}}</ion-select-option>
+        </div> -->
+        <ion-select-option [value]="2">Medellin</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div *ngIf="city.invalid && (city.dirty || city.touched)" class="alert alert-danger">
+      <div *ngIf="city.errors?.['required']" class="errors">
+        Ciudad requerida
+      </div>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Barrio</ion-label>
+      <ion-input formControlName="neighborhood"></ion-input>
+    </ion-item>
+    <div *ngIf="neighborhood.invalid && (neighborhood.dirty || neighborhood.touched)" class="alert alert-danger">
+      <div *ngIf="neighborhood.errors?.['required']" class="errors">
+        Barrio requerido
+      </div>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Direccion</ion-label>
+      <ion-input formControlName="address"></ion-input>
+    </ion-item>
+    <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
+      <div *ngIf="address.errors?.['required']" class="errors">
+        Direccion requerida
+      </div>
+      <div *ngIf="address.errors?.['pattern']" class="errors">
+        Direccion errada
+      </div>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Kg</ion-label>
+      <ion-input formControlName="kg"></ion-input>
+    </ion-item>
+    <div *ngIf="kg.invalid && (kg.dirty || kg.touched)" class="alert alert-danger">
+      <div *ngIf="kg.errors?.['pattern']" class="errors">
+        Kg errado
+      </div>
+    </div>
+    <br>
+    <ion-button type="submit" expand="full" >Registrar</ion-button>
+  </form>
+</ion-content>
