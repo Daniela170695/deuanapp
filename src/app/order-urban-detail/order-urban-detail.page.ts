@@ -29,8 +29,8 @@ export class OrderUrbanDetailPage implements OnInit {
     const orderIdFromRoute = routeParams.get('id');
     this.orderService.getOneOrder(orderIdFromRoute).subscribe(async data=>{
       this.order = data;
-      this.locationReceived = await this.calculateLocation(this.order.city_received, this.order.address_received);
-      this.locationDelivered = await this.calculateLocation(this.order.city_delivered, this.order.address_delivered);
+      this.locationReceived = await this.getLocation(this.order.city_received, this.order.address_received);
+      this.locationDelivered = await this.getLocation(this.order.city_delivered, this.order.address_delivered);
     });
 
   }
@@ -39,7 +39,7 @@ export class OrderUrbanDetailPage implements OnInit {
 
   }
 
-  async calculateLocation(city:number, address:string){
+  async getLocation(city:number, address:string){
     const location = await this.cityService.getOneCity(city);
     return address+" "+location[0].departamento+"-"+location[0].municipio;
   }

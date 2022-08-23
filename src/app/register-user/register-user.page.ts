@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AlertController} from '@ionic/angular';
+import { Router } from '@angular/router';
 
 import { take } from 'rxjs/operators';
 
@@ -25,7 +26,14 @@ export class RegisterUserPage implements OnInit {
   cities: City[];
   typeEstablishments: EstablishmentType[];
 
-  constructor(private formBuilder: FormBuilder, private cityService:CityService, private establishmentTypeService: EstablishmentTypeService, private authService: AuthService, private establishmentService: EstablishmentService, private alertController:AlertController) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private cityService:CityService,
+    private establishmentTypeService: EstablishmentTypeService,
+    private authService: AuthService,
+    private establishmentService: EstablishmentService,
+    private alertController:AlertController,
+    private router: Router) {
     this.cityService.getAllCities().then(data=>{
       this.cities = data;
     });
@@ -97,7 +105,7 @@ export class RegisterUserPage implements OnInit {
               uid: userCredential.user.uid,
               name: this.establishmentForm.value.name,
               type: this.establishmentForm.value.type,
-              city: this.establishmentForm.value.city,    
+              city: this.establishmentForm.value.city,
               address: this.establishmentForm.value.address,
               cellphone: this.establishmentForm.value.cellphone
             };
@@ -113,5 +121,9 @@ export class RegisterUserPage implements OnInit {
         }
       });
     }
+  }
+
+  openLogin(){
+    this.router.navigate(['/login']);
   }
 }
