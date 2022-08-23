@@ -27,23 +27,21 @@ export class OrderUrbanDetailPage implements OnInit {
 
     const routeParams = this.route.snapshot.paramMap;
     const orderIdFromRoute = routeParams.get('id');
-    this.orderService.getOneOrder(orderIdFromRoute).subscribe(data=>{
+    this.orderService.getOneOrder(orderIdFromRoute).subscribe(async data=>{
       this.order = data;
-      // this.cityService.getOneCity(this.order.cit).then(city=>{
-      //   this.locationDelivered = this.order.address+" "+city[0].departamento+"-"+city[0].municipio;
-      // })
+      this.locationReceived = await this.calculateLocation(this.order.city_received, this.order.address_received);
+      this.locationDelivered = await this.calculateLocation(this.order.city_delivered, this.order.address_delivered);
     });
 
-    const id = localStorage.getItem("establishment");
-    this.establishmentService.getEstablishmentById(id).then(establishment=>{
-      // this.cityService.getOneCity(establishment.city).then(city=>{
-      //   this.locationReceived = establishment.address+" "+city[0].departamento+"-"+city[0].municipio;
-      // })
-    });
   }
 
   ngOnInit() {
 
+  }
+
+  async calculateLocation(city:number, address:string){
+    const location = await this.cityService.getOneCity(city);
+    return address+" "+location[0].departamento+"-"+location[0].municipio;
   }
 
 }

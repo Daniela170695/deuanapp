@@ -23,8 +23,7 @@
     </ion-item>
     <ion-item>
       <h6 >Precio: </h6>
-      <p class="p-item"></p>
-
+      <p class="p-item">{{order.price}}</p>
     </ion-item>
 
     <ion-button expand="full" style="margin-top: 20px;" *ngIf="order.accepted == true && order.delivered == false">Ver Seguimiento</ion-button><br>
