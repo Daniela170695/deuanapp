@@ -41,15 +41,6 @@
       </div>
     </div>
     <ion-item>
-      <ion-label position="floating">Barrio</ion-label>
-      <ion-input formControlName="neighborhood"></ion-input>
-    </ion-item>
-    <div *ngIf="neighborhood.invalid && (neighborhood.dirty || neighborhood.touched)" class="alert alert-danger">
-      <div *ngIf="neighborhood.errors?.['required']" class="errors">
-        Barrio requerido
-      </div>
-    </div>
-    <ion-item>
       <ion-label position="floating">Direccion</ion-label>
       <ion-input formControlName="address"></ion-input>
     </ion-item>

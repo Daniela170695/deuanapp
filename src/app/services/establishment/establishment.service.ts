@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -13,6 +13,8 @@ export class EstablishmentService {
 
   private establismentCollection: AngularFirestoreCollection<Establishment>;
   private establisments: Observable<Establishment[]>;
+  private establismentDoc: AngularFirestoreDocument<Establishment>;
+  private establisment: Observable<Establishment>;
 
   constructor(private afs: AngularFirestore) { }
 
@@ -31,5 +33,11 @@ export class EstablishmentService {
     this.establismentCollection = this.afs.collection<Establishment>('Establishment', ref=>ref.where("uid", "==", uid));
     this.establisments = this.establismentCollection.valueChanges({idField:'id'});
     return this.establisments.pipe(take(1)).toPromise();
+  }
+
+  getEstablishmentById(id:string){
+    this.establismentDoc = this.afs.doc<Establishment>('Establishment/'+id);
+    this.establisment = this.establismentDoc.valueChanges();
+    return this.establisment.pipe(take(1)).toPromise();
   }
 }

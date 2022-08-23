@@ -5,6 +5,5 @@ export interface Establishment {
   type: string;
   city: number;
   address: string;
-  neighborhood: string;
   cellphone: number;
 }

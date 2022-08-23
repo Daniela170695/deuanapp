@@ -39,7 +39,6 @@ export class RegisterUserPage implements OnInit {
       name: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
       type: ['', [Validators.required]],
       city: ['', [Validators.required]],
-      neighborhood: ['', [Validators.required]],
       address: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\-_ ]+$')]],
       cellphone: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       email: ['', [Validators.required, Validators.email]],
@@ -57,10 +56,6 @@ export class RegisterUserPage implements OnInit {
 
   get city() {
     return this.establishmentForm.get('city');
-  }
-
-  get neighborhood(){
-    return this.establishmentForm.get('neighborhood');
   }
 
   get address(){
@@ -102,8 +97,7 @@ export class RegisterUserPage implements OnInit {
               uid: userCredential.user.uid,
               name: this.establishmentForm.value.name,
               type: this.establishmentForm.value.type,
-              city: this.establishmentForm.value.city,
-              neighborhood: this.establishmentForm.value.neighborhood,
+              city: this.establishmentForm.value.city,    
               address: this.establishmentForm.value.address,
               cellphone: this.establishmentForm.value.cellphone
             };

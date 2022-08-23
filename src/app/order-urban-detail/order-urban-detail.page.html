@@ -15,16 +15,16 @@
     </ion-item>
     <ion-item>
       <h6>Direccion de Recogida: </h6>
-      <p class="p-item">{{order.adresss}}</p>
+      <p class="p-item">{{locationReceived}}</p>
     </ion-item>
     <ion-item>
       <h6>Direccion de Entrega: </h6>
-      <p class="p-item">{{order.address}}</p>
+      <p class="p-item">{{locationDelivered}}</p>
     </ion-item>
     <ion-item>
-      <h6>Precio: </h6>
+      <h6 >Precio: </h6>
       <p class="p-item"></p>
-      
+
     </ion-item>
 
     <ion-button expand="full" style="margin-top: 20px;" *ngIf="order.accepted == true && order.delivered == false">Ver Seguimiento</ion-button><br>
