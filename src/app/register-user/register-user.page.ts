@@ -110,6 +110,7 @@ export class RegisterUserPage implements OnInit {
               cellphone: this.establishmentForm.value.cellphone
             };
             this.establishmentService.add(establishment);
+            this.openLogin();
           } catch (error) {
             const alert = await this.alertController.create({
               header: ':(',

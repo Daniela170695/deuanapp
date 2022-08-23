@@ -36,7 +36,7 @@ export class OrderService {
 
   cancelOrder(id:string){
     this.orderDoc = this.afs.doc<Order>('Order/'+id);
-    this.orderDoc.update({cancelled:true});
+    this.orderDoc.update({cancelled:true, cancelled_datetime:new Date()});
   }
 
 }

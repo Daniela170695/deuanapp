@@ -9,6 +9,14 @@
 <ion-content>
   <div id="orders" *ngIf="order">
     <ion-item>
+      <h6>Fecha: </h6>
+      <p class="p-item">{{order.created_datetime.toDate() | date}}</p>
+    </ion-item>
+    <ion-item>
+      <h6>Hora: </h6>
+      <p class="p-item">{{order.created_datetime.toDate() | date:'shortTime'}}</p>
+    </ion-item>
+    <ion-item>
       <h6>Estado:</h6>
       <p *ngIf="order.accepted == false && order.cancelled == false && order.received == false && order.delivered == false" class="p-item">Pendiente</p>
       <p *ngIf="order.accepted == false && order.cancelled == true && order.received == false && order.delivered == false" class="p-item">Cancelado</p>
@@ -30,6 +38,6 @@
     </ion-item>
 
     <ion-button expand="full" style="margin-top: 20px;" *ngIf="order.accepted == true && order.delivered == false">Ver Seguimiento</ion-button><br>
-    <ion-button expand="full" style="margin-top: -9px;" *ngIf="order.cancelled == false && order.accepted == false" (click)="cancelOrder(order.id)">Cancelar Pedido</ion-button>
+    <ion-button expand="full" style="margin-top: -9px;" *ngIf="order.cancelled == false && order.accepted == false" (click)="cancelOrder()">Cancelar Pedido</ion-button>
   </div>
 </ion-content>

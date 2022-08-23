@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="openLogin()">
+      <ion-button color="primary">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+       </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div id="header">
+    <img src="assets/img/logotipo.png" />
+  </div>
+
+  <div id="validate">
+    <ion-row>
+      <ion-col size="8" offset="1">
+        <div>
+          <h1 class="titulo">Validación <br>de correo </h1></div>
+      </ion-col>
+      <ion-col size="2" >
+        <div>
+          <ion-icon name="shield-checkmark-outline"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <form id="form">
+    <h3 class="regular">
+      En el correo electronico que registraste llego un correo de confirmación debes dar click en
+      <strong>Validar</strong>
+      para validar tu correo electronico e iniciar sesion.
+    </h3>
+    <ion-button expand="full" (click)="openLogin()"> Iniciar Sesion</ion-button>
+  </form>
+</ion-content>
