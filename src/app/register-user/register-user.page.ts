@@ -110,7 +110,8 @@ export class RegisterUserPage implements OnInit {
               cellphone: this.establishmentForm.value.cellphone
             };
             this.establishmentService.add(establishment);
-            this.openLogin();
+            await this.authService.sendEmailVerification();
+            this.router.navigate(["/validate"]);
           } catch (error) {
             const alert = await this.alertController.create({
               header: ':(',
@@ -125,6 +126,6 @@ export class RegisterUserPage implements OnInit {
   }
 
   openLogin(){
-    this.router.navigate(['/login']);
+    this.router.navigate(["/login"]);
   }
 }

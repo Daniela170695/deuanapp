@@ -39,10 +39,21 @@ export class LoginPage implements OnInit {
 
       try {
         const userCredential = await this.authService.signIn(user);
-        const uid = userCredential.user.uid;
-        const establishment = await this.establishmentService.getEstablishmentByUid(uid);
-        localStorage.setItem('establishment', establishment[0].id);
-        this.router.navigate(['home'])
+        const emailVerified = userCredential.user.emailVerified;
+        if(emailVerified == true){
+          const uid = userCredential.user.uid;
+          const establishment = await this.establishmentService.getEstablishmentByUid(uid);
+          localStorage.setItem('establishment', establishment[0].id);
+          this.router.navigate(['home'])
+        }
+        else{
+          const alert = await this.alertController.create({
+            header: ':(',
+            message: 'Correo no verificado, revisa tu correo',
+            buttons: ['OK'],
+          });
+          await alert.present();
+        }
       } catch (error) {
         const alert = await this.alertController.create({
           header: ':(',

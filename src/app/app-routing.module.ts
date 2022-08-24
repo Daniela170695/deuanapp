@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'validate',
     loadChildren: () => import('./validate/validate.module').then( m => m.ValidatePageModule)
+  },
+  {
+    path: 'tracking',
+    loadChildren: () => import('./tracking/tracking.module').then( m => m.TrackingPageModule)
   }
 ];
 @NgModule({
