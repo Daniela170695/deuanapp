@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-config-support',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfigSupportPage implements OnInit {
 
-  constructor() { }
+  constructor(private authService:AuthService, private route:Router) { }
 
   ngOnInit() {
+  }
+
+  logout(){
+    localStorage.removeItem('establishment');
+    this.authService.signOut();
+    this.router.navigate(['/login']);
   }
 
 }

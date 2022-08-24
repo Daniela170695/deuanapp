@@ -44,7 +44,7 @@ export class LoginPage implements OnInit {
           const uid = userCredential.user.uid;
           const establishment = await this.establishmentService.getEstablishmentByUid(uid);
           localStorage.setItem('establishment', establishment[0].id);
-          this.router.navigate(['home'])
+          this.router.navigate(['/home'])
         }
         else{
           const alert = await this.alertController.create({

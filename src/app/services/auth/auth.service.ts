@@ -6,7 +6,7 @@ import { User } from '../../interfaces/user';
   providedIn: 'root'
 })
 export class AuthService {
-
+  
   constructor(public auth:AngularFireAuth) { }
 
   signIn(user:User){
@@ -24,6 +24,10 @@ export class AuthService {
 
   signOut() {
     this.auth.signOut();
+  }
+
+  getAuthState(){
+    return this.auth.authState;
   }
 
 }
