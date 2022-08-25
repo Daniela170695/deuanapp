@@ -9,7 +9,7 @@ import { AuthService } from '../services/auth/auth.service';
 })
 export class ConfigSupportPage implements OnInit {
 
-  constructor(private authService:AuthService, private route:Router) { }
+  constructor(private authService:AuthService, private router:Router) { }
 
   ngOnInit() {
   }

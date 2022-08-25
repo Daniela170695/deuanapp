@@ -31,11 +31,11 @@ export class OrderUrbanPage implements OnInit {
   }
 
   openRegisterOrder(){
-    this.router.navigate(['order-urban/register-order-urban']);
+    this.router.navigate(['tabs/order-urban/register-order-urban']);
   }
 
   openDetailOrder(id:string){
-    this.router.navigate(['order-urban/order-urban-detail/', id]);
+    this.router.navigate(['tabs/order-urban/order-urban-detail/', id]);
   }
 
 }

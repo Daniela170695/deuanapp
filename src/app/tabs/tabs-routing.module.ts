@@ -29,10 +29,10 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/home',
+        redirectTo: 'tabs/home',
         pathMatch: 'full'
       }
-    ]
+    ],
   },
 ];
 
