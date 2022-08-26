@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { User } from '../../interfaces/user';
+import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  
+
   constructor(public auth:AngularFireAuth) { }
 
   signIn(user:User){
@@ -26,8 +27,8 @@ export class AuthService {
     this.auth.signOut();
   }
 
-  getAuthState(){
-    return this.auth.authState;
+  getCurrentUser(){
+    return this.auth.authState.pipe(take(1)).toPromise();
   }
 
 }
