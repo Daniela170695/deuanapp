@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Order } from '../interfaces/order';
 
 import { OrderService } from '../services/order/order.service';
+import { AuthService } from '../services/auth/auth.service';
+import { EstablishmentService } from '../services/establishment/establishment.service';
 
 @Component({
   selector: 'app-order-urban',
@@ -16,14 +18,18 @@ export class OrderUrbanPage implements OnInit {
 
   constructor(
     private router: Router,
-    private orderService: OrderService) {
+    private orderService: OrderService,
+    private authService: AuthService,
+    private establishmentService: EstablishmentService) {
 
-    const establishment = localStorage.getItem("establishment");
-    this.orderService.getAllOrders(establishment).subscribe(orders=>{
-      this.orders = orders;
-      console.log(this.orders);
+    this.authService.getCurrentUser().then(user=>{
+      this.establishmentService.getEstablishmentByUid(user.uid).then(establishment=>{
+        this.orderService.getAllOrders(establishment[0].id).subscribe(orders=>{
+          this.orders = orders;
+        })
+      })
     })
-
+    
   }
 
   ngOnInit() {

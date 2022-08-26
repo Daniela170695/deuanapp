@@ -23,7 +23,7 @@ export class OrderService {
   }
 
   getAllOrders(establishment:string){
-    this.orderCollection = this.afs.collection<Order>('Order', ref=>ref.where('establishment', '==', establishment));
+    this.orderCollection = this.afs.collection<Order>('Order', ref=>ref.where('establishment', '==', establishment).orderBy("created_datetime", "desc"));
     this.orders = this.orderCollection.valueChanges({idField: 'id'});
     return this.orders;
   }

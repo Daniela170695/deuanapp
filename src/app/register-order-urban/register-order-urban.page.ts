@@ -11,7 +11,7 @@ import { CityService } from '../services/city/city.service';
 import { OrderService } from '../services/order/order.service';
 import { OrderTypeService } from '../services/order-type/order-type.service';
 import { EstablishmentService } from '../services/establishment/establishment.service';
-
+import { AuthService } from '../services/auth/auth.service';
 @Component({
   selector: 'app-register-order-urban',
   templateUrl: './register-order-urban.page.html',
@@ -28,7 +28,8 @@ export class RegisterOrderUrbanPage implements OnInit {
     private cityService: CityService,
     private orderService: OrderService,
     private orderTypeService: OrderTypeService,
-    private establishmentService: EstablishmentService) {
+    private establishmentService: EstablishmentService,
+    private authService: AuthService) {
 
     this.cityService.getAllCities().then(data=>{
       this.cities = data;
@@ -60,19 +61,19 @@ export class RegisterOrderUrbanPage implements OnInit {
       try {
         const idOrderType = "jgZuLrPdP4SaRjWopSCh";
         const orderType = await this.orderTypeService.getOrderType(idOrderType);
-        const idUser = localStorage.getItem('establishment');
-        const establishment = await this.establishmentService.getEstablishmentById(idUser);
+        const currentUser = await this.authService.getCurrentUser();
+        const establishment = await this.establishmentService.getEstablishmentByUid(currentUser.uid);
         const kg = this.orderUrbanForm.value.kg ? this.orderUrbanForm.value.kg:null;
         const now = new Date();
         const order:Order = {
-          establishment: idUser,
+          establishment: establishment[0].id,
           type: idOrderType,
           courier: null,
           city_delivered: this.orderUrbanForm.value.city,
           address_delivered: this.orderUrbanForm.value.address,
           price: orderType.price,
-          city_received: establishment.city,
-          address_received: establishment.address,
+          city_received: establishment[0].city,
+          address_received: establishment[0].address,
           kg: kg,
           cancelled: false,
           accepted: false,
@@ -85,7 +86,7 @@ export class RegisterOrderUrbanPage implements OnInit {
           delivered_datetime: null
         };
         this.orderService.add(order);
-        this.router.navigate(['order-urban']);
+        this.router.navigate(['tabs/order-urban']);
       } catch (error) {
         console.log(error);
       }

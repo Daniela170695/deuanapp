@@ -40,10 +40,7 @@ export class LoginPage implements OnInit {
       try {
         const userCredential = await this.authService.signIn(user);
         const emailVerified = userCredential.user.emailVerified;
-        if(emailVerified == true){
-          const uid = userCredential.user.uid;
-          const establishment = await this.establishmentService.getEstablishmentByUid(uid);
-          localStorage.setItem('establishment', establishment[0].id);
+        if(emailVerified == true){      
           this.router.navigate(['tabs/home'])
         }
         else{
