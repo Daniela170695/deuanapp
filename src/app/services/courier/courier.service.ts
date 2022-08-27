@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
-
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
-
-import { Order } from '../../interfaces/order';
+import { Courier } from '../../interfaces/courier';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourierService {
-  
-  private orderCollection: AngularFirestoreCollection<Order>;
-  private orders: Observable<Order[]>;
 
-  constructor() { }
+  private courierDoc: AngularFirestoreDocument<Courier>;
+  private courier: Observable<Courier>;
+
+  constructor(private afs: AngularFirestore) { }
+
+  getCourier(id:string){
+    this.courierDoc = this.afs.doc<Courier>('Courier/'+id);
+    this.courier = this.courierDoc.valueChanges();
+    return this.courier;
+  }
 }

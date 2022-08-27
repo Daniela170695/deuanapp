@@ -21,6 +21,7 @@
       </ion-card-header>
       <ion-card-content>
         <ion-button (click)="openDetailOrder(order.id)">Detalles</ion-button>
+        <ion-button *ngIf="order.accepted == true && order.delivered == false" (click)="openTracking(order.id)">Ver Seguimiento</ion-button>
       </ion-card-content>
     </ion-card>
   </div>

@@ -35,9 +35,7 @@
     <ion-item>
       <h6 >Precio: </h6>
       <p class="p-item">{{order.price}}</p>
-    </ion-item>
-
-    <ion-button expand="full" style="margin-top: 20px;" *ngIf="order.accepted == true && order.delivered == false">Ver Seguimiento</ion-button><br>
+    </ion-item>  
     <ion-button expand="full" style="margin-top: -9px;" *ngIf="order.cancelled == false && order.accepted == false" (click)="cancelOrder()">Cancelar Pedido</ion-button>
   </div>
 </ion-content>

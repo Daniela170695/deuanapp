@@ -6,7 +6,7 @@ import { OrderUrbanDetailPage } from './order-urban-detail.page';
 const routes: Routes = [
   {
     path: '',
-    component: OrderUrbanDetailPage
+    component: OrderUrbanDetailPage,
   }
 ];
 

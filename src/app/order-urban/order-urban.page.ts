@@ -29,7 +29,7 @@ export class OrderUrbanPage implements OnInit {
         })
       })
     })
-    
+
   }
 
   ngOnInit() {
@@ -42,6 +42,10 @@ export class OrderUrbanPage implements OnInit {
 
   openDetailOrder(id:string){
     this.router.navigate(['tabs/order-urban/order-urban-detail/', id]);
+  }
+
+  openTracking(id:string){
+    this.router.navigate(['tabs/order-urban/tracking-order-urban/', id]);
   }
 
 }

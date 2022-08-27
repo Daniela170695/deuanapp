@@ -47,4 +47,5 @@ export class OrderUrbanDetailPage implements OnInit {
   cancelOrder(){
     this.orderService.cancelOrder(this.orderIdFromRoute);
   }
+
 }
