@@ -18,11 +18,11 @@
     </ion-item>
     <ion-item>
       <h6>Estado:</h6>
-      <p *ngIf="order.accepted == false && order.cancelled == false && order.received == false && order.delivered == false" class="p-item">Pendiente</p>
-      <p *ngIf="order.accepted == false && order.cancelled == true && order.received == false && order.delivered == false" class="p-item">Cancelado</p>
-      <p *ngIf="order.accepted == true && order.cancelled == false && order.received == false && order.delivered == false" class="p-item">Aceptado</p>
-      <p *ngIf="order.accepted == true && order.cancelled == false && order.received == true && order.delivered == false" class="p-item">Recibido</p>
-      <p *ngIf="order.accepted == true && order.cancelled == false && order.received == true && order.delivered == true" class="p-item">Entregado</p>
+      <p *ngIf="order.pedding == true && order.cancelled == false && order.accepted == false && order.received == false && order.delivered == false" class="p-item">Pendiente</p>
+      <p *ngIf="order.pedding == true && order.cancelled == true && order.accepted == false && order.received == false && order.delivered == false" class="p-item">Cancelado</p>
+      <p *ngIf="order.pedding == true && order.cancelled == false && order.accepted == true && order.received == false && order.delivered == false" class="p-item">Aceptado</p>
+      <p *ngIf="order.pedding == true && order.cancelled == false && order.accepted == true && order.received == true && order.delivered == false" class="p-item">Recibido</p>
+      <p *ngIf="order.pedding == true && order.cancelled == false && order.accepted == true && order.received == true && order.delivered == true" class="p-item">Entregado</p>
     </ion-item>
     <ion-item>
       <h6>Direccion de Recogida: </h6>
@@ -35,7 +35,7 @@
     <ion-item>
       <h6 >Precio: </h6>
       <p class="p-item">{{order.price}}</p>
-    </ion-item>  
-    <ion-button expand="full" style="margin-top: -9px;" *ngIf="order.cancelled == false && order.accepted == false" (click)="cancelOrder()">Cancelar Pedido</ion-button>
+    </ion-item>
+    <ion-button expand="full" *ngIf="order.cancelled == false && order.accepted == false" (click)="cancelOrder()">Cancelar Pedido</ion-button>
   </div>
 </ion-content>

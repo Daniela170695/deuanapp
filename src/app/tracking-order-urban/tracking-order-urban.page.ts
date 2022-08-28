@@ -20,16 +20,15 @@ export class TrackingOrderUrbanPage implements OnInit {
     private orderService: OrderService,
     private courierService: CourierService) {
 
-      const routeParams = this.route.snapshot.paramMap;
-      const orderIdFromRoute = routeParams.get('id');
-      this.orderService.getOneOrder(orderIdFromRoute).subscribe(data=>{
-        this.order = data;
-        this.courierService.getCourier(this.order.id).subscribe(data=>{
-          this.courier = data;
-          console.log(this.order, this.courier);
-        })
+    const routeParams = this.route.snapshot.paramMap;
+    const orderIdFromRoute = routeParams.get('id');
+    this.orderService.getOneOrder(orderIdFromRoute).subscribe(data=>{
+      this.order = data;
+      this.courierService.getCourier(this.order.courier).subscribe(data=>{
+        this.courier = data;
       })
-      
+    })
+
     }
 
   ngOnInit() {
