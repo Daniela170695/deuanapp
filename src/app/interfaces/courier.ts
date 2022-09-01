@@ -1,3 +1,5 @@
+import { Coord } from './utils';
+
 export interface Courier {
   id: string;
   uid: string;
@@ -7,8 +9,5 @@ export interface Courier {
   driving_license: string;
   active: boolean;
   cellphone: number;
-  coords: {
-    latitude: number;
-    longitude: number;
-  }
+  coords: Coord
 }

@@ -15,6 +15,23 @@
 
 <ion-footer>
   <ion-toolbar>
-    <p>{{coords}}</p>
+    <div style="overflow-y: auto;height: 200px;">
+      <div style="margin-top: 20px;">
+        <ion-item>
+          <ion-label *ngIf="courier">
+            <h4>Mensajero</h4>
+            <p>{{courier.name}} {{courier.lastname}}</p>
+          </ion-label>
+        </ion-item>
+      </div>
+      <ion-list *ngIf="order">
+        <ion-item>
+          <ion-label>
+            <h4>Pedido creado</h4>
+            <p>{{order.created_datetime.toDate() | date:'shortTime'}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
   </ion-toolbar>
 </ion-footer>

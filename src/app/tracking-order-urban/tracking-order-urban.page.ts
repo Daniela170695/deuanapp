@@ -44,13 +44,9 @@ export class TrackingOrderUrbanPage implements OnInit {
         this.order = data;
       });
 
-    }
-
-  ngOnInit() {
-
   }
 
-  ionViewDidEnter() {
+  ngOnInit() {
     this.orderService.getOneOrder(this.orderId).pipe(take(1)).subscribe(async(data)=>{
 
       const order = data;
@@ -77,7 +73,7 @@ export class TrackingOrderUrbanPage implements OnInit {
       this.markerReceive = await this.addMarker({latitude:10, longitude:1});
       this.markerDelivery = await this.addMarker({latitude:10, longitude:2});
 
-      this.courierService.getCourier(this.order.courier).subscribe(async(data)=>{
+      this.courierService.getCourier(order.courier).subscribe(async(data)=>{
         this.courier = data;
         if(this.markerCourier){
           await this.removeMarker(this.markerCourier);
@@ -88,6 +84,10 @@ export class TrackingOrderUrbanPage implements OnInit {
     })
   }
 
+  ionViewDidEnter() {
+
+  }
+
   async createMap(coords:Coord) {
     this.newMap = await GoogleMap.create({
       id: 'my-map',
@@ -95,7 +95,6 @@ export class TrackingOrderUrbanPage implements OnInit {
       apiKey: environment.GoogleMapsApiKey,
       config: {
         center: {
-          //
           lat: coords.latitude,
           lng: coords.longitude,
         },
