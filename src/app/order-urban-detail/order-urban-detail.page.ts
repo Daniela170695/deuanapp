@@ -41,7 +41,7 @@ export class OrderUrbanDetailPage implements OnInit {
 
   async getLocation(city:number, address:string){
     const location = await this.cityService.getOneCity(city);
-    return address+" "+location[0].departamento+"-"+location[0].municipio;
+    return address+", "+location[0].municipio+", "+location[0].departamento;
   }
 
   cancelOrder(){

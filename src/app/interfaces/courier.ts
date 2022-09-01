@@ -7,4 +7,8 @@ export interface Courier {
   driving_license: string;
   active: boolean;
   cellphone: number;
+  coords: {
+    latitude: number;
+    longitude: number;
+  }
 }
