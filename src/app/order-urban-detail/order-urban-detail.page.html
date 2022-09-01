@@ -6,7 +6,7 @@
     <ion-title>Detalle del Pedido</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content [fullscreen]="true">
   <div id="orders" *ngIf="order">
     <ion-item>
       <h6>Fecha: </h6>
@@ -18,11 +18,11 @@
     </ion-item>
     <ion-item>
       <h6>Estado:</h6>
-      <p *ngIf="order.pedding == true && order.cancelled == false && order.accepted == false && order.received == false && order.delivered == false" class="p-item">Pendiente</p>
-      <p *ngIf="order.pedding == true && order.cancelled == true && order.accepted == false && order.received == false && order.delivered == false" class="p-item">Cancelado</p>
-      <p *ngIf="order.pedding == true && order.cancelled == false && order.accepted == true && order.received == false && order.delivered == false" class="p-item">Aceptado</p>
-      <p *ngIf="order.pedding == true && order.cancelled == false && order.accepted == true && order.received == true && order.delivered == false" class="p-item">Recibido</p>
-      <p *ngIf="order.pedding == true && order.cancelled == false && order.accepted == true && order.received == true && order.delivered == true" class="p-item">Entregado</p>
+      <p *ngIf="order.cancelled == false && order.accepted == false && order.received == false && order.delivered == false" class="p-item">Pendiente</p>
+      <p *ngIf="order.cancelled == true && order.accepted == false && order.received == false && order.delivered == false" class="p-item">Cancelado</p>
+      <p *ngIf="order.cancelled == false && order.accepted == true && order.received == false && order.delivered == false" class="p-item">Aceptado</p>
+      <p *ngIf="order.cancelled == false && order.accepted == true && order.received == true && order.delivered == false" class="p-item">Recibido</p>
+      <p *ngIf="order.cancelled == false && order.accepted == true && order.received == true && order.delivered == true" class="p-item">Entregado</p>
     </ion-item>
     <ion-item>
       <h6>Direccion de Recogida: </h6>

@@ -9,7 +9,6 @@ export interface Order {
   city_received:number;
   address_received:string;
   kg: number;
-  pedding: boolean;
   cancelled: boolean;
   accepted: boolean;
   received: boolean;

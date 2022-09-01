@@ -75,7 +75,6 @@ export class RegisterOrderUrbanPage implements OnInit {
           city_received: establishment[0].city,
           address_received: establishment[0].address,
           kg: kg,
-          pedding: true,
           cancelled: false,
           accepted: false,
           received: false,
