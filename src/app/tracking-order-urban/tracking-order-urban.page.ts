@@ -47,7 +47,7 @@ export class TrackingOrderUrbanPage implements OnInit {
     }
 
   ngOnInit() {
-    
+
   }
 
   ionViewDidEnter() {
@@ -88,7 +88,7 @@ export class TrackingOrderUrbanPage implements OnInit {
     })
   }
 
-  async createMap(coords:any) {
+  async createMap(coords:Coord) {
     this.newMap = await GoogleMap.create({
       id: 'my-map',
       element:this.mapRef.nativeElement,
@@ -104,7 +104,7 @@ export class TrackingOrderUrbanPage implements OnInit {
     });
   }
 
-  async addMarker(coords:any){
+  async addMarker(coords:Coord){
     // Add a marker to the map
     const markerId = await this.newMap.addMarker({
       coordinate: {
