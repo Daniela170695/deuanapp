@@ -47,11 +47,15 @@ export class TrackingOrderUrbanPage implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+
+  ionViewDidEnter() {    
     this.orderService.getOneOrder(this.orderId).pipe(take(1)).subscribe(async(data)=>{
 
       const order = data;
 
-      // Otenemos direccion del lugar de recibida y entrega
+      // Obtenemos direccion del lugar de recibida y entrega
       const addressReceive = await this.getAddressComplete(order.city_received, order.address_received);
       const addressDelivery = await this.getAddressComplete(order.city_delivered, order.address_delivered);
 
@@ -82,10 +86,6 @@ export class TrackingOrderUrbanPage implements OnInit {
       })
 
     })
-  }
-
-  ionViewDidEnter() {
-
   }
 
   async createMap(coords:Coord) {
