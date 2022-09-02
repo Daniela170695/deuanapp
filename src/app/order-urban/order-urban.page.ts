@@ -24,7 +24,7 @@ export class OrderUrbanPage implements OnInit {
 
     this.authService.getCurrentUser().then(user=>{
       this.establishmentService.getEstablishmentByUid(user.uid).then(establishment=>{
-        this.orderService.getAllOrders(establishment[0].id).subscribe(orders=>{
+        this.orderService.getOrdersUrban(establishment[0].id).subscribe(orders=>{
           this.orders = orders;
         })
       })
@@ -41,7 +41,7 @@ export class OrderUrbanPage implements OnInit {
   }
 
   openDetailOrder(id:string){
-    this.router.navigate(['tabs/order-urban/order-urban-detail/', id]);
+    this.router.navigate(['tabs/order-urban/detail-order-urban/', id]);
   }
 
   openTracking(id:string){

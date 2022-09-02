@@ -5,9 +5,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RegisterOrderUrbanPageRoutingModule } from './register-order-urban-routing.module';
+import { RegisterOrderParcelPageRoutingModule } from './register-order-parcel-routing.module';
 
-import { RegisterOrderUrbanPage } from './register-order-urban.page';
+import { RegisterOrderParcelPage } from './register-order-parcel.page';
 
 @NgModule({
   imports: [
@@ -15,8 +15,8 @@ import { RegisterOrderUrbanPage } from './register-order-urban.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    RegisterOrderUrbanPageRoutingModule
+    RegisterOrderParcelPageRoutingModule
   ],
-  declarations: [RegisterOrderUrbanPage]
+  declarations: [RegisterOrderParcelPage]
 })
-export class RegisterOrderUrbanPageModule {}
+export class RegisterOrderParcelPageModule {}

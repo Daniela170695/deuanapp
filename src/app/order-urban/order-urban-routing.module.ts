@@ -13,8 +13,8 @@ const routes: Routes = [
     loadChildren: () => import('../register-order-urban/register-order-urban.module').then( m => m.RegisterOrderUrbanPageModule)
   },
   {
-    path: 'order-urban-detail/:id',
-    loadChildren: () => import('../order-urban-detail/order-urban-detail.module').then( m => m.OrderUrbanDetailPageModule)
+    path: 'detail-order-urban/:id',
+    loadChildren: () => import('../detail-order-urban/detail-order-urban.module').then( m => m.DetailOrderUrbanPageModule)
   },
   {
     path: 'tracking-order-urban/:id',

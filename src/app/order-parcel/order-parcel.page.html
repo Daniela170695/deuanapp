@@ -1,15 +1,34 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      OrderParcel
+      Paqueteria
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">  
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">OrderParcelD</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+<ion-content [fullscreen]="true">
+  <div *ngFor="let order of orders">
+    <ion-card>
+      <ion-card-header style="padding-bottom:0px">
+          <ion-card-title>{{ order.id }}</ion-card-title>
+          <ion-card-subtitle>
+            <p *ngIf="order.cancelled == false && order.accepted == false && order.received == false && order.delivered == false" class="p-item">Pendiente</p>
+            <p *ngIf="order.cancelled == true && order.accepted == false && order.received == false && order.delivered == false" class="p-item">Cancelado</p>
+            <p *ngIf="order.cancelled == false && order.accepted == true && order.received == false && order.delivered == false" class="p-item">Aceptado</p>
+            <p *ngIf="order.cancelled == false && order.accepted == true && order.received == true && order.delivered == false" class="p-item">Recibido</p>
+            <p *ngIf="order.cancelled == false && order.accepted == true && order.received == true && order.delivered == true" class="p-item">Entregado</p>
+          </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button (click)="openDetailOrder(order.id)">Detalles</ion-button>
+        <ion-button *ngIf="order.accepted == true && order.delivered == false" (click)="openTracking(order.id)">Ver Seguimiento</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openRegisterOrder()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+<ion-content>

@@ -7,13 +7,12 @@ import { OrderService } from '../services/order/order.service';
 import { CityService } from '../services/city/city.service';
 import { EstablishmentService } from '../services/establishment/establishment.service';
 
-
 @Component({
-  selector: 'app-order-urban-detail',
-  templateUrl: './order-urban-detail.page.html',
-  styleUrls: ['./order-urban-detail.page.scss'],
+  selector: 'app-detail-order-urban',
+  templateUrl: './detail-order-urban.page.html',
+  styleUrls: ['./detail-order-urban.page.scss'],
 })
-export class OrderUrbanDetailPage implements OnInit {
+export class DetailOrderUrbanPage implements OnInit {
 
   order: Order;
   locationReceived: string;
@@ -26,13 +25,13 @@ export class OrderUrbanDetailPage implements OnInit {
     private cityService: CityService,
     private establishmentService: EstablishmentService) {
 
-    const routeParams = this.route.snapshot.paramMap;
-    this.orderIdFromRoute = routeParams.get('id');
-    this.orderService.getOneOrder(this.orderIdFromRoute).subscribe(async(data)=>{
-      this.order = data;
-      this.locationReceived = await this.getLocation(this.order.city_received, this.order.address_received);
-      this.locationDelivered = await this.getLocation(this.order.city_delivered, this.order.address_delivered);
-    });
+      const routeParams = this.route.snapshot.paramMap;
+      this.orderIdFromRoute = routeParams.get('id');
+      this.orderService.getOneOrder(this.orderIdFromRoute).subscribe(async(data)=>{
+        this.order = data;
+        this.locationReceived = await this.getLocation(this.order.city_received, this.order.address_received);
+        this.locationDelivered = await this.getLocation(this.order.city_delivered, this.order.address_delivered);
+      });
   }
 
   ngOnInit() {
@@ -47,5 +46,4 @@ export class OrderUrbanDetailPage implements OnInit {
   cancelOrder(){
     this.orderService.cancelOrder(this.orderIdFromRoute);
   }
-
 }

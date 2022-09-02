@@ -14,24 +14,23 @@ import { EstablishmentService } from '../services/establishment/establishment.se
 import { AuthService } from '../services/auth/auth.service';
 
 @Component({
-  selector: 'app-register-order-urban',
-  templateUrl: './register-order-urban.page.html',
-  styleUrls: ['./register-order-urban.page.scss'],
+  selector: 'app-register-order-parcel',
+  templateUrl: './register-order-parcel.page.html',
+  styleUrls: ['./register-order-parcel.page.scss'],
 })
-export class RegisterOrderUrbanPage implements OnInit {
+export class RegisterOrderParcelPage implements OnInit {
 
   orderUrbanForm: FormGroup;
   cities: City[];
 
   constructor(
-    private formBuilder: FormBuilder,
-    private router:Router,
-    private cityService: CityService,
-    private orderService: OrderService,
-    private orderTypeService: OrderTypeService,
-    private establishmentService: EstablishmentService,
-    private authService: AuthService) {
-
+  private formBuilder: FormBuilder,
+  private router:Router,
+  private cityService: CityService,
+  private orderService: OrderService,
+  private orderTypeService: OrderTypeService,
+  private establishmentService: EstablishmentService,
+  private authService: AuthService) {
     this.cityService.getAllCities().then(data=>{
       this.cities = data;
     })
@@ -60,7 +59,7 @@ export class RegisterOrderUrbanPage implements OnInit {
   async registerOrder(){
     if(this.orderUrbanForm.valid){
       try {
-        const idOrderType = "jgZuLrPdP4SaRjWopSCh";
+        const idOrderType = "WYcv2HHpv8BIGoYjP6r0";
         const orderType = await this.orderTypeService.getOrderType(idOrderType);
         const currentUser = await this.authService.getCurrentUser();
         const establishment = await this.establishmentService.getEstablishmentByUid(currentUser.uid);
@@ -87,10 +86,11 @@ export class RegisterOrderUrbanPage implements OnInit {
           delivered_datetime: null
         };
         this.orderService.add(order);
-        this.router.navigate(['tabs/order-urban']);
+        this.router.navigate(['tabs/order-parcel']);
       } catch (error) {
         console.log(error);
       }
     }
   }
+
 }
