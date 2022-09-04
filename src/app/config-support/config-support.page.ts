@@ -15,9 +15,12 @@ export class ConfigSupportPage implements OnInit {
   }
 
   logout(){
-    localStorage.removeItem('establishment');
     this.authService.signOut();
-    this.router.navigate(['/login']);
+    this.router.navigate(['login']);
+  }
+
+  openInfoEstablishment(){
+    this.router.navigate(['tabs/config-support/info-establishment']);
   }
 
 }

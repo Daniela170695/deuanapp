@@ -40,4 +40,10 @@ export class EstablishmentService {
     this.establisment = this.establismentDoc.valueChanges();
     return this.establisment.pipe(take(1)).toPromise();
   }
+
+  updateEstablishment(id:string, city:string, address:string, cellphone:number){
+    this.establismentDoc = this.afs.doc<Establishment>('Establishment/'+id);
+    this.establismentDoc.update({city, address, cellphone});
+  }
+
 }

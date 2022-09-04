@@ -29,22 +29,6 @@ const routes: Routes = [
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
-  },
-  {
-    path: 'register-order-parcel',
-    loadChildren: () => import('./register-order-parcel/register-order-parcel.module').then( m => m.RegisterOrderParcelPageModule)
-  },
-  {
-    path: 'detail-order-parcel',
-    loadChildren: () => import('./detail-order-parcel/detail-order-parcel.module').then( m => m.DetailOrderParcelPageModule)
-  },
-  {
-    path: 'tracking-order-parcel',
-    loadChildren: () => import('./tracking-order-parcel/tracking-order-parcel.module').then( m => m.TrackingOrderParcelPageModule)
-  },
-  {
-    path: 'detail-order-urban',
-    loadChildren: () => import('./detail-order-urban/detail-order-urban.module').then( m => m.DetailOrderUrbanPageModule)
   }
 ];
 @NgModule({

@@ -3,7 +3,7 @@ export interface Establishment {
   uid: string;
   name: string;
   type: string;
-  city: number;
+  city: string;
   address: string;
   cellphone: number;
 }

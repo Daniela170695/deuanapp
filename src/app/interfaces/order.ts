@@ -3,10 +3,10 @@ export interface Order {
   establishment: string;
   type: string;
   courier: string;
-  city_delivered: number;
+  city_delivered: string;
   address_delivered: string;
   price:number;
-  city_received:number;
+  city_received:string;
   address_received:string;
   kg: number;
   cancelled: boolean;

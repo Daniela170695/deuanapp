@@ -1,11 +1,37 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      ConfigSupport
+      Configuracion y Soporte
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-button (click)="logout()">Cerrar sesion</ion-button>
+  <ion-list>
+    <ion-item class="not-border">
+      <ion-label>
+        Informacion de Cuenta
+      </ion-label>
+    </ion-item>
+    <ion-item class="not-border">
+      <ion-label (click)="openInfoEstablishment()">
+        Informacion de Empresa
+      </ion-label>
+    </ion-item>
+    <ion-item class="not-border">
+      <ion-label>
+        Notificaciones
+      </ion-label>
+    </ion-item>
+    <ion-item class="not-border">
+      <ion-label>
+        Contacto
+      </ion-label>
+    </ion-item>
+    <ion-item class="border">
+      <ion-label (click)="logout()">
+        Cerrar sesion
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

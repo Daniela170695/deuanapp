@@ -16,7 +16,7 @@ export class CityService {
     return this.httpClient.get<City[]>(path).toPromise();
   }
 
-  getOneCity(cod:number){
+  getOneCity(cod:string){
     const path = `${this.api}?c_digo_dane_del_municipio=${cod}`;
     return this.httpClient.get<City>(path).toPromise();
   }

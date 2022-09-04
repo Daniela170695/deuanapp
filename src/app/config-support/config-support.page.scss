@@ -1,0 +1,7 @@
+.not-border{
+  --inner-border-width: 0 !important;
+}
+
+.border{
+  --inner-border-width: 1px 0px 0px 0;
+}

@@ -50,7 +50,7 @@ export class TrackingOrderUrbanPage implements OnInit {
 
   }
 
-  ionViewDidEnter() {    
+  ionViewDidEnter() {
     this.orderService.getOneOrder(this.orderId).pipe(take(1)).subscribe(async(data)=>{
 
       const order = data;
@@ -118,7 +118,7 @@ export class TrackingOrderUrbanPage implements OnInit {
     await this.newMap.removeMarker(marker);
   }
 
-  async getAddressComplete(city:number, address:string){
+  async getAddressComplete(city:string, address:string){
     const location = await this.cityService.getOneCity(city);
     return address+", "+location[0].municipio+", "+location[0].departamento;
   }

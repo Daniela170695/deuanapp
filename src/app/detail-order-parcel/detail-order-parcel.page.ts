@@ -36,7 +36,7 @@ export class DetailOrderParcelPage implements OnInit {
   ngOnInit() {
   }
 
-  async getLocation(city:number, address:string){
+  async getLocation(city:string, address:string){
     const location = await this.cityService.getOneCity(city);
     return address+", "+location[0].municipio+", "+location[0].departamento;
   }

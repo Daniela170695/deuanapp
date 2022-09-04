@@ -47,7 +47,7 @@ export class RegisterUserPage implements OnInit {
       name: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
       type: ['', [Validators.required]],
       city: ['', [Validators.required]],
-      address: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\-_ ]+$')]],
+      address: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9#\-_ ]+$')]],
       cellphone: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],

@@ -61,7 +61,7 @@
     </div>
     <ion-item>
       <ion-label position="floating">Celular</ion-label>
-      <ion-input formControlName="cellphone"></ion-input>
+      <ion-input formControlName="cellphone" type="number"></ion-input>
     </ion-item>
     <div *ngIf="cellphone.invalid && (cellphone.dirty || cellphone.touched)" class="alert alert-danger">
       <div *ngIf="cellphone.errors?.['required']" class="errors">
