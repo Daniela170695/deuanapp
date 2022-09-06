@@ -38,15 +38,18 @@
       </div>
     </div>
     <ion-item>
-      <ion-label position="floating">Contraseña Nueva</ion-label>
+      <ion-label position="floating">Confirmar contraseña</ion-label>
       <ion-input formControlName="passwordNewRepeat"></ion-input>
     </ion-item>
-    <div *ngIf="passwordNewRepeat.invalid && (passwordNewRepeat.dirty || passwordNewRepeat.touched)" class="alert alert-danger">
+    <div *ngIf="(passwordNewRepeat.invalid && (passwordNewRepeat.dirty || passwordNewRepeat.touched)) || accountForm.hasError('passwordNotMatch')" class="alert alert-danger">
       <div *ngIf="passwordNewRepeat.errors?.['required']" class="errors">
         Contraseña requerida
       </div>
       <div *ngIf="passwordNewRepeat.errors?.['minlength']" class="errors">
         La constraseña debe tener al menos 6 caracteres
+      </div>
+      <div *ngIf="accountForm.hasError('passwordNotMatch')" class="errors">
+        La contraseñas no coinciden
       </div>
     </div>
     <ion-button type="submit" expand="full" >Modificar</ion-button>

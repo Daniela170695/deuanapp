@@ -8,8 +8,9 @@ import { User } from '../../interfaces/user';
   providedIn: 'root'
 })
 export class AuthService {
-
-  constructor(public auth:AngularFireAuth) { }
+  currentUser:any;
+  constructor(public auth:AngularFireAuth) {
+  }
 
   signIn(user:User){
     return this.auth.signInWithEmailAndPassword(user.email, user.password);
@@ -35,8 +36,8 @@ export class AuthService {
   async updatePassword(user:User, password:string){
     const credential = firebase.auth.EmailAuthProvider.credential(user.email, user.password);
     const currentUser = await this.auth.currentUser;
-    currentUser.reauthenticateWithCredential(credential);
-    return currentUser.updatePassword(password);
+    await currentUser.reauthenticateWithCredential(credential)
+    await currentUser.updatePassword(password);
   }
 
 }
