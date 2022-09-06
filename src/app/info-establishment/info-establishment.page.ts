@@ -74,7 +74,7 @@ export class InfoEstablishmentPage implements OnInit {
         const establishment = await this.getEstablishment();
         this.establishmentService.updateEstablishment(establishment[0].id, city, address, cellphone);
         const toast = await this.toastController.create({
-          message: 'Establecimiento actualizado',
+          message: 'Establecimiento actualizado con exito',
           duration: 1500,
           position: 'top'
         });

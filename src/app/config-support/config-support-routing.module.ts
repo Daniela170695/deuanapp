@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'info-establishment',
     loadChildren: () => import('../info-establishment/info-establishment.module').then( m => m.InfoEstablishmentPageModule)
+  },
+  {
+    path: 'contact',
+    loadChildren: () => import('../contact/contact.module').then( m => m.ContactPageModule)
   }
 ];
 

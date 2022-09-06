@@ -27,4 +27,8 @@ export class ConfigSupportPage implements OnInit {
     this.router.navigate(['tabs/config-support/info-account']);
   }
 
+  openContact(){
+    this.router.navigate(['tabs/config-support/contact']);
+  }
+
 }

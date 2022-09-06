@@ -59,7 +59,7 @@ export class InfoAccountPage implements OnInit {
         };
         await this.authService.updatePassword(user, this.passwordNew.value);
         const toast = await this.toastController.create({
-          message: 'Cuenta actualizada',
+          message: 'Cuenta actualizada con exito',
           duration: 1500,
           position: 'top'
         });
