@@ -84,7 +84,8 @@ export class RegisterUserPage implements OnInit {
 
   registerEstablishment(){
     if(this.establishmentForm.valid){
-      this.establishmentService.getEstablishmentByName(this.establishmentForm.value.name).then(async data=>{
+      const name = this.name.value;
+      this.establishmentService.getEstablishmentByName(name).then(async data=>{
         if(data.length>0){
           const alert = await this.alertController.create({
             header: ':(',
@@ -95,19 +96,19 @@ export class RegisterUserPage implements OnInit {
         }
         else{
           const user: User = {
-            email: this.establishmentForm.value.email,
-            password: this.establishmentForm.value.password
+            email: this.email.value,
+            password: this.password.value
           };
 
           try {
             const userCredential = await this.authService.signUp(user);
             const establishment: Establishment = {
               uid: userCredential.user.uid,
-              name: this.establishmentForm.value.name,
-              type: this.establishmentForm.value.type,
-              city: this.establishmentForm.value.city,
-              address: this.establishmentForm.value.address,
-              cellphone: this.establishmentForm.value.cellphone
+              name: name,
+              type: this.type.value,
+              city: this.city.value,
+              address: this.address.value,
+              cellphone: this.cellphone.value
             };
             this.establishmentService.add(establishment);
             await this.authService.sendEmailVerification();

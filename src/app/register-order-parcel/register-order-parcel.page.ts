@@ -63,7 +63,7 @@ export class RegisterOrderParcelPage implements OnInit {
         const orderType = await this.orderTypeService.getOrderType(idOrderType);
         const currentUser = await this.authService.getCurrentUser();
         const establishment = await this.establishmentService.getEstablishmentByUid(currentUser.uid);
-        const kg = this.orderUrbanForm.value.kg ? this.orderUrbanForm.value.kg:null;
+        const kg = this.kg.value ? this.kg.value:null;      
         const now = new Date();
         const order:Order = {
           establishment: establishment[0].id,

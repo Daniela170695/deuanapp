@@ -13,7 +13,6 @@ import { AuthService } from '../services/auth/auth.service';
 export class InfoAccountPage implements OnInit {
 
   accountForm: FormGroup;
-  samePassword: false;
 
   constructor(
     private formBuilder: FormBuilder,

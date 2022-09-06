@@ -64,14 +64,14 @@ export class RegisterOrderUrbanPage implements OnInit {
         const orderType = await this.orderTypeService.getOrderType(idOrderType);
         const currentUser = await this.authService.getCurrentUser();
         const establishment = await this.establishmentService.getEstablishmentByUid(currentUser.uid);
-        const kg = this.orderUrbanForm.value.kg ? this.orderUrbanForm.value.kg:null;
+        const kg = this.kg.value ? this.kg.value:null;
         const now = new Date();
         const order:Order = {
           establishment: establishment[0].id,
           type: idOrderType,
           courier: null,
-          city_delivered: this.orderUrbanForm.value.city,
-          address_delivered: this.orderUrbanForm.value.address,
+          city_delivered: this.city.value,
+          address_delivered: this.address.value,
           price: orderType.price,
           city_received: establishment[0].city,
           address_received: establishment[0].address,

@@ -68,9 +68,9 @@ export class InfoEstablishmentPage implements OnInit {
   async update(){
     if(this.establishmentForm.valid){
       try {
-        const city = this.establishmentForm.value.city;
-        const address = this.establishmentForm.value.address;
-        const cellphone = this.establishmentForm.value.cellphone;
+        const city = this.city.value;
+        const address = this.address.value;
+        const cellphone = this.cellphone.value;
         const establishment = await this.getEstablishment();
         this.establishmentService.updateEstablishment(establishment[0].id, city, address, cellphone);
         const toast = await this.toastController.create({

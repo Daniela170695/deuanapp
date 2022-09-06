@@ -37,7 +37,7 @@
     </div>
     <ion-item>
       <ion-label position="floating">Kg</ion-label>
-      <ion-input formControlName="kg"></ion-input>
+      <ion-input type="number" formControlName="kg"></ion-input>
     </ion-item>
     <div *ngIf="kg.invalid && (kg.dirty || kg.touched)" class="alert alert-danger">
       <div *ngIf="kg.errors?.['pattern']" class="errors">
