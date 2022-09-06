@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { User } from '../../interfaces/user';
+import firebase from 'firebase/compat/app';
 import { take } from 'rxjs/operators';
+import { User } from '../../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,13 @@ export class AuthService {
 
   getCurrentUser(){
     return this.auth.authState.pipe(take(1)).toPromise();
+  }
+
+  async updatePassword(user:User, password:string){
+    const credential = firebase.auth.EmailAuthProvider.credential(user.email, user.password);
+    const currentUser = await this.auth.currentUser;
+    currentUser.reauthenticateWithCredential(credential);
+    return currentUser.updatePassword(password);
   }
 
 }

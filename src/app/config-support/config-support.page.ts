@@ -23,4 +23,8 @@ export class ConfigSupportPage implements OnInit {
     this.router.navigate(['tabs/config-support/info-establishment']);
   }
 
+  openInfoAccount(){
+    this.router.navigate(['tabs/config-support/info-account']);
+  }
+
 }

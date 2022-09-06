@@ -1,9 +1,54 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Informacion de la Cuenta</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Informacion del establecimiento</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <form [formGroup]="accountForm" (ngSubmit)="update()">
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input [disabled]="true" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Contraseña Actual</ion-label>
+      <ion-input formControlName="passwordOld"></ion-input>
+    </ion-item>
+    <div *ngIf="passwordOld.invalid && (passwordOld.dirty || passwordOld.touched)" class="alert alert-danger">
+      <div *ngIf="passwordOld.errors?.['required']" class="errors">
+        Contraseña requerida
+      </div>
+      <div *ngIf="passwordOld.errors?.['minlength']" class="errors">
+        La constraseña debe tener al menos 6 caracteres
+      </div>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Contraseña Nueva</ion-label>
+      <ion-input formControlName="passwordNew"></ion-input>
+    </ion-item>
+    <div *ngIf="passwordNew.invalid && (passwordNew.dirty || passwordNew.touched)" class="alert alert-danger">
+      <div *ngIf="passwordNew.errors?.['required']" class="errors">
+        Contraseña requerida
+      </div>
+      <div *ngIf="passwordNew.errors?.['minlength']" class="errors">
+        La constraseña debe tener al menos 6 caracteres
+      </div>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Contraseña Nueva</ion-label>
+      <ion-input formControlName="passwordNewRepeat"></ion-input>
+    </ion-item>
+    <div *ngIf="passwordNewRepeat.invalid && (passwordNewRepeat.dirty || passwordNewRepeat.touched)" class="alert alert-danger">
+      <div *ngIf="passwordNewRepeat.errors?.['required']" class="errors">
+        Contraseña requerida
+      </div>
+      <div *ngIf="passwordNewRepeat.errors?.['minlength']" class="errors">
+        La constraseña debe tener al menos 6 caracteres
+      </div>
+    </div>
+    <ion-button type="submit" expand="full" >Modificar</ion-button>
+  </form>
 </ion-content>
