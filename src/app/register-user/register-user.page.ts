@@ -4,15 +4,11 @@ import { AlertController} from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
-import { take } from 'rxjs/operators';
-
 import { User } from '../interfaces/user';
 import { UserInfo } from '../interfaces/user-info';
-import { City } from '../interfaces/city';
 
 import { AuthService } from '../services/auth/auth.service';
 import { UserInfoService } from '../services/user-info/user-info.service';
-import { CityService } from '../services/city/city.service';
 
 @Component({
   selector: 'app-register-user',
@@ -22,20 +18,14 @@ import { CityService } from '../services/city/city.service';
 export class RegisterUserPage implements OnInit {
 
   userInfoForm: FormGroup;
-  cities: City[];
 
   constructor(
     private formBuilder: FormBuilder,
-    private cityService:CityService,
-    private authService: AuthService,
-    private userInfoService: UserInfoService,
     private alertController:AlertController,
     private router: Router,
-    private toastController: ToastController) {
-    this.cityService.getAllCities().then(data=>{
-      this.cities = data;
-    });
-  }
+    private toastController: ToastController,
+    private authService: AuthService,
+    private userInfoService: UserInfoService) {}
 
   ngOnInit(){
     this.userInfoForm = this.formBuilder.group({

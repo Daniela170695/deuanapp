@@ -6,7 +6,6 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { User } from '../interfaces/user';
 
 import { AuthService } from '../services/auth/auth.service';
-import { EstablishmentService } from '../services/establishment/establishment.service';
 
 @Component({
   selector: 'app-login',
@@ -17,17 +16,24 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
 
   constructor(
-    private authService: AuthService,
     private router:Router,
     private formBuilder:FormBuilder,
     private alertController: AlertController,
-    private establishmentService: EstablishmentService) { }
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
+  }
+
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
   }
 
   async login(){
@@ -40,7 +46,7 @@ export class LoginPage implements OnInit {
       try {
         const userCredential = await this.authService.signIn(user);
         const emailVerified = userCredential.user.emailVerified;
-        if(emailVerified == true){      
+        if(emailVerified == true){
           this.router.navigate(['tabs/home'])
         }
         else{
@@ -60,18 +66,6 @@ export class LoginPage implements OnInit {
         await alert.present();
       }
     }
-  }
-
-  get email() {
-    return this.loginForm.get('email');
-  }
-
-  get password() {
-    return this.loginForm.get('password');
-  }
-
-  openRegister(){
-    this.router.navigate(['/register'])
   }
 
 }

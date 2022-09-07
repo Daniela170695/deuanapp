@@ -7,7 +7,6 @@
 </ion-header>
 <ion-content [fullscreen]="true">
   <div style="text-align:center">
-    <img id="logo" src="assets/img/logotipo.png">
     <h1>Iniciar sesion</h1>
   </div>
   <form [formGroup]="loginForm" (ngSubmit)="login()">
@@ -38,5 +37,5 @@
     <br>
     <ion-button type="submit" expand="full" >Iniciar sesión</ion-button>
   </form>
-  <a id="register" (click)="openRegister()">¿Aún no te has registrado? Regístrate aquí</a>
+  <a id="restorePassword">Recuperar contraseña</a>
 </ion-content>
