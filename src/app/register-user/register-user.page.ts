@@ -1,19 +1,18 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, ValidationErrors } from '@angular/forms';
 import { AlertController} from '@ionic/angular';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 import { take } from 'rxjs/operators';
 
-import { EstablishmentType } from '../interfaces/establishment-type';
 import { User } from '../interfaces/user';
-import { Establishment } from '../interfaces/establishment';
+import { UserInfo } from '../interfaces/user-info';
 import { City } from '../interfaces/city';
 
-import { CityService } from '../services/city/city.service';
-import { EstablishmentTypeService } from '../services/establishment-type/establishment-type.service';
 import { AuthService } from '../services/auth/auth.service';
-import { EstablishmentService } from '../services/establishment/establishment.service';
+import { UserInfoService } from '../services/user-info/user-info.service';
+import { CityService } from '../services/city/city.service';
 
 @Component({
   selector: 'app-register-user',
@@ -22,111 +21,94 @@ import { EstablishmentService } from '../services/establishment/establishment.se
 })
 export class RegisterUserPage implements OnInit {
 
-  establishmentForm: FormGroup;
+  userInfoForm: FormGroup;
   cities: City[];
-  typeEstablishments: EstablishmentType[];
 
   constructor(
     private formBuilder: FormBuilder,
     private cityService:CityService,
-    private establishmentTypeService: EstablishmentTypeService,
     private authService: AuthService,
-    private establishmentService: EstablishmentService,
+    private userInfoService: UserInfoService,
     private alertController:AlertController,
-    private router: Router) {
+    private router: Router,
+    private toastController: ToastController) {
     this.cityService.getAllCities().then(data=>{
       this.cities = data;
-    });
-    this.establishmentTypeService.getEstablishmentTypes().then(data=>{
-      this.typeEstablishments = data;
     });
   }
 
   ngOnInit(){
-    this.establishmentForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
-      type: ['', [Validators.required]],
-      city: ['', [Validators.required]],
-      address: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9#\-_ ]+$')]],
+    this.userInfoForm = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z_ ]+$')]],
+      lastname: ['', [Validators.required, Validators.pattern('^[a-zA-Z_ ]+$')]],
       cellphone: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-    });
+      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+    }, { validators: this.passwordNotMatch });
   }
 
   get name() {
-    return this.establishmentForm.get('name');
+    return this.userInfoForm.get('name');
   }
 
-  get type() {
-    return this.establishmentForm.get('type');
+  get lastname() {
+    return this.userInfoForm.get('lastname');
   }
 
-  get city() {
-    return this.establishmentForm.get('city');
+  get cellphone() {
+    return this.userInfoForm.get('cellphone');
   }
 
-  get address(){
-    return this.establishmentForm.get('address');
+  get email(){
+    return this.userInfoForm.get('email');
   }
 
-  get cellphone(){
-    return this.establishmentForm.get('cellphone');
+  get password(){
+    return this.userInfoForm.get('password');
   }
 
-  get email() {
-    return this.establishmentForm.get('email');
+  get confirmPassword() {
+    return this.userInfoForm.get('confirmPassword');
   }
 
-  get password() {
-    return this.establishmentForm.get('password');
-  }
-
-  registerEstablishment(){
-    if(this.establishmentForm.valid){
-      const name = this.name.value;
-      this.establishmentService.getEstablishmentByName(name).then(async data=>{
-        if(data.length>0){
+  async registerUser(){
+    if(this.userInfoForm.valid){
+      try {
+        const user: User = {
+          email: this.email.value,
+          password: this.password.value
+        };
+        const userCredential = await this.authService.signUp(user);
+        const userInfo: UserInfo = {
+          uid: userCredential.user.uid,
+          name: this.name.value,
+          lastname: this.lastname.value,
+          cellphone: this.cellphone.value
+        };
+        this.userInfoService.add(userInfo);
+        await this.authService.sendEmailVerification();
+        const toast = await this.toastController.create({
+          message: 'Confirma tu correo electronico en el link que te enviamos para iniciar sesion',
+          duration: 4000,
+          position: 'top'
+        });
+        await toast.present();
+        this.router.navigate(["/login"]);
+      } catch (error) {
           const alert = await this.alertController.create({
             header: ':(',
-            message: 'Nombre registrado',
+            message: 'Email registrado',
             buttons: ['OK'],
           });
           await alert.present();
-        }
-        else{
-          const user: User = {
-            email: this.email.value,
-            password: this.password.value
-          };
-
-          try {
-            const userCredential = await this.authService.signUp(user);
-            const establishment: Establishment = {
-              uid: userCredential.user.uid,
-              name: name,
-              type: this.type.value,
-              city: this.city.value,
-              address: this.address.value,
-              cellphone: this.cellphone.value
-            };
-            this.establishmentService.add(establishment);
-            await this.authService.sendEmailVerification();
-            this.router.navigate(["/validate"]);
-          } catch (error) {
-            const alert = await this.alertController.create({
-              header: ':(',
-              message: 'Email registrado',
-              buttons: ['OK'],
-            });
-            await alert.present();
-          }
-        }
-      });
+      }
     }
   }
 
-  openLogin(){
-    this.router.navigate(["/login"]);
+  passwordNotMatch(formGroup: FormGroup):ValidationErrors {
+   const password = formGroup.get("password").value;
+   const confirmPassword = formGroup.get("confirmPassword").value;
+   return password === confirmPassword ? null : { passwordNotMatch: true };
   }
 }

@@ -7,10 +7,9 @@
 </ion-header>
 <ion-content [fullscreen]="true">
   <div style="text-align:center">
-    <img id="logo" src="assets/img/logotipo.png">
-    <h1>Registrar</h1>
+    <h1>Registrar Usuario</h1>
   </div>
-  <form [formGroup]="establishmentForm" (ngSubmit)="registerEstablishment()">
+  <form [formGroup]="userInfoForm" (ngSubmit)="registerUser()">
     <ion-item>
       <ion-label position="floating">Nombre</ion-label>
       <ion-input formControlName="name"></ion-input>
@@ -24,44 +23,20 @@
       </div>
     </div>
     <ion-item>
-      <ion-select placeholder="Tipo" formControlName="type">
-        <div *ngFor="let typeEstablishment of typeEstablishments">
-          <ion-select-option [value]="typeEstablishment.id">{{typeEstablishment.name}}</ion-select-option>
-        </div>
-      </ion-select>
+      <ion-label position="floating">Apellido</ion-label>
+      <ion-input formControlName="lastname"></ion-input>
     </ion-item>
-    <div *ngIf="type.invalid && (type.dirty || type.touched)" class="alert alert-danger">
-      <div *ngIf="type.errors?.['required']" class="errors">
-        Tipo requerido
+    <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="alert alert-danger">
+      <div *ngIf="lastname.errors?.['required']" class="errors">
+        Apellido requerido
       </div>
-    </div>
-    <ion-item>
-      <ion-select placeholder="Ciudad" formControlName="city">
-        <div *ngFor="let city of cities">
-          <ion-select-option [value]="city.c_digo_dane_del_municipio">{{city.departamento}} - {{city.municipio}}</ion-select-option>
-        </div>
-      </ion-select>
-    </ion-item>
-    <div *ngIf="city.invalid && (city.dirty || city.touched)" class="alert alert-danger">
-      <div *ngIf="city.errors?.['required']" class="errors">
-        Ciudad requerida
-      </div>
-    </div>
-    <ion-item>
-      <ion-label position="floating">Direccion</ion-label>
-      <ion-input formControlName="address"></ion-input>
-    </ion-item>
-    <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
-      <div *ngIf="address.errors?.['required']" class="errors">
-        Direccion requerida
-      </div>
-      <div *ngIf="address.errors?.['pattern']" class="errors">
-        Direccion errada
+      <div *ngIf="lastname.errors?.['pattern']" class="errors">
+        Apellido errado
       </div>
     </div>
     <ion-item>
       <ion-label position="floating">Celular</ion-label>
-      <ion-input formControlName="cellphone" type="number"></ion-input>
+      <ion-input type="number" formControlName="cellphone"></ion-input>
     </ion-item>
     <div *ngIf="cellphone.invalid && (cellphone.dirty || cellphone.touched)" class="alert alert-danger">
       <div *ngIf="cellphone.errors?.['required']" class="errors">
@@ -95,8 +70,22 @@
         La constraseña debe tener al menos 6 caracteres
       </div>
     </div>
+    <ion-item>
+      <ion-label position="floating">Confirmar Contraseña</ion-label>
+      <ion-input formControlName="confirmPassword"></ion-input>
+    </ion-item>
+    <div *ngIf="(confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)) || userInfoForm.hasError('passwordNotMatch')" class="alert alert-danger">
+      <div *ngIf="confirmPassword.errors?.['required']" class="errors">
+        Contraseña requerida
+      </div>
+      <div *ngIf="confirmPassword.errors?.['minlength']" class="errors">
+        La constraseña debe tener al menos 6 caracteres
+      </div>
+      <div *ngIf="userInfoForm.hasError('passwordNotMatch')" class="errors">
+        La contraseñas no coinciden
+      </div>
+    </div>
     <br>
     <ion-button expand="full" type="submit">Registrar</ion-button>
   </form>
-  <a id="login" (click)="openLogin()">Ir a iniciar Sesion</a>
 </ion-content>

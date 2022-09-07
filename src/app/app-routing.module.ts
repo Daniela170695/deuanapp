@@ -16,20 +16,20 @@ const routes: Routes = [
     canLoad: [NoAuthGuard]
   },
   {
-    path: 'validate',
-    loadChildren: () => import('./validate/validate.module').then( m => m.ValidatePageModule),
-    canLoad: [NoAuthGuard]
-  },
-  {
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
     canLoad: [AuthGuard]
   },
   {
+    path: 'welcome',
+    loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
+  },
+  {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/welcome',
     pathMatch: 'full'
-  }
+  },
+
 ];
 @NgModule({
   imports: [

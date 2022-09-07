@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-validate',
-  templateUrl: './validate.page.html',
-  styleUrls: ['./validate.page.scss'],
+  selector: 'app-welcome',
+  templateUrl: './welcome.page.html',
+  styleUrls: ['./welcome.page.scss'],
 })
-export class ValidatePage implements OnInit {
+export class WelcomePage implements OnInit {
 
   constructor(private router:Router) { }
 
@@ -16,5 +16,11 @@ export class ValidatePage implements OnInit {
   openLogin(){
     this.router.navigate(['login']);
   }
+
+  openRegister(){
+    this.router.navigate(['register'])
+  }
+
+
 
 }
