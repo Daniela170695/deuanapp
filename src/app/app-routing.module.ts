@@ -4,7 +4,16 @@ import { AuthGuard } from './guards/auth.guard';
 import { NoAuthGuard } from './guards/no-auth.guard';
 
 const routes: Routes = [
-
+  {
+    path: '',
+    redirectTo: '/welcome',
+    pathMatch: 'full'
+  },
+  {
+    path: 'welcome',
+    loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule),
+    canLoad: [NoAuthGuard]
+  },
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule),
@@ -20,16 +29,6 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
     canLoad: [AuthGuard]
   },
-  {
-    path: 'welcome',
-    loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
-  },
-  {
-    path: '',
-    redirectTo: '/welcome',
-    pathMatch: 'full'
-  },
-
 ];
 @NgModule({
   imports: [

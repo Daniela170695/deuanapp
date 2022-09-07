@@ -8,28 +8,16 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'home',
-        loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
+        path: 'principal',
+        loadChildren: () => import('../principal/principal.module').then( m => m.PrincipalPageModule)
       },
       {
-        path: 'order-urban',
-        loadChildren: () => import('../order-urban/order-urban.module').then(m => m.OrderUrbanPageModule),
-      },
-      {
-        path: 'order-parcel',
-        loadChildren: () => import('../order-parcel/order-parcel.module').then(m => m.OrderParcelPageModule)
-      },
-      {
-        path: 'config-support',
-        loadChildren: () => import('../config-support/config-support.module').then(m => m.ConfigSupportPageModule)
-      },
-      {
-        path: 'payments',
-        loadChildren: () => import('../payments/payments.module').then(m => m.PaymentsPageModule)
+        path: 'notifications',
+        loadChildren: () => import('../notifications/notifications.module').then( m => m.NotificationsPageModule)
       },
       {
         path: '',
-        redirectTo: 'tabs/home',
+        redirectTo: 'tabs/principal',
         pathMatch: 'full'
       }
     ],
