@@ -21,7 +21,7 @@ export class OrderService {
 
   add(order:Order){
     this.orderCollection = this.afs.collection<Order>('Order');
-    this.orderCollection.add(order);
+    return this.orderCollection.add(order);
   }
 
   getOrdersUrban(establishment:string){

@@ -109,7 +109,8 @@ export class RhinocerosPage implements OnInit {
           received_datetime: null,
           delivered_datetime: null
         };
-        this.orderService.add(order);
+        const docRef = await this.orderService.add(order);
+        this.router.navigate(['tabs/principal/rhinoceros/tracking-rhinoceros', docRef.id])
       } catch (error) {
         console.log(error);
       }
