@@ -1,14 +1,16 @@
 export interface Order {
   id?: string;
-  establishment: string;
-  type: string;
+  uid: string;
   courier: string;
   city_delivered: string;
   address_delivered: string;
+  cellphone_delivered: number;
   price:number;
-  city_received:string;
-  address_received:string;
-  kg: number;
+  name_received: string;
+  city_received: string;
+  address_received: string;
+  cellphone_received: number;
+  content: string;
   cancelled: boolean;
   accepted: boolean;
   received: boolean;
