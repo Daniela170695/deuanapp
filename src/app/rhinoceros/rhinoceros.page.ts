@@ -4,12 +4,14 @@ import { Router } from '@angular/router';
 
 import { City } from '../interfaces/city';
 import { Order } from '../interfaces/order';
+import { OrderTracking } from '../interfaces/order-tracking';
 
 import { CityService } from '../services/city/city.service';
 import { OrderService } from '../services/order/order.service';
 import { OrderTypeService } from '../services/order-type/order-type.service';
 import { UserInfoService } from '../services/user-info/user-info.service';
 import { AuthService } from '../services/auth/auth.service';
+import { OrderTrackingService } from '../services/order-tracking/order-tracking.service';
 
 @Component({
   selector: 'app-rhinoceros',
@@ -28,7 +30,8 @@ export class RhinocerosPage implements OnInit {
     private orderService: OrderService,
     private orderTypeService: OrderTypeService,
     private userInfoService: UserInfoService,
-    private authService: AuthService) {
+    private authService: AuthService,
+    private orderTrackingService: OrderTrackingService) {
       this.cityService.getAllCities().then(data=>{
         this.cities = data;
       })
@@ -99,18 +102,23 @@ export class RhinocerosPage implements OnInit {
           address_delivered: this.addressDelivered.value,
           cellphone_delivered: this.cellphoneDelivered.value,
           content: this.content.value,
+          created_datetime: now,
+        };
+        const doc = await this.orderService.add(order);
+        const orderId = doc.id;
+        const orderTracking:OrderTracking = {
+          order: orderId,
           cancelled: false,
           accepted: false,
           received: false,
           delivered: false,
-          created_datetime: now,
           cancelled_datetime: null,
           accepted_datetime: null,
           received_datetime: null,
           delivered_datetime: null
-        };
-        const docRef = await this.orderService.add(order);
-        this.router.navigate(['tabs/principal/rhinoceros/tracking-rhinoceros', docRef.id])
+        }
+        this.orderTrackingService.add(orderTracking);
+        this.router.navigate(['tabs/principal/rhinoceros/tracking-rhinoceros', orderId])
       } catch (error) {
         console.log(error);
       }

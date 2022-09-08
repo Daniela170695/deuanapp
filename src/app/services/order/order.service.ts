@@ -1,5 +1,3 @@
-
-
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 
@@ -40,11 +38,6 @@ export class OrderService {
     this.orderDoc = this.afs.doc<Order>('Order/'+id);
     this.order = this.orderDoc.valueChanges();
     return this.order;
-  }
-
-  cancelOrder(id:string){
-    this.orderDoc = this.afs.doc<Order>('Order/'+id);
-    this.orderDoc.update({cancelled:true, cancelled_datetime:new Date()});
   }
 
 }
