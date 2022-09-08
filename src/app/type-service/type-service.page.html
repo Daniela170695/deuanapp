@@ -1,9 +1,11 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>type-service</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
+  <ion-item>
+    <ion-select placeholder="Tipo de Servicio" [(ngModel)]="typeSelected">
+      <div *ngFor="let type of types">
+        <ion-select-option [value]="type.id">{{type.name}}</ion-select-option>
+      </div>
+    </ion-select>
+  </ion-item>
+  <br>
+  <ion-button (click)="openService()">Solicitar Servicio</ion-button>
 </ion-content>

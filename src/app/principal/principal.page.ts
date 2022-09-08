@@ -17,4 +17,8 @@ export class PrincipalPage implements OnInit {
     this.router.navigate(['tabs/principal/rhinoceros'])
   }
 
+  openTypeService(){
+    this.router.navigate(['tabs/principal/type-service'])
+  }
+
 }

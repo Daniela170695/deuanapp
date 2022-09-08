@@ -13,7 +13,7 @@ const routes: Routes = [
     loadChildren: () => import('../courier-messaging/courier-messaging.module').then( m => m.CourierMessagingPageModule)
   },
   {
-    path: 'shoppping',
+    path: 'shopping',
     loadChildren: () => import('../shoppping/shoppping.module').then( m => m.ShopppingPageModule)
   },
   {

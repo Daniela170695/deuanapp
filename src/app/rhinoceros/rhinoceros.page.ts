@@ -9,7 +9,6 @@ import { OrderTracking } from '../interfaces/order-tracking';
 import { CityService } from '../services/city/city.service';
 import { OrderService } from '../services/order/order.service';
 import { OrderTypeService } from '../services/order-type/order-type.service';
-import { UserInfoService } from '../services/user-info/user-info.service';
 import { AuthService } from '../services/auth/auth.service';
 import { OrderTrackingService } from '../services/order-tracking/order-tracking.service';
 
@@ -25,11 +24,10 @@ export class RhinocerosPage implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router:Router,
+    private router: Router,
     private cityService: CityService,
     private orderService: OrderService,
     private orderTypeService: OrderTypeService,
-    private userInfoService: UserInfoService,
     private authService: AuthService,
     private orderTrackingService: OrderTrackingService) {
       this.cityService.getAllCities().then(data=>{
