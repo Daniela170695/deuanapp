@@ -2,10 +2,11 @@ export interface Order {
   id?: string;
   uid: string;
   courier: string;
+  type: string;
+  price: number;
   city_delivered: string;
   address_delivered: string;
   cellphone_delivered: number;
-  price:number;
   name_received: string;
   city_received: string;
   address_received: string;

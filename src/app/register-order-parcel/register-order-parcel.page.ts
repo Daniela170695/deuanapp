@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { take } from 'rxjs/operators';
-
 import { City } from '../interfaces/city';
 import { Order } from '../interfaces/order';
 
@@ -63,7 +61,7 @@ export class RegisterOrderParcelPage implements OnInit {
         const orderType = await this.orderTypeService.getOrderType(idOrderType);
         const currentUser = await this.authService.getCurrentUser();
         const establishment = await this.establishmentService.getEstablishmentByUid(currentUser.uid);
-        const kg = this.kg.value ? this.kg.value:null;      
+        const kg = this.kg.value ? this.kg.value:null;
         const now = new Date();
         const order:Order = {
           establishment: establishment[0].id,
