@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="orderForm" (ngSubmit)="registerOrder()">  
+  <form [formGroup]="requestForm" (ngSubmit)="register()">  
     <ion-item>
       <ion-select placeholder="Ciudad recogida" formControlName="cityReceived">
         <div *ngFor="let city of cities">

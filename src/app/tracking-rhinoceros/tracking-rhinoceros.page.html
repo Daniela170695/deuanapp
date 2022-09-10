@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Seguimiento de Pedido</ion-title>
+    <ion-title>Seguimiento de Solicitud</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,30 +16,30 @@
 <ion-footer>
   <ion-toolbar>
     <div style="overflow-y: auto;height: 200px;margin-top:20px">
-      <ion-list *ngIf="orderTracking">
+      <ion-list *ngIf="trackingRequest">
         <ion-item>
           <ion-label>
-            <h4>Pedido creado</h4>
-            <p>{{orderTracking.created_datetime.toDate() | date:'shortTime'}}</p>
+            <h4>Solicitud creada</h4>
+            <p>{{request.created_datetime.toDate() | date:'shortTime'}}</p>
           </ion-label>
         </ion-item>
-        <ion-item *ngIf="orderTracking.accepted">
+        <ion-item *ngIf="trackingRequest.accepted">
           <ion-label>
-            <h4>Pedido aceptado</h4>
+            <h4>Solicitud aceptada</h4>
             <p>{{courier.name}} {{courier.lastname}}</p>
-            <p>{{orderTracking.accepted_datetime.toDate() | date:'shortTime'}}</p>
+            <p>{{trackingRequest.accepted_datetime.toDate() | date:'shortTime'}}</p>
           </ion-label>
         </ion-item>
-        <ion-item *ngIf="orderTracking.received">
+        <ion-item *ngIf="trackingRequest.received">
           <ion-label>
-            <h4>Pedido recibido</h4>
-            <p>{{orderTracking.received_datetime.toDate() | date:'shortTime'}}</p>
+            <h4>Productos recibidos</h4>
+            <p>{{trackingRequest.received_datetime.toDate() | date:'shortTime'}}</p>
           </ion-label>
         </ion-item>
-        <ion-item *ngIf="orderTracking.delivered">
+        <ion-item *ngIf="trackingRequest.delivered">
           <ion-label>
-            <h4>Pedido entregado</h4>
-            <p>{{orderTracking.delivered_datetime.toDate() | date:'shortTime'}}</p>
+            <h4>Productos entregados</h4>
+            <p>{{trackingRequest.delivered_datetime.toDate() | date:'shortTime'}}</p>
           </ion-label>
         </ion-item>
       </ion-list>

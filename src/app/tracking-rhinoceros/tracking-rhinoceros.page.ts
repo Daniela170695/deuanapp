@@ -5,13 +5,13 @@ import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@aw
 
 import { take } from 'rxjs/operators';
 
-import { Order } from '../interfaces/order';
-import { OrderTracking } from '../interfaces/order-tracking';
+import { Request } from '../interfaces/request';
+import { TrackingRequest } from '../interfaces/tracking-request';
 import { Courier } from '../interfaces/courier';
 import { Coord } from '../interfaces/utils';
 
-import { OrderService } from '../services/order/order.service';
-import { OrderTrackingService } from '../services/order-tracking/order-tracking.service';
+import { RequestService } from '../services/request/request.service';
+import { TrackingRequestService } from '../services/tracking-request/tracking-request.service';
 import { CourierService } from '../services/courier/courier.service';
 import { CityService } from '../services/city/city.service';
 
@@ -24,61 +24,56 @@ import { environment } from '../../environments/environment';
 })
 export class TrackingRhinocerosPage implements OnInit {
 
-  order: Order;
+  request: Request;
   courier: Courier;
   newMap: GoogleMap;
   markerReceive: string;
   markerDelivery: string;
   markerCourier: string;
-  orderId: string;
-  orderTracking:OrderTracking;
+  requestId: string;
+  trackingRequest:TrackingRequest;
 
   @ViewChild('map') mapRef: ElementRef<HTMLElement>;
 
   constructor(
     private route: ActivatedRoute,
     private nativeGeocoder: NativeGeocoder,
-    private orderService: OrderService,
-    private orderTrackingService: OrderTrackingService,
+    private requestService: RequestService,
+    private trackingRequestService: TrackingRequestService,
     private courierService: CourierService,
-    private cityService: CityService
-  ) {
+    private cityService: CityService) {
 
     const routeParams = this.route.snapshot.paramMap;
-    this.orderId = routeParams.get('id');
-    this.orderTrackingService.getByOrder(this.orderId).subscribe(data=>{
-      this.orderTracking = data[0];
+    this.requestId = routeParams.get('id');
+    this.trackingRequestService.getByRequest(this.requestId).subscribe(data=>{
+      this.trackingRequest = data[0];
     })
 
   }
 
   ngOnInit() {
-
   }
 
   ionViewDidEnter() {
-
     this.createMap();
-
-    this.orderService.getOneOrder(this.orderId).subscribe((data)=>{
-        this.courierService.getCourier(this.order.courier).subscribe(async(data)=>{
-          if(data){
-            this.courier = data;
-            if(this.markerCourier){
-              this.newMap.removeMarker(this.markerCourier);
-            }
-            this.markerCourier = await this.addMarker(this.courier.coords);
+    this.requestService.getOne(this.requestId).subscribe((request)=>{
+      this.request = request;
+      if(this.request.courier){
+        this.courierService.getCourier(request.courier).subscribe(async(courier)=>{
+          if(this.markerCourier){
+            this.newMap.removeMarker(this.markerCourier);
           }
+          this.markerCourier = await this.addMarker(courier.coords);
         })
+      }
     })
   }
 
   async createMap() {
-
-    this.orderService.getOneOrder(this.orderId).pipe(take(1)).subscribe(async(order)=>{
+    this.requestService.getOne(this.requestId).pipe(take(1)).subscribe(async(request)=>{
       // Obtenemos direccion del lugar de recibida y entrega
-      const addressReceive = await this.getAddressComplete(order.city_received, order.address_received);
-      const addressDelivery = await this.getAddressComplete(order.city_delivered, order.address_delivered);
+      const addressReceive = await this.getAddressComplete(request.city_received, request.address_received);
+      const addressDelivery = await this.getAddressComplete(request.city_delivered, request.address_delivered);
 
       // Obtenemos coordenadas del lugar de recibida y entrega
       // let options: NativeGeocoderOptions = {
