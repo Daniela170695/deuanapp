@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Seguimiento de Pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="map">
+    <capacitor-google-map #map></capacitor-google-map>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div style="overflow-y: auto;height: 200px;margin-top:20px">
+      <ion-list *ngIf="trackingRequest">
+        <ion-item>
+          <ion-label>
+            <h4>Solicitud creada</h4>
+            <p>{{request.created_datetime.toDate() | date:'shortTime'}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item *ngIf="trackingRequest.accepted">
+          <ion-label>
+            <h4>Solicitud aceptada</h4>
+            <p>{{courier.name}} {{courier.lastname}}</p>
+            <p>{{trackingRequest.accepted_datetime.toDate() | date:'shortTime'}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item *ngIf="trackingRequest.received">
+          <ion-label>
+            <h4>Productos recibidos</h4>
+            <p>{{trackingRequest.received_datetime.toDate() | date:'shortTime'}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item *ngIf="trackingRequest.delivered">
+          <ion-label>
+            <h4>Productos entregados</h4>
+            <p>{{trackingRequest.delivered_datetime.toDate() | date:'shortTime'}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-toolbar>
+</ion-footer>

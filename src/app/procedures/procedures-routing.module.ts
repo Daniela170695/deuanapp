@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: ProceduresPage
-  }
+  },
+  {
+    path: 'tracking-procedures/:id',
+    loadChildren: () => import('../tracking-procedures/tracking-procedures.module').then( m => m.TrackingProceduresPageModule)
+  },
 ];
 
 @NgModule({

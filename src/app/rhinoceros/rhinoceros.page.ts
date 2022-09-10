@@ -19,7 +19,7 @@ import { OrderTrackingService } from '../services/order-tracking/order-tracking.
 })
 export class RhinocerosPage implements OnInit {
 
-  rhinocerosForm: FormGroup;
+  orderForm: FormGroup;
   cities: City[];
 
   constructor(
@@ -36,8 +36,7 @@ export class RhinocerosPage implements OnInit {
     }
 
   ngOnInit() {
-    this.rhinocerosForm = this.formBuilder.group({
-      nameReceived:['', [Validators.required, Validators.pattern('^[a-zA-Z_ ]+$')]],
+    this.orderForm = this.formBuilder.group({
       cityReceived: ['', [Validators.required]],
       addressReceived: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9#\-_ ]+$')]],
       cellphoneReceived: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
@@ -48,40 +47,36 @@ export class RhinocerosPage implements OnInit {
     });
   }
 
-  get nameReceived(){
-    return this.rhinocerosForm.get('nameReceived');
-  }
-
   get cityReceived(){
-    return this.rhinocerosForm.get('cityReceived');
+    return this.orderForm.get('cityReceived');
   }
 
   get addressReceived(){
-    return this.rhinocerosForm.get('addressReceived');
+    return this.orderForm.get('addressReceived');
   }
 
   get cellphoneReceived(){
-    return this.rhinocerosForm.get('cellphoneReceived');
+    return this.orderForm.get('cellphoneReceived');
   }
 
   get cityDelivered(){
-    return this.rhinocerosForm.get('cityDelivered');
+    return this.orderForm.get('cityDelivered');
   }
 
   get addressDelivered(){
-    return this.rhinocerosForm.get('addressDelivered');
+    return this.orderForm.get('addressDelivered');
   }
 
   get cellphoneDelivered(){
-    return this.rhinocerosForm.get('cellphoneDelivered');
+    return this.orderForm.get('cellphoneDelivered');
   }
 
   get content(){
-    return this.rhinocerosForm.get('content');
+    return this.orderForm.get('content');
   }
 
   async registerOrder(){
-    if(this.rhinocerosForm.valid){
+    if(this.orderForm.valid){
       try {
         const idOrderType = "jgZuLrPdP4SaRjWopSCh";
         const orderType = await this.orderTypeService.getOrderType(idOrderType);
@@ -92,7 +87,6 @@ export class RhinocerosPage implements OnInit {
           courier: null,
           type: idOrderType,
           price: orderType.price,
-          name_received: this.nameReceived.value,
           city_received: this.cityReceived.value,
           address_received: this.addressReceived.value,
           cellphone_received: this.cellphoneReceived.value,

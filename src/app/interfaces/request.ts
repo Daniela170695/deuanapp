@@ -1,8 +1,8 @@
-export interface Order {
+export interface Request {
   id?: string;
   uid: string;
   courier: string;
-  type: string;
+  type_request: string;
   price: number;
   city_received: string;
   address_received: string;

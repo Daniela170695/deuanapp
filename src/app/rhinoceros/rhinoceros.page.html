@@ -10,19 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="rhinocerosForm" (ngSubmit)="registerOrder()">
-    <ion-item>
-      <ion-label position="floating">Nombre cliente</ion-label>
-      <ion-input formControlName="nameReceived"></ion-input>
-    </ion-item>
-    <div *ngIf="nameReceived.invalid && (nameReceived.dirty || nameReceived.touched)" class="alert alert-danger">
-      <div *ngIf="nameReceived.errors?.['required']" class="errors">
-        Nombre requerido
-      </div>
-      <div *ngIf="nameReceived.errors?.['pattern']" class="errors">
-        Nombre errado
-      </div>
-    </div>
+  <form [formGroup]="orderForm" (ngSubmit)="registerOrder()">  
     <ion-item>
       <ion-select placeholder="Ciudad recogida" formControlName="cityReceived">
         <div *ngFor="let city of cities">

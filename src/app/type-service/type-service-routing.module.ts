@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'shopping',
-    loadChildren: () => import('../shoppping/shoppping.module').then( m => m.ShopppingPageModule)
+    loadChildren: () => import('../shopping/shopping.module').then( m => m.ShoppingPageModule)
   },
   {
     path: 'procedures',
