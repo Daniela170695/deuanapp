@@ -32,7 +32,7 @@ export class TypeServicePage implements OnInit {
       return;
     }
     if(this.typeSelected==1){
-      this.router.navigate(['tabs/principal/type-service/shopping'])
+      this.router.navigate(['tabs/principal/type-service/purchase'])
     }
     else if(this.typeSelected==2){
       this.router.navigate(['tabs/principal/type-service/procedures'])
