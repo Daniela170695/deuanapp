@@ -4,7 +4,6 @@ import { ToastController } from '@ionic/angular';
 import { Pqrs } from '../interfaces/pqrs';
 import { PqrsService } from '../services/pqrs/pqrs.service';
 import { AuthService } from '../services/auth/auth.service';
-import { EstablishmentService } from '../services/establishment/establishment.service';
 
 @Component({
   selector: 'app-contact',
@@ -19,8 +18,7 @@ export class ContactPage implements OnInit {
     private formBuilder:FormBuilder,
     private toastController: ToastController,
     private pqrsService: PqrsService,
-    private authService:AuthService,
-    private establishmentService: EstablishmentService) { }
+    private authService:AuthService) { }
 
   ngOnInit() {
     this.pqrsForm = this.formBuilder.group({
@@ -41,9 +39,9 @@ export class ContactPage implements OnInit {
     if(this.pqrsForm.valid){
       try{
         const currentUser = await this.authService.getCurrentUser();
-        const establishment = await this.establishmentService.getEstablishmentByUid(currentUser.uid);
+        // const establishment = await this.establishmentService.getEstablishmentByUid(currentUser.uid);
         const pqrs: Pqrs = {
-          establishment: establishment[0].id,
+          establishment: "dsd",
           title: this.title.value,
           description: this.description.value,
           created_datetime: new Date()
