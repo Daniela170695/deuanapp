@@ -72,11 +72,6 @@ export class PurchasePage implements OnInit {
     });
   }
 
-  validateProducts(){
-    // console.log(this.productsPurchase.length);
-    return this.productsPurchase.length === 0;
-  }
-
   get cityDelivered(){
     return this.requestForm.get('cityDelivered');
   }
@@ -127,6 +122,7 @@ export class PurchasePage implements OnInit {
         quantity: quantity
       }
       this.productsPurchase.push(productPurchase);
+      this.displayError = false;
     }
   }
 
@@ -176,8 +172,7 @@ export class PurchasePage implements OnInit {
             };
             this.purchaseService.add(purchase);
           });
-          console.log("OK (:");
-          // this.router.navigate(['tabs/principal/rhinoceros/tracking-rhinoceros', requestId])
+          this.router.navigate(['tabs/principal/type-service/purchase/tracking-purchase', requestId])
         }
         catch(e){
           console.log(e);
