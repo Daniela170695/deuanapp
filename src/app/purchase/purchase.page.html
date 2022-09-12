@@ -1,9 +1,104 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>purchase</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Compras
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <form [formGroup]="requestForm" (ngSubmit)="register()">
+    <ion-item>
+      <ion-select placeholder="Ciudad entrega" formControlName="cityDelivered">
+        <div *ngFor="let city of cities">
+          <ion-select-option [value]="city.c_digo_dane_del_municipio">{{city.departamento}} - {{city.municipio}}</ion-select-option>
+        </div>
+      </ion-select>
+    </ion-item>
+    <div *ngIf="cityDelivered.invalid && (cityDelivered.dirty || cityDelivered.touched)" class="alert alert-danger">
+      <div *ngIf="cityDelivered.errors?.['required']" class="errors">
+        Ciudad requerida
+      </div>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Direccion entrega</ion-label>
+      <ion-input formControlName="addressDelivered"></ion-input>
+    </ion-item>
+    <div *ngIf="addressDelivered.invalid && (addressDelivered.dirty || addressDelivered.touched)" class="alert alert-danger">
+      <div *ngIf="addressDelivered.errors?.['required']" class="errors">
+        Direccion requerida
+      </div>
+      <div *ngIf="addressDelivered.errors?.['pattern']" class="errors">
+        Direccion errada
+      </div>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Celular entrega</ion-label>
+      <ion-input type="number" formControlName="cellphoneDelivered"></ion-input>
+    </ion-item>
+    <div *ngIf="cellphoneDelivered.invalid && (cellphoneDelivered.dirty || cellphoneDelivered.touched)" class="alert alert-danger">
+      <div *ngIf="cellphoneDelivered.errors?.['required']" class="errors">
+        Celular requerido
+      </div>
+      <div *ngIf="cellphoneDelivered.errors?.['pattern']" class="errors">
+        Celular errado
+      </div>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Descripcion</ion-label>
+      <ion-input formControlName="description"></ion-input>
+    </ion-item>
+    <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
+      <div *ngIf="description.errors?.['required']" class="errors">
+        Descripcion requerida
+      </div>
+    </div>
+    <br>
+    <div formGroupName="purchase">
+      <h4 style="margin-left: 15px;">Productos</h4>
+      <ion-item>
+        <ion-select placeholder="Categoria del producto" (ionChange)="handleChangeCategory($event)">
+          <div *ngFor="let category of categoriesProducts">
+            <ion-select-option [value]="category.id">{{category.name}}</ion-select-option>
+          </div>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-select placeholder="Producto" (ionChange)="handleChangeProduct($event)">
+          <div *ngFor="let product of products">
+            <ion-select-option [value]="product">{{product.name}}</ion-select-option>
+          </div>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Cantidad</ion-label>
+        <ion-input type="number" formControlName="quantity"></ion-input>
+      </ion-item>
+      <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="alert alert-danger">
+        <div *ngIf="quantity.errors?.['pattern']" class="errors">
+          Cantidad errada
+        </div>
+      </div>
+      <br>
+      <ion-button (click)="addProduct()">Agregar producto</ion-button>
+      <div *ngIf="displayError" class="alert alert-danger errors">
+        No hay productos
+      </div>
+      <div id="products">
+        <ion-list>
+          <ion-item *ngFor="let product of productsPurchase">
+            <ion-label>
+              <h3>{{product.id}}</h3>
+              <p>{{product.name}} ({{product.quantity}})</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+    <br>
+    <ion-button expand="full" type="submit">Solicitar Servicio</ion-button>
+  </form>
 </ion-content>
