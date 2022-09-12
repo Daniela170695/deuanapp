@@ -58,6 +58,7 @@ export class TrackingPurchasePage implements OnInit {
       this.request = request;
       if(this.request.courier){
         this.courierService.getCourier(request.courier).subscribe(async(courier)=>{
+          this.courier= courier;
           if(this.markerCourier){
             this.newMap.removeMarker(this.markerCourier);
           }
