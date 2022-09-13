@@ -29,6 +29,11 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
     canLoad: [AuthGuard]
   },
+  {
+    path: 'info-account',
+    loadChildren: () => import('./info-account/info-account.module').then( m => m.InfoAccountPageModule),
+    canLoad: [AuthGuard]
+  },
 ];
 @NgModule({
   imports: [

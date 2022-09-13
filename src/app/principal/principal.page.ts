@@ -21,4 +21,8 @@ export class PrincipalPage implements OnInit {
     this.router.navigate(['tabs/principal/type-service'])
   }
 
+  openConfigSupport(){
+    this.router.navigate(['tabs/principal/config-support'])
+  }
+
 }

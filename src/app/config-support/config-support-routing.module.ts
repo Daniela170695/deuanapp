@@ -7,14 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: ConfigSupportPage
-  },
-  {
-    path: 'info-account',
-    loadChildren: () => import('../info-account/info-account.module').then( m => m.InfoAccountPageModule)
-  },
-  {
-    path: 'contact',
-    loadChildren: () => import('../contact/contact.module').then( m => m.ContactPageModule)
   }
 ];
 

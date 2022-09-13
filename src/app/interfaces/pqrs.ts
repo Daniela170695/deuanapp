@@ -1,5 +1,5 @@
 export interface Pqrs {
-  establishment: string,
+  uid: string,
   title: string,
   description: string,
   created_datetime: Date
