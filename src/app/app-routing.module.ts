@@ -25,8 +25,8 @@ const routes: Routes = [
     canLoad: [NoAuthGuard]
   },
   {
-    path: 'principal',
-    loadChildren: () => import('./principal/principal.module').then( m => m.PrincipalPageModule),
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
     canLoad: [AuthGuard]
   },
   {
