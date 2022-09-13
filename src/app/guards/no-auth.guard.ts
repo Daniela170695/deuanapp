@@ -13,7 +13,7 @@ export class NoAuthGuard implements CanLoad {
     const user = await this.authService.getCurrentUser();
     if(user){
       if(user.emailVerified){
-        this.router.navigate(['tabs/principal']);
+        this.router.navigate(['principal']);
         return false;
       }
     }

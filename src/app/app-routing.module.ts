@@ -25,8 +25,13 @@ const routes: Routes = [
     canLoad: [NoAuthGuard]
   },
   {
-    path: 'tabs',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
+    path: 'principal',
+    loadChildren: () => import('./principal/principal.module').then( m => m.PrincipalPageModule),
+    canLoad: [AuthGuard]
+  },
+  {
+    path: 'notifications',
+    loadChildren: () => import('./notifications/notifications.module').then( m => m.NotificationsPageModule),
     canLoad: [AuthGuard]
   },
   {

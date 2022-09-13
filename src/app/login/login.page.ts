@@ -47,7 +47,7 @@ export class LoginPage implements OnInit {
         const userCredential = await this.authService.signIn(user);
         const emailVerified = userCredential.user.emailVerified;
         if(emailVerified == true){
-          this.router.navigate(['tabs/principal'])
+          this.router.navigate(['principal'])
         }
         else{
           const alert = await this.alertController.create({

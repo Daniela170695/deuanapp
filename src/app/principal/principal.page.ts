@@ -14,15 +14,15 @@ export class PrincipalPage implements OnInit {
   }
 
   openRhinoceros(){
-    this.router.navigate(['tabs/principal/rhinoceros'])
+    this.router.navigate(['principal/rhinoceros'])
   }
 
   openTypeService(){
-    this.router.navigate(['tabs/principal/type-service'])
+    this.router.navigate(['principal/type-service'])
   }
 
   openConfigSupport(){
-    this.router.navigate(['tabs/principal/config-support'])
+    this.router.navigate(['principal/config-support'])
   }
 
 }
