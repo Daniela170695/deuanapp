@@ -59,17 +59,18 @@ export class TrackingProceduresPage implements OnInit {
     this.requestService.getOne(this.requestId).subscribe((request)=>{
       this.request = request;
       if(this.request.courier){
-        this.courierService.getCourier(request.courier).subscribe(async(courier)=>{
+        this.courierService.getCourier(this.request.courier).subscribe(async(courier)=>{
+          this.courier = courier;
           if(this.markerCourier){
             this.newMap.removeMarker(this.markerCourier);
           }
-          this.markerCourier = await this.addMarker(courier.coords);
+          this.markerCourier = await this.addMarker(this.courier.coords);
         })
       }
     })
   }
 
-  async createMap() {
+  createMap() {
     this.requestService.getOne(this.requestId).pipe(take(1)).subscribe(async(request)=>{
       // Obtenemos direccion del lugar de recibida y entrega
       const addressReceive = await this.getAddressComplete(request.city_received, request.address_received);
