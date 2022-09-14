@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActionSheetController } from '@ionic/angular';
 import { AuthService } from './services/auth/auth.service';
 import { NavController } from '@ionic/angular';
 
@@ -11,7 +12,7 @@ export class AppComponent {
   showProfile: boolean;
   showTabs: boolean;
 
-  constructor(private authService: AuthService, private navController: NavController) {
+  constructor(public actionSheetController: ActionSheetController, private authService: AuthService, private navController: NavController) {
     this.authService.getCurrentUser().then(currentUser=>{
       if(currentUser && currentUser.emailVerified){
         this.showProfile = true;
@@ -22,6 +23,10 @@ export class AppComponent {
         this.showTabs = false;
       }
     })
+  }
+
+  openActionsUser(){
+
   }
 
   back(){

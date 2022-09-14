@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Editar perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="profileForm" (ngSubmit)="update()">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input formControlName="name"></ion-input>
+    </ion-item>
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+      <div *ngIf="name.errors?.['required']" class="errors">
+        Nombre requerido
+      </div>
+      <div *ngIf="name.errors?.['pattern']" class="errors">
+        Nombre errado
+      </div>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Apellido</ion-label>
+      <ion-input formControlName="lastname"></ion-input>
+    </ion-item>
+    <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="alert alert-danger">
+      <div *ngIf="lastname.errors?.['required']" class="errors">
+        Apellido requerido
+      </div>
+      <div *ngIf="lastname.errors?.['pattern']" class="errors">
+        Apellido errado
+      </div>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Celular</ion-label>
+      <ion-input type="number" formControlName="cellphone"></ion-input>
+    </ion-item>
+    <div *ngIf="cellphone.invalid && (cellphone.dirty || cellphone.touched)" class="alert alert-danger">
+      <div *ngIf="cellphone.errors?.['required']" class="errors">
+        Celular requerido
+      </div>
+      <div *ngIf="cellphone.errors?.['pattern']" class="errors">
+        Celular errado
+      </div>
+    </div>
+    <br>
+    <ion-button type="submit" expand="full" >Modificar</ion-button>
+  </form>
+</ion-content>

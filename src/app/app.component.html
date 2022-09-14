@@ -2,13 +2,15 @@
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
-        <ion-button color="primary" (click)="back()">
-          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        <ion-button (click)="back()">
+          <ion-icon name="arrow-back"></ion-icon>
         </ion-button>
       </ion-buttons>
-      <div *ngIf="showProfile">
-        Perfil
-      </div>
+      <ion-buttons slot="end" *ngIf="showProfile">
+        <ion-button size="small" item-end (click)="openEditUserInfo">
+          <ion-icon name="person" ></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
   <ion-router-outlet></ion-router-outlet>

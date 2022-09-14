@@ -35,8 +35,13 @@ const routes: Routes = [
     canLoad: [AuthGuard]
   },
   {
-    path: 'info-account',
-    loadChildren: () => import('./info-account/info-account.module').then( m => m.InfoAccountPageModule),
+    path: 'edit-profile',
+    loadChildren: () => import('./edit-profile/edit-profile.module').then( m => m.EditProfilePageModule),
+    canLoad: [AuthGuard]
+  },
+  {
+    path: 'edit-account',
+    loadChildren: () => import('./edit-account/edit-account.module').then( m => m.EditAccountPageModule),
     canLoad: [AuthGuard]
   },
 ];

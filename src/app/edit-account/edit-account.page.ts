@@ -6,32 +6,32 @@ import { User } from '../interfaces/user';
 import { AuthService } from '../services/auth/auth.service';
 
 @Component({
-  selector: 'app-info-account',
-  templateUrl: './info-account.page.html',
-  styleUrls: ['./info-account.page.scss'],
+  selector: 'app-edit-account',
+  templateUrl: './edit-account.page.html',
+  styleUrls: ['./edit-account.page.scss'],
 })
-export class InfoAccountPage implements OnInit {
-
+export class EditAccountPage implements OnInit {
   accountForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
     private toastController: ToastController,
-    private alertController: AlertController) {
-      this.accountForm = this.formBuilder.group({
-        email: [""],
-        passwordOld: ["", [Validators.required, Validators.minLength(6)]],
-        passwordNew: ["", [Validators.required, Validators.minLength(6)]],
-        passwordNewRepeat: ["", [Validators.required, Validators.minLength(6)]],
-      }, { validators: this.password });
-      this.authService.getCurrentUser().then(currentUser=>{
-        this.email.setValue(currentUser.email);
-      });
-     }
+    private alertController: AlertController,
+    private authService: AuthService
+  ) {
+
+  }
 
   ngOnInit() {
-
+    this.accountForm = this.formBuilder.group({
+      email: [""],
+      passwordOld: ["", [Validators.required, Validators.minLength(6)]],
+      passwordNew: ["", [Validators.required, Validators.minLength(6)]],
+      passwordNewRepeat: ["", [Validators.required, Validators.minLength(6)]],
+    }, { validators: this.password });
+    this.authService.getCurrentUser().then(currentUser=>{
+      this.email.setValue(currentUser.email);
+    });
   }
 
   get email(){

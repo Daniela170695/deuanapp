@@ -1,17 +1,8 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Informacion del establecimiento</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
   <form [formGroup]="accountForm" (ngSubmit)="update()">
     <ion-item>
       <ion-label position="floating">Email</ion-label>
-      <ion-input [disabled]="true" formControlName="email"></ion-input>
+      <ion-input formControlName="email" [disabled]="true"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Contraseña Actual</ion-label>
@@ -52,6 +43,7 @@
         La contraseñas no coinciden
       </div>
     </div>
+    <br>
     <ion-button type="submit" expand="full" >Modificar</ion-button>
   </form>
 </ion-content>
