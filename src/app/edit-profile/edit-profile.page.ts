@@ -62,7 +62,7 @@ export class EditProfilePage implements OnInit {
       try{
         const currentUser = await this.getCurrentUser();
         const userInfo = await this.getUserInfoByUid(currentUser.uid);
-        this.userInfoService.update(userInfo.id, this.name.value, this.lastname.value, this.cellphone.value);
+        this.userInfoService.update(userInfo[0].id, this.name.value, this.lastname.value, this.cellphone.value);
         const toast = await this.toastController.create({
           message: 'Perfil actualizado con exito',
           duration: 1500,

@@ -13,7 +13,7 @@ export class UserInfoService {
 
   private userInfoCollection: AngularFirestoreCollection<UserInfo>;
   private usersInfo: Observable<UserInfo[]>;
-  // private UserInfoDoc: AngularFirestoreDocument<UserInfo>;
+  private userInfoDoc: AngularFirestoreDocument<UserInfo>;
   // private userInfo: Observable<UserInfo>;
 
   constructor(private afs: AngularFirestore) { }
@@ -28,13 +28,6 @@ export class UserInfoService {
     this.usersInfo = this.userInfoCollection.valueChanges({idField:'id'});
     return this.usersInfo.pipe(take(1)).toPromise();
   }
-
-  // getEstablishmentById(id:string){
-  //   this.establismentDoc = this.afs.doc<Establishment>('Establishment/'+id);
-  //   this.establisment = this.establismentDoc.valueChanges();
-  //   return this.establisment.pipe(take(1)).toPromise();
-  // }
-  //
 
   update(id:string, name:string, lastname:string, cellphone:number){
     this.userInfoDoc = this.afs.doc<UserInfo>('UserInfo/'+id);
