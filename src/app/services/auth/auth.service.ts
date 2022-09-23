@@ -26,11 +26,15 @@ export class AuthService {
   }
 
   signOut() {
-    this.auth.signOut();
+    return this.auth.signOut();
   }
 
   getCurrentUser(){
     return this.auth.authState.pipe(take(1)).toPromise();
+  }
+
+  getCurrentUserPrueba(){
+    return this.auth.authState;
   }
 
   async updatePassword(user:User, password:string){

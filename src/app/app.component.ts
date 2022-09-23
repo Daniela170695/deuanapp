@@ -56,9 +56,9 @@ export class AppComponent {
         },
         {
           text: 'Cerrar Sesion',
-          handler: () => {
-            this.authService.signOut();
-            this.router.navigate(['login']);
+          handler: async () => {
+            await this.authService.signOut();
+            this.router.navigate(['login']);          
           }
         },
         {
