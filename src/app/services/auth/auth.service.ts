@@ -30,10 +30,6 @@ export class AuthService {
   }
 
   getCurrentUser(){
-    return this.auth.authState.pipe(take(1)).toPromise();
-  }
-
-  getCurrentUserPrueba(){
     return this.auth.authState;
   }
 

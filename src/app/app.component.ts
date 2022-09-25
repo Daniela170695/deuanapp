@@ -19,7 +19,7 @@ export class AppComponent {
     private navController: NavController,
     private router: Router) {
 
-    this.authService.getCurrentUser().then(currentUser=>{
+    this.authService.getCurrentUser().subscribe(currentUser=>{
       if(currentUser && currentUser.emailVerified){
         this.showProfile = true;
         this.showTabs = true;
@@ -29,10 +29,6 @@ export class AppComponent {
         this.showTabs = false;
       }
     })
-  }
-
-  openActionsUser(){
-
   }
 
   back(){
@@ -58,7 +54,7 @@ export class AppComponent {
           text: 'Cerrar Sesion',
           handler: async () => {
             await this.authService.signOut();
-            this.router.navigate(['login']);          
+            this.router.navigate(['login']);
           }
         },
         {
