@@ -39,6 +39,8 @@ import { NativeGeocoder } from '@awesome-cordova-plugins/native-geocoder/ngx';
     NativeGeocoder
   ],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
 export class AppModule {}

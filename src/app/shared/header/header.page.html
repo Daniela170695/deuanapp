@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" *ngIf="showBack">
+      <ion-button (click)="back()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" *ngIf="showConfig">
+      <ion-button (click)="presentActionSheet()">
+        <ion-icon slot="icon-only" name="person" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <!-- <img src="assets/img/logo_purple.png"> -->
+  </ion-toolbar>
+</ion-header>

@@ -1,18 +1,4 @@
 <ion-app>
-  <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-button (click)="back()">
-          <ion-icon name="arrow-back"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-      <ion-buttons slot="end" *ngIf="showProfile">
-        <ion-button size="small" item-end (click)="presentActionSheet()">
-          <ion-icon name="person" ></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
   <ion-router-outlet></ion-router-outlet>
   <ion-tabs *ngIf="showTabs">
     <ion-tab-bar slot="bottom">
