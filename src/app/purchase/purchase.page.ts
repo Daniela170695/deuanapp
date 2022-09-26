@@ -18,6 +18,8 @@ import { CategoryProductService } from '../services/category-product/category-pr
 import { ProductService } from '../services/product/product.service';
 import { PurchaseService } from '../services/purchase/purchase.service';
 
+import { take } from 'rxjs/operators';
+
 export interface ProductPurchase{
   id:string,
   name:string,
@@ -126,60 +128,59 @@ export class PurchasePage implements OnInit {
     }
   }
 
-  async register(){
+  register(){
     if(this.productsPurchase.length===0){
       this.displayError = true;
     }
     else{
       if(this.requestForm.valid){
-        try{
-          const idTypeRequest = "jgavhKqRjwRkPcCJzAAm";
-          const typeRequest = await this.typeRequestService.getTypeRequest(idTypeRequest);
-          const currentUser = await this.authService.getCurrentUser();
-          const now = new Date();
-          const request:Request = {
-            uid: currentUser.uid,
-            courier: null,
-            type_request: idTypeRequest,
-            price: typeRequest.price,
-            city_delivered: this.cityDelivered.value,
-            address_delivered: this.addressDelivered.value,
-            cellphone_delivered: this.cellphoneDelivered.value,
-            description: this.description.value,
-            created_datetime: now
-          };
-          const doc = await this.requestService.add(request);
-          const requestId = doc.id;
-          const trackingRequest:TrackingRequest = {
-            request: requestId,
-            cancelled: false,
-            accepted: false,
-            received: false,
-            bought: false,
-            delivered: false,
-            cancelled_datetime: null,
-            accepted_datetime: null,
-            received_datetime: null,
-            bought_datetime: null,
-            delivered_datetime: null
-          };
-          this.trackingRequestService.add(trackingRequest);
-          this.productsPurchase.forEach(product => {
-            const purchase:Purchase = {
-              request: requestId,
-              product: product.id,
-              quantity: product.quantity
+        this.authService.getCurrentUser().pipe(take(1)).subscribe(async(currentUser)=>{
+          try {
+            const idTypeRequest = "jgavhKqRjwRkPcCJzAAm";
+            const typeRequest = await this.typeRequestService.getTypeRequest(idTypeRequest);
+            const now = new Date();
+            const request:Request = {
+              uid: currentUser.uid,
+              courier: null,
+              type_request: idTypeRequest,
+              price: typeRequest.price,
+              city_delivered: this.cityDelivered.value,
+              address_delivered: this.addressDelivered.value,
+              cellphone_delivered: this.cellphoneDelivered.value,
+              description: this.description.value,
+              created_datetime: now
             };
-            this.purchaseService.add(purchase);
-          });
-          this.router.navigate(['tabs/principal/type-service/purchase/tracking-purchase', requestId])
-        }
-        catch(e){
-          console.log(e);
-        }
+            const doc = await this.requestService.add(request);
+            const requestId = doc.id;
+            const trackingRequest:TrackingRequest = {
+              request: requestId,
+              cancelled: false,
+              accepted: false,
+              received: false,
+              bought: false,
+              delivered: false,
+              cancelled_datetime: null,
+              accepted_datetime: null,
+              received_datetime: null,
+              bought_datetime: null,
+              delivered_datetime: null
+            };
+            this.trackingRequestService.add(trackingRequest);
+            this.productsPurchase.forEach(product => {
+              const purchase:Purchase = {
+                request: requestId,
+                product: product.id,
+                quantity: product.quantity
+              };
+              this.purchaseService.add(purchase);
+            });
+            this.router.navigate(['tabs/principal/type-service/purchase/tracking-purchase', requestId])
+          } catch (error) {
+            console.log(error);
+          }
+        });
       }
     }
-
   }
 
   deleteProduct(i){

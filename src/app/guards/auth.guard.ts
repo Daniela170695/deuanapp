@@ -11,8 +11,8 @@ export class AuthGuard implements CanLoad {
 
   constructor(private router: Router, private authService: AuthService) { }
 
-  async canLoad(route: Route, segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree{
-    this.authService.getCurrentUser().pipe(
+  canLoad(route: Route, segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree{
+    return this.authService.getCurrentUser().pipe(
       take(1),
       map(user=>{
         if(user){

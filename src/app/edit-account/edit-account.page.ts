@@ -4,6 +4,7 @@ import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { User } from '../interfaces/user';
 import { AuthService } from '../services/auth/auth.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-account',
@@ -29,7 +30,7 @@ export class EditAccountPage implements OnInit {
       passwordNew: ["", [Validators.required, Validators.minLength(6)]],
       passwordNewRepeat: ["", [Validators.required, Validators.minLength(6)]],
     }, { validators: this.password });
-    this.authService.getCurrentUser().then(currentUser=>{
+    this.authService.getCurrentUser().pipe(take(1)).subscribe(currentUser=>{
       this.email.setValue(currentUser.email);
     });
   }

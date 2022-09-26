@@ -4,6 +4,7 @@ import { ToastController } from '@ionic/angular';
 import { User } from '../interfaces/user';
 import { AuthService } from '../services/auth/auth.service';
 import { UserInfoService } from '../services/user-info/user-info.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-profile',
@@ -28,7 +29,7 @@ export class EditProfilePage implements OnInit {
       cellphone: ['', [Validators.required, Validators.pattern('^[0-9]+$')]]
     });
 
-    this.getCurrentUser().then(currentUser=>{
+    this.authService.getCurrentUser().pipe(take(1)).subscribe(currentUser=>{
       this.getUserInfoByUid(currentUser.uid).then(userInfo=>{
         this.profileForm.patchValue({
           name: userInfo[0].name,
@@ -57,28 +58,23 @@ export class EditProfilePage implements OnInit {
   }
 
 
-  async update(){
+  update(){
     if(this.profileForm.valid){
-      try{
-        const currentUser = await this.getCurrentUser();
-        const userInfo = await this.getUserInfoByUid(currentUser.uid);
-        this.userInfoService.update(userInfo[0].id, this.name.value, this.lastname.value, this.cellphone.value);
-        const toast = await this.toastController.create({
-          message: 'Perfil actualizado con exito',
-          duration: 1500,
-          position: 'top'
-        });
-        await toast.present();
-      }
-      catch(error){
-        console.log(error);
-      }
+      this.authService.getCurrentUser().pipe(take(1)).subscribe(async(currentUser)=>{
+        try {
+          const userInfo = await this.getUserInfoByUid(currentUser.uid);
+          this.userInfoService.update(userInfo[0].id, this.name.value, this.lastname.value, this.cellphone.value);
+          const toast = await this.toastController.create({
+            message: 'Perfil actualizado con exito',
+            duration: 1500,
+            position: 'top'
+          });
+          await toast.present();
+        } catch (error) {
+          console.log(error);
+        }
+      })
     }
-  }
-
-  async getCurrentUser(){
-    const currentUser = await this.authService.getCurrentUser();
-    return currentUser;
   }
 
   async getUserInfoByUid(uid:string){
