@@ -19,6 +19,7 @@ export class HeaderPage implements OnInit {
     private authService: AuthService) { }
 
   ngOnInit() {
+    console.log(this.urlBack);
   }
 
   async presentActionSheet() {

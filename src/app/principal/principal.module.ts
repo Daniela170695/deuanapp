@@ -4,21 +4,22 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { SharedModule } from '../shared/shared.module';
+
 import { PrincipalPageRoutingModule } from './principal-routing.module';
 
 import { PrincipalPage } from './principal.page';
-import { HeaderPage } from '../shared/header/header.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PrincipalPageRoutingModule
+    PrincipalPageRoutingModule,
+    SharedModule
   ],
   declarations: [
-    PrincipalPage,
-    HeaderPage
+    PrincipalPage
   ]
 })
 export class PrincipalPageModule {}

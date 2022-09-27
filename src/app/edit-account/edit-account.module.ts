@@ -5,6 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { SharedModule } from '../shared/shared.module';
+
 import { EditAccountPageRoutingModule } from './edit-account-routing.module';
 
 import { EditAccountPage } from './edit-account.page';
@@ -15,8 +17,11 @@ import { EditAccountPage } from './edit-account.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    EditAccountPageRoutingModule
+    EditAccountPageRoutingModule,
+    SharedModule
   ],
-  declarations: [EditAccountPage]
+  declarations: [
+    EditAccountPage
+  ]
 })
 export class EditAccountPageModule {}

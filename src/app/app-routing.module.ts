@@ -43,7 +43,7 @@ const routes: Routes = [
     path: 'edit-account',
     loadChildren: () => import('./edit-account/edit-account.module').then( m => m.EditAccountPageModule),
     canLoad: [AuthGuard]
-  }, 
+  },
 ];
 @NgModule({
   imports: [

@@ -5,6 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { SharedModule } from '../shared/shared.module';
+
 import { CourierMessagingPageRoutingModule } from './courier-messaging-routing.module';
 
 import { CourierMessagingPage } from './courier-messaging.page';
@@ -15,8 +17,11 @@ import { CourierMessagingPage } from './courier-messaging.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    CourierMessagingPageRoutingModule
+    CourierMessagingPageRoutingModule,
+    SharedModule
   ],
-  declarations: [CourierMessagingPage]
+  declarations: [
+    CourierMessagingPage
+  ]
 })
 export class CourierMessagingPageModule {}
