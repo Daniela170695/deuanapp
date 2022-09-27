@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { SharedModule } from '../shared/shared.module';
+
 import { TrackingPurchasePageRoutingModule } from './tracking-purchase-routing.module';
 
 import { TrackingPurchasePage } from './tracking-purchase.page';
@@ -13,7 +15,8 @@ import { TrackingPurchasePage } from './tracking-purchase.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    TrackingPurchasePageRoutingModule
+    TrackingPurchasePageRoutingModule,
+    SharedModule
   ],
   declarations: [TrackingPurchasePage]
 })

@@ -5,6 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { SharedModule } from '../shared/shared.module';
+
 import { ProceduresPageRoutingModule } from './procedures-routing.module';
 
 import { ProceduresPage } from './procedures.page';
@@ -15,7 +17,8 @@ import { ProceduresPage } from './procedures.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    ProceduresPageRoutingModule
+    ProceduresPageRoutingModule,
+    SharedModule
   ],
   declarations: [ProceduresPage]
 })

@@ -5,6 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { SharedModule } from '../shared/shared.module';
+
 import { RhinocerosPageRoutingModule } from './rhinoceros-routing.module';
 
 import { RhinocerosPage } from './rhinoceros.page';
@@ -15,7 +17,8 @@ import { RhinocerosPage } from './rhinoceros.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    RhinocerosPageRoutingModule
+    RhinocerosPageRoutingModule,
+    SharedModule
   ],
   declarations: [RhinocerosPage]
 })

@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { SharedModule } from '../shared/shared.module';
+
 import { TrackingRhinocerosPageRoutingModule } from './tracking-rhinoceros-routing.module';
 
 import { TrackingRhinocerosPage } from './tracking-rhinoceros.page';
@@ -13,7 +15,8 @@ import { TrackingRhinocerosPage } from './tracking-rhinoceros.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    TrackingRhinocerosPageRoutingModule
+    TrackingRhinocerosPageRoutingModule,
+    SharedModule
   ],
   declarations: [TrackingRhinocerosPage]
 })

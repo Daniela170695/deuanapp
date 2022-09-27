@@ -5,10 +5,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { SharedModule } from '../shared/shared.module';
+
 import { EditProfilePageRoutingModule } from './edit-profile-routing.module';
 
 import { EditProfilePage } from './edit-profile.page';
-import { HeaderPage } from '../shared/header/header.page';
 
 @NgModule({
   imports: [
@@ -16,11 +17,11 @@ import { HeaderPage } from '../shared/header/header.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    EditProfilePageRoutingModule
+    EditProfilePageRoutingModule,
+    SharedModule
   ],
   declarations: [
-    EditProfilePage,
-    HeaderPage
+    EditProfilePage
   ]
 })
 export class EditProfilePageModule {}

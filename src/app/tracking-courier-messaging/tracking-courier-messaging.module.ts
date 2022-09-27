@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { SharedModule } from '../shared/shared.module';
+
 import { TrackingCourierMessagingPageRoutingModule } from './tracking-courier-messaging-routing.module';
 
 import { TrackingCourierMessagingPage } from './tracking-courier-messaging.page';
@@ -13,7 +15,8 @@ import { TrackingCourierMessagingPage } from './tracking-courier-messaging.page'
     CommonModule,
     FormsModule,
     IonicModule,
-    TrackingCourierMessagingPageRoutingModule
+    TrackingCourierMessagingPageRoutingModule,
+    SharedModule
   ],
   declarations: [TrackingCourierMessagingPage]
 })

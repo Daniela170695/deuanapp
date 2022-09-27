@@ -5,6 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { SharedModule } from '../shared/shared.module';
+
 import { PurchasePageRoutingModule } from './purchase-routing.module';
 
 import { PurchasePage } from './purchase.page';
@@ -15,7 +17,8 @@ import { PurchasePage } from './purchase.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    PurchasePageRoutingModule
+    PurchasePageRoutingModule,
+    SharedModule
   ],
   declarations: [PurchasePage]
 })

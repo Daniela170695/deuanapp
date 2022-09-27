@@ -1,16 +1,7 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>
-      Rhinoceros
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [showBack]="true" [showConfig]="true" urlBack="principal"></app-header>
 
 <ion-content>
-  <form [formGroup]="requestForm" (ngSubmit)="register()">  
+  <form [formGroup]="requestForm" (ngSubmit)="register()">
     <ion-item>
       <ion-select placeholder="Ciudad recogida" formControlName="cityReceived">
         <div *ngFor="let city of cities">

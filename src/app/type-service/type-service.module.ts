@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { SharedModule } from '../shared/shared.module';
+
 import { TypeServicePageRoutingModule } from './type-service-routing.module';
 
 import { TypeServicePage } from './type-service.page';
@@ -13,7 +15,8 @@ import { TypeServicePage } from './type-service.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    TypeServicePageRoutingModule
+    TypeServicePageRoutingModule,
+    SharedModule
   ],
   declarations: [TypeServicePage]
 })
