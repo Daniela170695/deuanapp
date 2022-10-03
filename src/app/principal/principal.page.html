@@ -1,18 +1,15 @@
 <app-header [showBack]="false" [showConfig]="true" [urlBack]="null"></app-header>
 
 <ion-content>
-  <div style="text-align: center;">
-    <div>
-      <h3>¿Que quieres hacer?</h3>
+    <div class="title-purple">
+      <h6>¿Que quieres hacer?</h6>
     </div>
     <br>
-    <div>
-      <ion-button >1</ion-button>
-      <ion-button (click)="openTypeService()">2</ion-button>
-      <ion-button (click)="openRhinoceros()">3</ion-button>
+    <div id="options">
+      <img src="assets/img/principal/deunastorepequeño-01.png" >
+      <img src="assets/img/principal/deuanfavorespequeño-01.png" (click)="openTypeService()">
+      <img src="assets/img/principal/rinocerontepequeño-01.png" (click)="openRhinoceros()">
+      <br>
+      <img src="assets/img/principal/soportepequeño-01.png" (click)="openConfigSupport()">
     </div>
-    <div>
-      <ion-button (click)="openConfigSupport()">4</ion-button>
-    </div>
-  </div>
 </ion-content>
