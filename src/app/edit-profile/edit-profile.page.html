@@ -1,44 +1,47 @@
 <app-header [showBack]="false" [showConfig]="true" [urlBack]="null"></app-header>
 
 <ion-content>
+  <div class="title-tertiary">
+    <h6>Editar Perfil</h6>
+  </div>
   <form [formGroup]="profileForm" (ngSubmit)="update()">
-    <ion-item>
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input formControlName="name"></ion-input>
+    <ion-item lines="none">
+      <ion-input formControlName="name" placeholder="Nombre"></ion-input>
     </ion-item>
-    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+    <div *ngIf="name.invalid && (name.dirty || name.touched)">
       <div *ngIf="name.errors?.['required']" class="errors">
-        Nombre requerido
+        <ion-note>Nombre requerido</ion-note>
       </div>
       <div *ngIf="name.errors?.['pattern']" class="errors">
-        Nombre errado
-      </div>
-    </div>
-    <ion-item>
-      <ion-label position="floating">Apellido</ion-label>
-      <ion-input formControlName="lastname"></ion-input>
-    </ion-item>
-    <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="alert alert-danger">
-      <div *ngIf="lastname.errors?.['required']" class="errors">
-        Apellido requerido
-      </div>
-      <div *ngIf="lastname.errors?.['pattern']" class="errors">
-        Apellido errado
-      </div>
-    </div>
-    <ion-item>
-      <ion-label position="floating">Celular</ion-label>
-      <ion-input type="number" formControlName="cellphone"></ion-input>
-    </ion-item>
-    <div *ngIf="cellphone.invalid && (cellphone.dirty || cellphone.touched)" class="alert alert-danger">
-      <div *ngIf="cellphone.errors?.['required']" class="errors">
-        Celular requerido
-      </div>
-      <div *ngIf="cellphone.errors?.['pattern']" class="errors">
-        Celular errado
+        <ion-note>Nombre errado</ion-note>
       </div>
     </div>
     <br>
-    <ion-button type="submit" expand="full" >Modificar</ion-button>
+    <ion-item lines="none">
+      <ion-input formControlName="lastname" placeholder="Apellido"></ion-input>
+    </ion-item>
+    <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="alert alert-danger">
+      <div *ngIf="lastname.errors?.['required']" class="errors">
+        <ion-note>Apellido requerido</ion-note>
+      </div>
+      <div *ngIf="lastname.errors?.['pattern']" class="errors">
+        <ion-note>Apellido errado</ion-note>
+      </div>
+    </div>
+    <br>
+    <ion-item lines="none">
+      <ion-input type="number" formControlName="cellphone" placeholder="Celular"></ion-input>
+      <img src="assets/img/shared/tel-01.png" alt="" style="width:20px">
+    </ion-item>
+    <div *ngIf="cellphone.invalid && (cellphone.dirty || cellphone.touched)" class="alert alert-danger">
+      <div *ngIf="cellphone.errors?.['required']" class="errors">
+        <ion-note>Celular requerido</ion-note>
+      </div>
+      <div *ngIf="cellphone.errors?.['pattern']" class="errors">
+        <ion-note>Celular errado</ion-note>
+      </div>
+    </div>
+    <br>
+    <ion-button shape="round" type="submit" expand="block" >Modificar Perfil</ion-button>
   </form>
 </ion-content>

@@ -25,7 +25,7 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-.title-purple{
+.title-tertiary{
   width: 245px;
   height: 37px;
   margin: 0 auto;
@@ -34,7 +34,7 @@
   text-align: center;
 }
 
-.title-purple h6{
+.title-tertiary h6{
   color: white;
   position: relative;
   padding-top: 8px;
@@ -57,4 +57,18 @@
   margin-top: 5px;
   position: relative;
   font-weight: bold;
+}
+
+ion-item{
+  --border-width: 2px;
+  --border-radius: 20px;
+  --border-width: 0.55px 0.55px 0.55px 0.55px;
+  --highlight-color-focused: var(--ion-color-tertiary);
+  --highlight-color-valid: var(--ion-color-tertiary);
+  --highlight-color-invalid: var(--ion-color-tertiary);
+}
+
+ion-button{
+  --color: var(--ion-color-tertiary);
+  text-transform: none;
 }
