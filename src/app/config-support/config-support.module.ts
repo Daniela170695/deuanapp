@@ -5,6 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { SharedModule } from '../shared/shared.module';
+
 import { ConfigSupportPageRoutingModule } from './config-support-routing.module';
 
 import { ConfigSupportPage } from './config-support.page';
@@ -15,7 +17,8 @@ import { ConfigSupportPage } from './config-support.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    ConfigSupportPageRoutingModule
+    ConfigSupportPageRoutingModule,
+    SharedModule
   ],
   declarations: [ConfigSupportPage]
 })

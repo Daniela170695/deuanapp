@@ -8,6 +8,9 @@ ion-item{
   --background: white;
   --color: black;
   --border-color: var(--ion-color-tertiary);
+  --highlight-color-focused: var(--ion-color-tertiary);
+  --highlight-color-valid: var(--ion-color-tertiary);
+  --highlight-color-invalid: var(--ion-color-tertiary);
 }
 
 .errors{

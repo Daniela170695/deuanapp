@@ -1,31 +1,39 @@
 <app-header [showBack]="false" [showConfig]="true" [urlBack]="null"></app-header>
 <ion-content [fullscreen]="true">
   <form [formGroup]="pqrsForm" (ngSubmit)="sendPqrs()">
+    <div id="title">
+      <h5><b>Contactar con soporte</b></h5>
+      <p>
+        Si nesecitas solicitar ayuda contáctanos al
+        siguiente correo de soporte:
+      </p>
+    </div>
     <ion-item>
-      <ion-label position="floating">Titulo</ion-label>
-      <ion-input formControlName="title"></ion-input>
+      <img src="assets/img/shared/lapiz-01.png" id="img-lapiz">
+      <ion-input formControlName="title" placeholder="Titulo"></ion-input>
     </ion-item>
     <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger">
       <div *ngIf="title.errors?.['required']" class="errors">
-        Titulo requerido
+        <ion-note>Titulo requerido</ion-note>
       </div>
       <div *ngIf="title.errors?.['pattern']" class="errors">
-        Titulo errado
-      </div>
-    </div>
-    <ion-item>
-      <ion-label position="floating">Descripcion</ion-label>
-      <ion-textarea formControlName="description"></ion-textarea>
-    </ion-item>
-    <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
-      <div *ngIf="description.errors?.['required']" class="errors">
-        Descripcion requerida
-      </div>
-      <div *ngIf="description.errors?.['pattern']" class="errors">
-        Descripcion errada
+        <ion-note>Titulo errado</ion-note>
       </div>
     </div>
     <br>
-    <ion-button type="submit" expand="full" >Enviar</ion-button>
+    <ion-item>
+      <img src="assets/img/shared/sobre-01.png" id="img-sobre">
+      <ion-textarea formControlName="description" placeholder="Descripcion" rows="6"></ion-textarea>
+    </ion-item>
+    <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
+      <div *ngIf="description.errors?.['required']" class="errors">
+        <ion-note>Descripcion requerida</ion-note>
+      </div>
+      <div *ngIf="description.errors?.['pattern']" class="errors">
+        <ion-note>Descripcion errada</ion-note>
+      </div>
+    </div>
+    <br>
+    <ion-button shape="round" type="submit" expand="block" >Enviar mensaje</ion-button>
   </form>
 </ion-content>

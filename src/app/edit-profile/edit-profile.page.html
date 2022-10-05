@@ -31,7 +31,7 @@
     <br>
     <ion-item lines="none">
       <ion-input type="number" formControlName="cellphone" placeholder="Celular"></ion-input>
-      <img src="assets/img/shared/tel-01.png" alt="" style="width:20px">
+      <img src="assets/img/shared/tel-01.png" alt="" style="width:20px;height:20px">
     </ion-item>
     <div *ngIf="cellphone.invalid && (cellphone.dirty || cellphone.touched)" class="alert alert-danger">
       <div *ngIf="cellphone.errors?.['required']" class="errors">

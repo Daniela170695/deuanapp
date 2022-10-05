@@ -62,10 +62,7 @@
 ion-item{
   --border-width: 2px;
   --border-radius: 20px;
-  --border-width: 0.55px 0.55px 0.55px 0.55px;
-  --highlight-color-focused: var(--ion-color-tertiary);
-  --highlight-color-valid: var(--ion-color-tertiary);
-  --highlight-color-invalid: var(--ion-color-tertiary);
+  --border-width: 0.55px 0.55px 0.55px 0.55px;  
 }
 
 ion-button{
