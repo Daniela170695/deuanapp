@@ -1,5 +1,5 @@
 ion-select {
-  --placeholder-color: var(--ion-color-medium);
+  --placeholder-color: var(--ion-color-gray-2);
   width: 100%;
   justify-content: center;
 }
@@ -7,4 +7,12 @@ ion-select {
 ion-select::part(placeholder),
 ion-select::part(text) {
   flex: 0 0 auto;
+}
+
+ion-item{
+  --background: white;
+  --border-color: var(--ion-color-gray-2);
+  --highlight-color-focused: var(--ion-color-gray-2);
+  --highlight-color-valid: var(--ion-color-gray-2);
+  --highlight-color-invalid: var(--ion-color-gray-2);
 }
