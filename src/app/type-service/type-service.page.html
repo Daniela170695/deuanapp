@@ -1,7 +1,7 @@
 <app-header [showBack]="true" [showConfig]="true" urlBack="principal"></app-header>
 <ion-content>
-  <div class="">
-    <ion-item>
+  <div style="margin-top:100px;padding-left: 20px;padding-right: 20px;">
+    <ion-item lines="none">
       <ion-select placeholder="Tipo de Servicio" [(ngModel)]="typeSelected">
         <div *ngFor="let type of types">
           <ion-select-option [value]="type.id">{{type.name}}</ion-select-option>
@@ -9,6 +9,8 @@
       </ion-select>
     </ion-item>
     <br>
-    <ion-button (click)="openService()">Solicitar Servicio</ion-button>
+    <ion-button shape="round" expand="block" (click)="openService()" style="margin-top: 120px;">
+      Solicitar Servicio
+    </ion-button>
   </div>
 </ion-content>

@@ -1,0 +1,10 @@
+ion-select {
+  --placeholder-color: var(--ion-color-medium);
+  width: 100%;
+  justify-content: center;
+}
+
+ion-select::part(placeholder),
+ion-select::part(text) {
+  flex: 0 0 auto;
+}
