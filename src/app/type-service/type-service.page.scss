@@ -1,5 +1,10 @@
+ion-content{
+  --padding-top:  100px;
+  --padding-start: 20px;
+  --padding-end: 20px;
+}
+
 ion-select {
-  --placeholder-color: var(--ion-color-gray-2);
   width: 100%;
   justify-content: center;
 }

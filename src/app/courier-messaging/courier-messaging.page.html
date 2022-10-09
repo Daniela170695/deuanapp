@@ -5,24 +5,26 @@
   </div>
   <form [formGroup]="requestForm" (ngSubmit)="register()">
     <ion-item>
+      <img src="assets/img/shared/lapiz-01.png">
       <ion-select placeholder="Ciudad recibida" formControlName="cityReceived">
         <div *ngFor="let city of cities">
           <ion-select-option [value]="city.c_digo_dane_del_municipio">{{city.departamento}} - {{city.municipio}}</ion-select-option>
         </div>
       </ion-select>
     </ion-item>
-    <div *ngIf="cityReceived.invalid && (cityReceived.dirty || cityReceived.touched)" class="alert alert-danger">
+    <div *ngIf="cityReceived.invalid && (cityReceived.dirty || cityReceived.touched)" >
       <div *ngIf="cityReceived.errors?.['required']" class="errors">
-        Ciudad requerida
+        <ion-note>Ciudad requerida</ion-note>
       </div>
     </div>
     <br>
     <ion-item>
+      <img src="assets/img/shared/lapiz-01.png">
       <ion-input formControlName="addressReceived" placeholder="Direccion recibida"></ion-input>
     </ion-item>
-    <div *ngIf="addressReceived.invalid && (addressReceived.dirty || addressReceived.touched)" class="alert alert-danger">
+    <div *ngIf="addressReceived.invalid && (addressReceived.dirty || addressReceived.touched)" >
       <div *ngIf="addressReceived.errors?.['required']" class="errors">
-        Direccion requerida
+        <ion-note>Direccion requerida</ion-note>
       </div>
       <div *ngIf="addressReceived.errors?.['pattern']" class="errors">
         Direccion errada
@@ -30,60 +32,65 @@
     </div>
     <br>
     <ion-item>
+      <img src="assets/img/shared/lapiz-01.png">
       <ion-input type="number" formControlName="cellphoneReceived" placeholder="Celular recibida"></ion-input>
     </ion-item>
-    <div *ngIf="cellphoneReceived.invalid && (cellphoneReceived.dirty || cellphoneReceived.touched)" class="alert alert-danger">
+    <div *ngIf="cellphoneReceived.invalid && (cellphoneReceived.dirty || cellphoneReceived.touched)">
       <div *ngIf="cellphoneReceived.errors?.['required']" class="errors">
-        Celular requerido
+        <ion-note>Celular requerido</ion-note>
       </div>
       <div *ngIf="cellphoneReceived.errors?.['pattern']" class="errors">
-        Celular errado
+        <ion-note>Celular errado</ion-note>
       </div>
     </div>
     <br>
     <ion-item>
+      <img src="assets/img/shared/lapiz-01.png">
       <ion-select placeholder="Ciudad entrega" formControlName="cityDelivered">
         <div *ngFor="let city of cities">
           <ion-select-option [value]="city.c_digo_dane_del_municipio">{{city.departamento}} - {{city.municipio}}</ion-select-option>
         </div>
       </ion-select>
     </ion-item>
-    <div *ngIf="cityDelivered.invalid && (cityDelivered.dirty || cityDelivered.touched)" class="alert alert-danger">
+    <div *ngIf="cityDelivered.invalid && (cityDelivered.dirty || cityDelivered.touched)" >
       <div *ngIf="cityDelivered.errors?.['required']" class="errors">
-        Ciudad requerida
+        <ion-note>Ciudad requerida</ion-note>
       </div>
     </div>
     <br>
     <ion-item>
+      <img src="assets/img/shared/lapiz-01.png">
       <ion-input formControlName="addressDelivered" placeholder="Direccion entrega"></ion-input>
     </ion-item>
-    <div *ngIf="addressDelivered.invalid && (addressDelivered.dirty || addressDelivered.touched)" class="alert alert-danger">
+    <div *ngIf="addressDelivered.invalid && (addressDelivered.dirty || addressDelivered.touched)" >
       <div *ngIf="addressDelivered.errors?.['required']" class="errors">
-        Direccion requerida
+        <ion-note>Direccion requerida</ion-note>
       </div>
       <div *ngIf="addressDelivered.errors?.['pattern']" class="errors">
-        Direccion errada
+        <ion-note>Direccion errada</ion-note>
       </div>
     </div>
     <br>
     <ion-item>
+      <img src="assets/img/shared/lapiz-01.png">
       <ion-input type="number" formControlName="cellphoneDelivered" placeholder="Celular entrega"></ion-input>
     </ion-item>
-    <div *ngIf="cellphoneDelivered.invalid && (cellphoneDelivered.dirty || cellphoneDelivered.touched)" class="alert alert-danger">
+    <div *ngIf="cellphoneDelivered.invalid && (cellphoneDelivered.dirty || cellphoneDelivered.touched)" >
       <div *ngIf="cellphoneDelivered.errors?.['required']" class="errors">
-        Celular requerido
+        <ion-note>Celular requerido</ion-note>
       </div>
       <div *ngIf="cellphoneDelivered.errors?.['pattern']" class="errors">
-        Celular errado
+        <ion-note>Celular errado</ion-note>
       </div>
     </div>
     <br>
     <ion-item>
+      <img src="assets/img/shared/lapiz-01.png">
       <ion-input formControlName="content" placeholder="¿Que contiene?"></ion-input>
     </ion-item>
-    <div *ngIf="content.invalid && (content.dirty || content.touched)" class="alert alert-danger">
+    <div *ngIf="content.invalid && (content.dirty || content.touched)">
       <div *ngIf="content.errors?.['required']" class="errors">
-        Contenido requerido
+        <ion-note>Contenido requerido</ion-note>
       </div>
     </div>
     <br>
