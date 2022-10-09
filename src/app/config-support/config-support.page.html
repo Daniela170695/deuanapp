@@ -1,5 +1,5 @@
 <app-header [showBack]="true" [showConfig]="true" urlBack="principal"></app-header>
-<ion-content [fullscreen]="true">  
+<ion-content [fullscreen]="true">
   <div id="title">
     <h6><b>Contactar con soporte</b></h6>
     <p>
@@ -9,10 +9,10 @@
   </div>
   <form [formGroup]="pqrsForm" (ngSubmit)="sendPqrs()">
     <ion-item>
-      <img src="assets/img/shared/lapiz-01.png" id="img-lapiz">
+      <img src="assets/img/shared/lapiz-01.png">
       <ion-input formControlName="title" placeholder="Titulo"></ion-input>
     </ion-item>
-    <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger">
+    <div *ngIf="title.invalid && (title.dirty || title.touched)">
       <div *ngIf="title.errors?.['required']" class="errors">
         <ion-note>Titulo requerido</ion-note>
       </div>
