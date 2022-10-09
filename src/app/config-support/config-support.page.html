@@ -1,13 +1,13 @@
 <app-header [showBack]="true" [showConfig]="true" urlBack="principal"></app-header>
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true">  
+  <div id="title">
+    <h6><b>Contactar con soporte</b></h6>
+    <p>
+      Si nesecitas solicitar ayuda contáctanos al
+      siguiente correo de soporte:
+    </p>
+  </div>
   <form [formGroup]="pqrsForm" (ngSubmit)="sendPqrs()">
-    <div id="title">
-      <h6><b>Contactar con soporte</b></h6>
-      <p>
-        Si nesecitas solicitar ayuda contáctanos al
-        siguiente correo de soporte:
-      </p>
-    </div>
     <ion-item>
       <img src="assets/img/shared/lapiz-01.png" id="img-lapiz">
       <ion-input formControlName="title" placeholder="Titulo"></ion-input>
