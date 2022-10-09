@@ -26,46 +26,50 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 .title-tertiary{
-  width: 245px;
-  height: 37px;
+  height: 40px;
   margin: 0 auto;
   background-color: var(--ion-color-tertiary);
   border-radius: 20px;
   text-align: center;
+  width: 242px;
 }
 
-.title-tertiary h6{
+.title-tertiary p{
   color: white;
   position: relative;
-  padding-top: 8px;
+  padding-top: 12px;
+  font-size: 14px;
 }
 
 .title-white{
-  width: 245px;
-  height: 37px;
+  width: 242px;
+  height: 40px;
   margin: 0 auto;
   background-color: white;
   border-radius: 20px;
-  border: 1px;
   border-style: solid;
-  border-color: var(--ion-color-medium);
+  border-width: 1px;
+  border-color: var(--ion-color-gray-2);
   text-align: center;
 }
 
-.title-white h5{
-  color: var(--ion-color-medium);
-  margin-top: 5px;
+.title-white p{
+  color: var(--ion-color-gray-2);
+  margin-top: 10px;
   position: relative;
   font-weight: bold;
+  font-size: 15px;
 }
 
 ion-item{
   --border-width: 2px;
   --border-radius: 20px;
-  --border-width: 0.55px 0.55px 0.55px 0.55px;  
+  --border-width: 0.55px 0.55px 0.55px 0.55px;
+  font-size: 13px;
 }
 
 ion-button{
   --color: var(--ion-color-tertiary);
   text-transform: none;
+  font-size: 14px;
 }
