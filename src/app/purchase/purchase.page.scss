@@ -1,11 +1,33 @@
-.errors{
-  font-size: 13px;
-  margin-top: 6px;
-  color: red;
+ion-content{
+  --padding-top:  20px;
+  --padding-start: 20px;
+  --padding-end: 20px;
+}
+
+.title-white{
+  width: 216px;
 }
 
 form{
-  margin: top 5px;
-  padding-left: 20px;
-  padding-right: 20px;
+  margin-top: 20px;
+}
+
+ion-item{
+  --background: var(--ion-color-gray-5);
+  --border-style: none;
+}
+
+ion-item img{
+  width: 23px;
+  height: 23px;
+  margin-right: 13px;
+}
+
+.errors{
+  margin-top: 5px;
+}
+
+.errors ion-note{
+  --color: var(--ion-color-danger);
+  font-size: 13px;
 }

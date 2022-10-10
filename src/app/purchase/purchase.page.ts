@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, ValidationErrors } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, ValidationErrors, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { City } from '../interfaces/city';
@@ -21,8 +21,9 @@ import { PurchaseService } from '../services/purchase/purchase.service';
 import { take } from 'rxjs/operators';
 
 export interface ProductPurchase{
-  id:string,
-  name:string,
+  idProduct:string,
+  nameProduct:string,
+  nameCategory:string,
   quantity:number
 }
 
@@ -36,9 +37,10 @@ export class PurchasePage implements OnInit {
   cities: City[];
   categoriesProducts: CategoryProduct[];
   products: Product[];
-  productsPurchase: ProductPurchase[] = [];
+  productsPurchase: ProductPurchase[];
   nameProduct: string;
-  displayError: boolean = false;
+  nameCategory: string;
+  displayError: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -57,6 +59,8 @@ export class PurchasePage implements OnInit {
     this.categoryProductService.getAll().then(data=>{
       this.categoriesProducts = data;
     })
+    this.displayError = false;
+    this.productsPurchase = [];
 
   }
 
@@ -66,11 +70,11 @@ export class PurchasePage implements OnInit {
       addressDelivered: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9#\-_ ]+$')]],
       cellphoneDelivered: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       description:['', [Validators.required]],
-      purchase: this.formBuilder.group({
+      productsPurchase: this.formBuilder.group({
         categoryProduct: [''],
         product:[''],
-        quantity: [1, [Validators.pattern('^[1-9]$')]]
-      })
+        quantity: ['', [Validators.pattern('^[1-9]$')]]
+      }),
     });
   }
 
@@ -91,20 +95,21 @@ export class PurchasePage implements OnInit {
   }
 
   get categoryProduct(){
-    return this.requestForm.get('purchase').get('categoryProduct');
+    return this.requestForm.get('productsPurchase').get('categoryProduct');
   }
 
   get product(){
-    return this.requestForm.get('purchase').get('product');
+    return this.requestForm.get('productsPurchase').get('product');
   }
 
   get quantity(){
-    return this.requestForm.get('purchase').get('quantity');
+    return this.requestForm.get('productsPurchase').get('quantity');
   }
 
   handleChangeCategory(e) {
-    this.categoryProduct.setValue(e.detail.value);
-    this.productService.getOneByCategory(this.categoryProduct.value).then(data=>{
+    this.categoryProduct.setValue(e.detail.value.id);
+    this.nameCategory = e.detail.value.name;
+    this.productService.getByCategory(this.categoryProduct.value).then(data=>{
       this.products = data;
     })
   }
@@ -119,8 +124,9 @@ export class PurchasePage implements OnInit {
     const quantity = this.quantity.value;
     if(product && quantity){
       const productPurchase:ProductPurchase = {
-        id: product,
-        name: this.nameProduct,
+        nameCategory: this.nameCategory,
+        nameProduct: this.nameProduct,
+        idProduct: product,
         quantity: quantity
       }
       this.productsPurchase.push(productPurchase);
@@ -169,7 +175,7 @@ export class PurchasePage implements OnInit {
             this.productsPurchase.forEach(product => {
               const purchase:Purchase = {
                 request: requestId,
-                product: product.id,
+                product: product.idProduct,
                 quantity: product.quantity
               };
               this.purchaseService.add(purchase);

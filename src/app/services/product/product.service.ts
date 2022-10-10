@@ -17,7 +17,7 @@ export class ProductService {
 
   constructor(private afs: AngularFirestore) { }
 
-  getOneByCategory(category:string){
+  getByCategory(category:string){
     this.productCollection = this.afs.collection<Product>('Product', ref=>ref.where('category_product', '==', category));
     this.products = this.productCollection.valueChanges({idField:'id'});
     return this.products.pipe(take(1)).toPromise();

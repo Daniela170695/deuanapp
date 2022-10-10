@@ -1,95 +1,113 @@
 <app-header [showBack]="true" [showConfig]="true" urlBack="principal/type-service"> </app-header>
 
 <ion-content>
+  <div class="title-white">
+    <p>Compras</p>
+  </div>
   <form [formGroup]="requestForm" (ngSubmit)="register()">
     <ion-item>
+      <img src="assets/img/shared/lapiz-01.png">
       <ion-select placeholder="Ciudad entrega" formControlName="cityDelivered">
         <div *ngFor="let city of cities">
           <ion-select-option [value]="city.c_digo_dane_del_municipio">{{city.departamento}} - {{city.municipio}}</ion-select-option>
         </div>
       </ion-select>
     </ion-item>
-    <div *ngIf="cityDelivered.invalid && (cityDelivered.dirty || cityDelivered.touched)" class="alert alert-danger">
+    <div *ngIf="cityDelivered.invalid && (cityDelivered.dirty || cityDelivered.touched)" >
       <div *ngIf="cityDelivered.errors?.['required']" class="errors">
-        Ciudad requerida
-      </div>
-    </div>
-    <ion-item>
-      <ion-label position="floating">Direccion entrega</ion-label>
-      <ion-input formControlName="addressDelivered"></ion-input>
-    </ion-item>
-    <div *ngIf="addressDelivered.invalid && (addressDelivered.dirty || addressDelivered.touched)" class="alert alert-danger">
-      <div *ngIf="addressDelivered.errors?.['required']" class="errors">
-        Direccion requerida
-      </div>
-      <div *ngIf="addressDelivered.errors?.['pattern']" class="errors">
-        Direccion errada
-      </div>
-    </div>
-    <ion-item>
-      <ion-label position="floating">Celular entrega</ion-label>
-      <ion-input type="number" formControlName="cellphoneDelivered"></ion-input>
-    </ion-item>
-    <div *ngIf="cellphoneDelivered.invalid && (cellphoneDelivered.dirty || cellphoneDelivered.touched)" class="alert alert-danger">
-      <div *ngIf="cellphoneDelivered.errors?.['required']" class="errors">
-        Celular requerido
-      </div>
-      <div *ngIf="cellphoneDelivered.errors?.['pattern']" class="errors">
-        Celular errado
-      </div>
-    </div>
-    <ion-item>
-      <ion-label position="floating">Descripcion</ion-label>
-      <ion-input formControlName="description"></ion-input>
-    </ion-item>
-    <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
-      <div *ngIf="description.errors?.['required']" class="errors">
-        Descripcion requerida
+        <ion-note>Ciudad requerida</ion-note>
       </div>
     </div>
     <br>
-    <div formGroupName="purchase">
-      <h4 style="margin-left: 15px;">Productos</h4>
+    <ion-item>
+      <img src="assets/img/shared/lapiz-01.png">
+      <ion-input formControlName="addressDelivered"  placeholder="Direccion entrega"></ion-input>
+    </ion-item>
+    <div *ngIf="addressDelivered.invalid && (addressDelivered.dirty || addressDelivered.touched)">
+      <div *ngIf="addressDelivered.errors?.['required']" class="errors">
+        <ion-note>Direccion requerida</ion-note>
+      </div>
+      <div *ngIf="addressDelivered.errors?.['pattern']" class="errors">
+        <ion-note>Direccion errada</ion-note>
+      </div>
+    </div>
+    <br>
+    <ion-item>
+      <img src="assets/img/shared/lapiz-01.png">
+      <ion-input type="number" formControlName="cellphoneDelivered" placeholder="Celular entrega"></ion-input>
+    </ion-item>
+    <div *ngIf="cellphoneDelivered.invalid && (cellphoneDelivered.dirty || cellphoneDelivered.touched)" >
+      <div *ngIf="cellphoneDelivered.errors?.['required']" class="errors">
+        <ion-note>Celular requerido</ion-note>
+      </div>
+      <div *ngIf="cellphoneDelivered.errors?.['pattern']" class="errors">
+        <ion-note>Celular errado</ion-note>
+      </div>
+    </div>
+    <br>
+    <ion-item>
+      <img src="assets/img/shared/lapiz-01.png">
+      <ion-input formControlName="description" placeholder="Descripcion"></ion-input>
+    </ion-item>
+    <div *ngIf="description.invalid && (description.dirty || description.touched)">
+      <div *ngIf="description.errors?.['required']" class="errors">
+        <ion-note>Descripcion requerida</ion-note>
+      </div>
+    </div>
+    <div formGroupName="productsPurchase" style="margin-top:40px">
       <ion-item>
+        <img src="assets/img/shared/lapiz-01.png">
         <ion-select placeholder="Categoria del producto" (ionChange)="handleChangeCategory($event)">
           <div *ngFor="let category of categoriesProducts">
-            <ion-select-option [value]="category.id">{{category.name}}</ion-select-option>
+            <ion-select-option [value]="category">{{category.name}}</ion-select-option>
           </div>
         </ion-select>
       </ion-item>
+      <br>
       <ion-item>
+        <img src="assets/img/shared/lapiz-01.png">
         <ion-select placeholder="Producto" (ionChange)="handleChangeProduct($event)">
           <div *ngFor="let product of products">
             <ion-select-option [value]="product">{{product.name}}</ion-select-option>
           </div>
         </ion-select>
       </ion-item>
+      <br>
       <ion-item>
-        <ion-label position="floating">Cantidad</ion-label>
-        <ion-input type="number" formControlName="quantity"></ion-input>
+        <img src="assets/img/shared/lapiz-01.png">
+        <ion-input type="number" formControlName="quantity" placeholder="Cantidad"></ion-input>
       </ion-item>
-      <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="alert alert-danger">
+      <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" >
         <div *ngIf="quantity.errors?.['pattern']" class="errors">
-          Cantidad errada
+          <ion-note>Cantidad errada</ion-note>
         </div>
       </div>
       <br>
-      <ion-button (click)="addProduct()">Agregar producto</ion-button>
-      <div *ngIf="displayError" class="alert alert-danger errors">
-        No hay productos
+      <ion-button shape="round" (click)="addProduct()">Agregar</ion-button>
+      <div *ngIf="displayError" class="errors">
+        <ion-note>No hay productos</ion-note>
       </div>
-      <div id="products">
-        <ion-list>
-          <ion-item *ngFor="let product of productsPurchase">
-            <ion-label>
-              <h3>{{product.id}}</h3>
-              <p>{{product.name}} ({{product.quantity}})</p>
-            </ion-label>
+      <div style="margin-top:40px;">
+        <div *ngFor="let product of productsPurchase" style="margin-bottom:40px">
+          <ion-item>
+            <ion-select [disabled]="true" value="product.nameCategory">
+              <ion-select-option value="product.nameCategory">{{product.nameCategory}}</ion-select-option>
+            </ion-select>
           </ion-item>
-        </ion-list>
+          <br>
+          <ion-item>
+            <ion-select [disabled]="true" [value]="product.idProduct">
+              <ion-select-option [value]="product.idProduct">{{product.nameProduct}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <br>
+          <ion-item>
+            <ion-input type="number" [disabled]="true">{{product.quantity}}</ion-input>
+          </ion-item>
+        </div>
       </div>
     </div>
     <br>
-    <ion-button expand="full" type="submit">Solicitar Servicio</ion-button>
+    <ion-button shape="round" type="submit" expand="block">Solicitar Servicio</ion-button>
   </form>
 </ion-content>
