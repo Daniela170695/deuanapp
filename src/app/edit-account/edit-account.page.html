@@ -1,50 +1,52 @@
 <app-header [showBack]="false" [showConfig]="true" [urlBack]="null"></app-header>
 <ion-content>
+  <div class="title-tertiary">
+    <p>Editar Cuenta</p>
+  </div>
   <form [formGroup]="accountForm" (ngSubmit)="update()">
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
+    <ion-item lines="none">
       <ion-input formControlName="email" [disabled]="true"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label position="floating">Contraseña Actual</ion-label>
-      <ion-input formControlName="passwordOld"></ion-input>
+    <br>
+    <ion-item lines="none">
+      <ion-input formControlName="passwordOld" placeholder="Contraseña Actual"></ion-input>
     </ion-item>
-    <div *ngIf="passwordOld.invalid && (passwordOld.dirty || passwordOld.touched)" class="alert alert-danger">
+    <div *ngIf="passwordOld.invalid && (passwordOld.dirty || passwordOld.touched)">
       <div *ngIf="passwordOld.errors?.['required']" class="errors">
-        Contraseña requerida
+        <ion-note>Contraseña requerida</ion-note>
       </div>
       <div *ngIf="passwordOld.errors?.['minlength']" class="errors">
-        La constraseña debe tener al menos 6 caracteres
-      </div>
-    </div>
-    <ion-item>
-      <ion-label position="floating">Contraseña Nueva</ion-label>
-      <ion-input formControlName="passwordNew"></ion-input>
-    </ion-item>
-    <div *ngIf="passwordNew.invalid && (passwordNew.dirty || passwordNew.touched)" class="alert alert-danger">
-      <div *ngIf="passwordNew.errors?.['required']" class="errors">
-        Contraseña requerida
-      </div>
-      <div *ngIf="passwordNew.errors?.['minlength']" class="errors">
-        La constraseña debe tener al menos 6 caracteres
-      </div>
-    </div>
-    <ion-item>
-      <ion-label position="floating">Confirmar contraseña</ion-label>
-      <ion-input formControlName="passwordNewRepeat"></ion-input>
-    </ion-item>
-    <div *ngIf="(passwordNewRepeat.invalid && (passwordNewRepeat.dirty || passwordNewRepeat.touched)) || accountForm.hasError('passwordNotMatch')" class="alert alert-danger">
-      <div *ngIf="passwordNewRepeat.errors?.['required']" class="errors">
-        Contraseña requerida
-      </div>
-      <div *ngIf="passwordNewRepeat.errors?.['minlength']" class="errors">
-        La constraseña debe tener al menos 6 caracteres
-      </div>
-      <div *ngIf="accountForm.hasError('passwordNotMatch')" class="errors">
-        La contraseñas no coinciden
+        <ion-note>La constraseña debe tener al menos 6 caracteres</ion-note>
       </div>
     </div>
     <br>
-    <ion-button type="submit" expand="full" >Modificar</ion-button>
+    <ion-item lines="none">
+      <ion-input formControlName="passwordNew" placeholder="Contraseña Nueva"></ion-input>
+    </ion-item>
+    <div *ngIf="passwordNew.invalid && (passwordNew.dirty || passwordNew.touched)">
+      <div *ngIf="passwordNew.errors?.['required']" class="errors">
+        <ion-note>Contraseña requerida</ion-note>
+      </div>
+      <div *ngIf="passwordNew.errors?.['minlength']" class="errors">
+        <ion-note>La constraseña debe tener al menos 6 caracteres</ion-note>
+      </div>
+    </div>
+    <br>
+    <ion-item lines="none">
+      <ion-input formControlName="passwordNewRepeat" placeholder="Confirmar contraseña"></ion-input>
+    </ion-item>
+    <div *ngIf="(passwordNewRepeat.invalid && (passwordNewRepeat.dirty || passwordNewRepeat.touched)) || accountForm.hasError('passwordNotMatch')">
+      <div *ngIf="passwordNewRepeat.errors?.['required']" class="errors">
+        <ion-note>Contraseña requerida</ion-note>
+      </div>
+      <div *ngIf="passwordNewRepeat.errors?.['minlength']" class="errors">
+        <ion-note>La constraseña debe tener al menos 6 caracteres</ion-note>
+      </div>
+      <div *ngIf="accountForm.hasError('passwordNotMatch')" class="errors">
+        <ion-note>La contraseñas no coinciden</ion-note>
+      </div>
+    </div>
+    <br>
+    <ion-button shape="round" type="submit" expand="block" >Modificar</ion-button>
   </form>
 </ion-content>

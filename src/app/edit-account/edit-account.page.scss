@@ -1,0 +1,30 @@
+ion-content{
+  --padding-top:  20px;
+  --padding-start: 20px;
+  --padding-end: 20px;
+}
+
+.title-tertiary{
+  width: 216px;
+}
+
+form{
+  margin-top: 20px;
+}
+
+ion-item{
+  --background: white;
+  --border-color: var(--ion-color-tertiary);
+  --highlight-color-focused: var(--ion-color-tertiary);
+  --highlight-color-valid: var(--ion-color-tertiary);
+  --highlight-color-invalid: var(--ion-color-tertiary);
+}
+
+.errors{
+  margin-top: 5px;
+}
+
+.errors ion-note{
+  --color: var(--ion-color-danger);
+  font-size: 13px;
+}
