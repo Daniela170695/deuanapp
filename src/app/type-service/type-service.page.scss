@@ -17,7 +17,11 @@ ion-select::part(text) {
 ion-item{
   --background: white;
   --border-color: var(--ion-color-gray-2);
+  --border-radius: 20px;
+  --border-width: 0.55px 0.55px 0.55px 0.55px;
+  --color: var(--ion-color-gray-1);
   --highlight-color-focused: var(--ion-color-gray-2);
   --highlight-color-valid: var(--ion-color-gray-2);
   --highlight-color-invalid: var(--ion-color-gray-2);
+  font-size: 13px;
 }

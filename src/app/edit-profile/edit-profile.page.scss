@@ -9,11 +9,15 @@ form{
 }
 
 ion-item{
-  --background: white;
+  --border-width: 0.55px 0.55px 0.55px 0.55px;
   --border-color: var(--ion-color-tertiary);
+  --border-radius: 20px;
+  --color: var(--ion-color-gray-1);
+  --background: white;
   --highlight-color-focused: var(--ion-color-tertiary);
   --highlight-color-valid: var(--ion-color-tertiary);
   --highlight-color-invalid: var(--ion-color-tertiary);
+  font-size: 13px;
 }
 
 .errors{

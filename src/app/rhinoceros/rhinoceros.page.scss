@@ -15,6 +15,9 @@ form{
 ion-item{
   --background: var(--ion-color-gray-5);
   --border-style: none;
+  --border-radius: 20px;
+  --color: var(--ion-color-gray-1);
+  font-size: 13px;
 }
 
 ion-item img{
