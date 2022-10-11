@@ -12,6 +12,7 @@ export class HeaderPage implements OnInit {
   @Input() showBack: boolean;
   @Input() showConfig: boolean;
   @Input() urlBack: string;
+  @Input() showLogo: boolean;
 
   constructor(
     public actionSheetController: ActionSheetController,
