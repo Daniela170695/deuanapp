@@ -116,7 +116,7 @@ export class ProceduresPage implements OnInit {
             delivered_datetime: null
           };
           this.trackingRequestService.add(trackingRequest);
-          this.router.navigate(['tabs/principal/type-service/procedures/tracking-procedures', requestId])
+          this.router.navigate(['principal/tracking-procedures', requestId])
         })
       } catch (error) {
         console.log(error);

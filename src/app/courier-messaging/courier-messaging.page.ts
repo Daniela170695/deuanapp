@@ -114,7 +114,7 @@ export class CourierMessagingPage implements OnInit {
             delivered_datetime: null
           };
           this.trackingRequestService.add(trackingRequest);
-          this.router.navigate(['tabs/principal/type-service/courier-messaging', requestId])
+          this.router.navigate(['principal/tracking-courier-messaging', requestId])
 
         } catch (error) {
           console.log(error);

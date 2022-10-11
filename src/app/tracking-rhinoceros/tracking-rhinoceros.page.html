@@ -8,30 +8,30 @@
 
 <ion-footer>
   <ion-toolbar>
-    <div style="overflow-y: auto;height: 200px;margin-top:20px">
+    <div id="tracking">
       <ion-list *ngIf="trackingRequest && request">
         <ion-item >
           <ion-label>
-            <h4>Solicitud creada</h4>
+            <h2>Solicitud creada</h2>
             <p>{{request.created_datetime.toDate() | date:'shortTime'}}</p>
           </ion-label>
         </ion-item>
         <ion-item *ngIf="trackingRequest.accepted">
           <ion-label>
-            <h4>Solicitud aceptada</h4>
+            <h2>Solicitud aceptada</h2>
             <p>{{courier.name}} {{courier.lastname}}</p>
             <p>{{trackingRequest.accepted_datetime.toDate() | date:'shortTime'}}</p>
           </ion-label>
         </ion-item>
         <ion-item *ngIf="trackingRequest.received">
           <ion-label>
-            <h4>Productos recibidos</h4>
+            <h2>Productos recibidos</h2>
             <p>{{trackingRequest.received_datetime.toDate() | date:'shortTime'}}</p>
           </ion-label>
         </ion-item>
         <ion-item *ngIf="trackingRequest.delivered">
           <ion-label>
-            <h4>Productos entregados</h4>
+            <h2>Productos entregados</h2>
             <p>{{trackingRequest.delivered_datetime.toDate() | date:'shortTime'}}</p>
           </ion-label>
         </ion-item>

@@ -114,7 +114,7 @@ export class RhinocerosPage implements OnInit {
             delivered_datetime: null
           };
           this.trackingRequestService.add(trackingRequest);
-          this.router.navigate(['principal/rhinoceros/tracking-rhinoceros', requestId])
+          this.router.navigate(['principal/tracking-rhinoceros', requestId])
         } catch (error) {
           console.log(error);
         }

@@ -12,3 +12,26 @@ capacitor-google-map {
   width:100%;
   height:100%;
 }
+
+ion-item{
+  --background: none;
+  --padding-start: 0;
+  --inner-padding-start: 0px;
+}
+
+#tracking{
+  overflow-y: auto;
+  height: 200px;
+  margin-top:20px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+ion-label h2{
+  color: var(--ion-color-gray-1);
+  font-weight: bold;
+}
+
+ion-label p{
+  color: var(--ion-color-gray-3);
+}

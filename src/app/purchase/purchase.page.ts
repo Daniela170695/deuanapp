@@ -180,7 +180,7 @@ export class PurchasePage implements OnInit {
               };
               this.purchaseService.add(purchase);
             });
-            this.router.navigate(['tabs/principal/type-service/purchase/tracking-purchase', requestId])
+            this.router.navigate(['principal/tracking-purchase', requestId])
           } catch (error) {
             console.log(error);
           }

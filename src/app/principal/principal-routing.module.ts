@@ -24,6 +24,22 @@ const routes: Routes = [
     path: 'config-support',
     loadChildren: () => import('../config-support/config-support.module').then(m => m.ConfigSupportPageModule)
   },
+  {
+    path: 'tracking-rhinoceros/:id',
+    loadChildren: () => import('../tracking-rhinoceros/tracking-rhinoceros.module').then( m => m.TrackingRhinocerosPageModule)
+  },
+  {
+    path: 'tracking-procedures/:id',
+    loadChildren: () => import('../tracking-procedures/tracking-procedures.module').then( m => m.TrackingProceduresPageModule)
+  },
+  {
+    path: 'tracking-purchase/:id',
+    loadChildren: () => import('../tracking-purchase/tracking-purchase.module').then( m => m.TrackingPurchasePageModule)
+  },
+  {
+    path: 'tracking-courier-messaging/:id',
+    loadChildren: () => import('../tracking-courier-messaging/tracking-courier-messaging.module').then( m => m.TrackingCourierMessagingPageModule)
+  },
 
 ];
 
