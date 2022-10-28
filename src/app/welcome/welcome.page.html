@@ -1,7 +1,22 @@
 <ion-content>
-  <div style="margin-top:80px;">
-    <ion-button (click)="openLogin()">Iniciar Sesion</ion-button>
-    <ion-button (click)="openRegister()">Registrarse</ion-button>
+
+  <div id="title">
+    <p>Yarumal</p>
+  </div>
+
+  <div id="logo">
+    <img src="assets/img/shared/logo.png">
+  </div>
+
+  <div id="actions">
+    <ion-button shape="round" expand="block" color="secondary" (click)="openLogin()" style="margin-bottom: 12px;">Iniciar Sesion</ion-button>
+    <ion-button shape="round" expand="block" color="secondary" (click)="openRegister()">Registrarse</ion-button>
+    <p style="text-align: center;font-size: 12px;">¿Nesecitas ayuda?</p>
+    <div id="network">
+      <img src="assets/img/welcome/fb.png" alt="">
+      <img src="assets/img/welcome/instg.png" alt="">
+      <img src="assets/img/welcome/wpp.png" alt="">
+    </div>
   </div>
 
 </ion-content>

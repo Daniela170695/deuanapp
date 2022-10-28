@@ -1,0 +1,50 @@
+ion-button{
+  --ion-color-contrast: var(--ion-color-tertiary) !important;
+}
+
+#title{
+  width: 242px;
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  background-color: transparent;
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: var(--ion-color-secondary);
+  text-align: center;
+}
+
+#title p{
+  color: var(--ion-color-secondary);
+  margin-top: 10px;
+  position: relative;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+#logo{
+  margin-top: 130px;
+  text-align: center;
+}
+
+#logo img{
+  width: 150px;
+}
+
+#actions{
+  margin-top: 100px;
+  padding-left:20px;
+  padding-right:20px
+}
+
+#network{
+  text-align: center;
+  margin-top: 30px;
+}
+
+#network img{
+  width: 25px;
+  padding: 2px;
+}
