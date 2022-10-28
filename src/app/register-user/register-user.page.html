@@ -1,84 +1,80 @@
 <ion-content [fullscreen]="true">
-  <div style="text-align:center">
-    <h1>Registrar Usuario</h1>
+  <div id="logo">
+    <img src="assets/img/shared/logo.png" alt="">
   </div>
   <form [formGroup]="userInfoForm" (ngSubmit)="registerUser()">
-    <ion-item>
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input formControlName="name"></ion-input>
+    <ion-item style="margin-top: 40px">
+      <ion-input formControlName="name" placeholder="Nombre"></ion-input>
     </ion-item>
-    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+    <div *ngIf="name.invalid && (name.dirty || name.touched)">
       <div *ngIf="name.errors?.['required']" class="errors">
-        Nombre requerido
+        <ion-note>Nombre requerido</ion-note>
       </div>
       <div *ngIf="name.errors?.['pattern']" class="errors">
-        Nombre errado
+        <ion-note>Nombre errado</ion-note>
       </div>
     </div>
-    <ion-item>
-      <ion-label position="floating">Apellido</ion-label>
-      <ion-input formControlName="lastname"></ion-input>
+    <ion-item class="mt-15">
+      <ion-input formControlName="lastname" placeholder="Apellido"></ion-input>
     </ion-item>
-    <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="alert alert-danger">
+    <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)">
       <div *ngIf="lastname.errors?.['required']" class="errors">
-        Apellido requerido
+        <ion-note>Apellido requerido</ion-note>
       </div>
       <div *ngIf="lastname.errors?.['pattern']" class="errors">
-        Apellido errado
+        <ion-note>Apellido errado</ion-note>
       </div>
     </div>
-    <ion-item>
-      <ion-label position="floating">Celular</ion-label>
-      <ion-input type="number" formControlName="cellphone"></ion-input>
+    <ion-item class="mt-15">
+      <ion-input type="number" formControlName="cellphone" placeholder="Celular"></ion-input>
     </ion-item>
     <div *ngIf="cellphone.invalid && (cellphone.dirty || cellphone.touched)" class="alert alert-danger">
       <div *ngIf="cellphone.errors?.['required']" class="errors">
-        Celular requerido
+        <ion-note>Celular requerido</ion-note>
       </div>
       <div *ngIf="cellphone.errors?.['pattern']" class="errors">
-        Celular errado
+        <ion-note>Celular errado</ion-note>
       </div>
     </div>
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input formControlName="email"></ion-input>
+    <ion-item class="mt-15">
+      <ion-input formControlName="email" placeholder="Email"></ion-input>
+      <img src="assets/img/shared/usuario.png" alt="">
     </ion-item>
-    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+    <div *ngIf="email.invalid && (email.dirty || email.touched)">
       <div *ngIf="email.errors?.['required']" class="errors">
-        Correo requerido
+        <ion-note>Correo requerido</ion-note>
       </div>
       <div *ngIf="email.errors?.['email']" class="errors">
-        Email errado
+        <ion-note>Email errado</ion-note>
       </div>
     </div>
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input formControlName="password"></ion-input>
+    <ion-item class="mt-15">
+      <ion-input formControlName="password" placeholder="Contraseña"></ion-input>
+      <img src="assets/img/shared/contraseña.png" alt="">
     </ion-item>
-    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+    <div *ngIf="password.invalid && (password.dirty || password.touched)">
       <div *ngIf="password.errors?.['required']" class="errors">
-        Contraseña requerida
+        <ion-note>Contraseña requerida</ion-note>
       </div>
       <div *ngIf="password.errors?.['minlength']" class="errors">
-        La constraseña debe tener al menos 6 caracteres
+        <ion-note>La constraseña debe tener al menos 6 caracteres</ion-note>
       </div>
     </div>
-    <ion-item>
-      <ion-label position="floating">Confirmar Contraseña</ion-label>
-      <ion-input formControlName="confirmPassword"></ion-input>
+    <ion-item class="mt-15">
+      <ion-input formControlName="confirmPassword" placeholder="Confirmar Contraseña"></ion-input>
+      <img src="assets/img/shared/contraseña.png" alt="">
     </ion-item>
-    <div *ngIf="(confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)) || userInfoForm.hasError('passwordNotMatch')" class="alert alert-danger">
+    <div *ngIf="(confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)) || userInfoForm.hasError('passwordNotMatch')">
       <div *ngIf="confirmPassword.errors?.['required']" class="errors">
-        Contraseña requerida
+        <ion-note>Contraseña requerida</ion-note>
       </div>
       <div *ngIf="confirmPassword.errors?.['minlength']" class="errors">
-        La constraseña debe tener al menos 6 caracteres
+        <ion-note>La constraseña debe tener al menos 6 caracteres</ion-note>
       </div>
       <div *ngIf="userInfoForm.hasError('passwordNotMatch')" class="errors">
-        La contraseñas no coinciden
+        <ion-note>La contraseñas no coinciden</ion-note>
       </div>
     </div>
-    <br>
-    <ion-button expand="full" type="submit">Registrar</ion-button>
+    <ion-button shape="round" expand="block" style="margin-top:45px;margin-bottom:25px" type="submit">Registrar</ion-button>
   </form>
 </ion-content>
