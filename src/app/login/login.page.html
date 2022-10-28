@@ -1,34 +1,33 @@
 <ion-content [fullscreen]="true">
-  <div style="text-align:center">
-    <h1>Iniciar sesion</h1>
-  </div>
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input formControlName="email"></ion-input>
-    </ion-item>
-    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
-      <div *ngIf="email.errors?.['required']" class="errors">
-        Correo requerido
-      </div>
-      <div *ngIf="email.errors?.['email']" class="errors">
-        Email errado
-      </div>
+    <div id="logo">
+      <img src="assets/img/shared/logo.png" alt="">
     </div>
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input formControlName="password"></ion-input>
-    </ion-item>
-    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
-      <div *ngIf="password.errors?.['required']" class="errors">
-        Contraseña requerida
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <ion-item lines="none" style="margin-top: 40px">
+        <ion-input formControlName="email" placeholder="Usuario"></ion-input>
+        <img src="assets/img/shared/usuario.png" alt="">
+      </ion-item>
+      <div *ngIf="email.invalid && (email.dirty || email.touched)">
+        <div *ngIf="email.errors?.['required']" class="errors">
+          <ion-note>Correo requerido</ion-note>
+        </div>
+        <div *ngIf="email.errors?.['email']" class="errors">
+          <ion-note>Email errado</ion-note>
+        </div>
       </div>
-      <div *ngIf="password.errors?.['minlength']" class="errors">
-        La constraseña debe tener al menos 6 caracteres
+      <ion-item lines="none" style="margin-top:15px">
+        <ion-input formControlName="password" placeholder="Constraseña"></ion-input>
+        <img src="assets/img/shared/contraseña.png" alt="">
+      </ion-item>
+      <div *ngIf="password.invalid && (password.dirty || password.touched)">
+        <div *ngIf="password.errors?.['required']" class="errors">
+          <ion-note>Contraseña requerida</ion-note>
+        </div>
+        <div *ngIf="password.errors?.['minlength']" class="errors">
+          <ion-note>La constraseña debe tener al menos 6 caracteres</ion-note>
+        </div>
       </div>
-    </div>
-    <br>
-    <ion-button type="submit" expand="full" >Iniciar sesión</ion-button>
-  </form>
-  <a id="restorePassword">Recuperar contraseña</a>
+      <a id="restorePassword">Recuperar contraseña?</a>
+      <ion-button type="submit" shape="round" expand="block" style="margin-top:45px">Iniciar sesión</ion-button>
+    </form>
 </ion-content>

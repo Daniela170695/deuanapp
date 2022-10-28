@@ -1,21 +1,39 @@
-form{
-  margin-top: 5px;
-  padding-left: 20px;
-  padding-right: 20px;
+ion-content{
+  --padding-start: 20px;
+  --padding-end: 20px;
+}
+
+#logo{
+  text-align: center;
+  margin-top: 90px;
+}
+
+#logo img{
+  width: 150px;
+}
+
+ion-item{
+  --border-width: 0.55px 0.55px 0.55px 0.55px;
+  --border-color: var(--ion-color-gray-1);
+  --border-radius: 20px;
+  --color: var(--ion-color-gray-1);
+  --background: transparent;
+  --highlight-color-focused: var(--ion-color-gray-1);
+  --highlight-color-valid: var(--ion-color-gray-1);
+  --highlight-color-invalid: var(--ion-color-gray-1);
+  --padding-start: 8px;
+  font-size: 13px;
+}
+
+ion-item img{
+  width: 23px;
+  height: 23px;
 }
 
 #restorePassword{
   display: block;
   text-align: center;
-  margin-top: 15px;
-}
-
-.errors{
   font-size: 13px;
-  margin-top: 6px;
-  color: red;
-}
-
-ion-item{
- --padding-start: 0px;
+  margin-top: 8px;
+  color: var(--ion-color-gray-1);
 }
