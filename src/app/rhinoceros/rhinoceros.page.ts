@@ -79,7 +79,7 @@ export class RhinocerosPage implements OnInit {
 
   register(){
     if(this.requestForm.valid){
-      this.authService.getCurrentUser().pipe(take(1)).subscribe(async(currentUser)=>{
+      this.authService.getAuthState().pipe(take(1)).subscribe(async(currentUser)=>{
         try {
           const idTypeRequest = "uNW82xv7gGieW4euqZao";
           const typeRequest = await this.typeRequestService.getTypeRequest(idTypeRequest);

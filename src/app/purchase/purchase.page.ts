@@ -140,7 +140,7 @@ export class PurchasePage implements OnInit {
     }
     else{
       if(this.requestForm.valid){
-        this.authService.getCurrentUser().pipe(take(1)).subscribe(async(currentUser)=>{
+        this.authService.getAuthState().pipe(take(1)).subscribe(async(currentUser)=>{
           try {
             const idTypeRequest = "jgavhKqRjwRkPcCJzAAm";
             const typeRequest = await this.typeRequestService.getTypeRequest(idTypeRequest);

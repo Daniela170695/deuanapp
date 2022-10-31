@@ -79,7 +79,7 @@ export class CourierMessagingPage implements OnInit {
 
   register(){
     if(this.requestForm.valid){
-      this.authService.getCurrentUser().pipe(take(1)).subscribe(async(currentUser)=>{
+      this.authService.getAuthState().pipe(take(1)).subscribe(async(currentUser)=>{
         try {
           const idTypeRequest = "1bRq52ZqVrcBJwcmQUyD";
           const typeRequest = await this.typeRequestService.getTypeRequest(idTypeRequest);

@@ -82,7 +82,7 @@ export class ProceduresPage implements OnInit {
   registerRequest(){
     if(this.requestForm.valid){
       try {
-        this.authService.getCurrentUser().pipe(take(1)).subscribe(async(currentUser)=>{
+        this.authService.getAuthState().pipe(take(1)).subscribe(async(currentUser)=>{
           const idTypeRequest = "BHzMtyU7aeZEK8DtMhLi";
           const typeRequest = await this.typeRequestService.getTypeRequest(idTypeRequest);
           const now = new Date();

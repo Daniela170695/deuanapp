@@ -30,7 +30,7 @@ export class EditAccountPage implements OnInit {
       passwordNew: ["", [Validators.required, Validators.minLength(6)]],
       passwordNewRepeat: ["", [Validators.required, Validators.minLength(6)]],
     }, { validators: this.password });
-    this.authService.getCurrentUser().pipe(take(1)).subscribe(currentUser=>{
+    this.authService.getAuthState().pipe(take(1)).subscribe(currentUser=>{
       this.email.setValue(currentUser.email);
     });
   }

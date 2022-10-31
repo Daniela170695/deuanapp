@@ -29,7 +29,7 @@ export class EditProfilePage implements OnInit {
       cellphone: ['', [Validators.required, Validators.pattern('^[0-9]+$')]]
     });
 
-    this.authService.getCurrentUser().pipe(take(1)).subscribe(currentUser=>{
+    this.authService.getAuthState().pipe(take(1)).subscribe(currentUser=>{
       this.getUserInfoByUid(currentUser.uid).then(userInfo=>{
         this.profileForm.patchValue({
           name: userInfo[0].name,
@@ -57,10 +57,9 @@ export class EditProfilePage implements OnInit {
     return this.profileForm.get('cellphone');
   }
 
-
   update(){
     if(this.profileForm.valid){
-      this.authService.getCurrentUser().pipe(take(1)).subscribe(async(currentUser)=>{
+      this.authService.getAuthState().pipe(take(1)).subscribe(async(currentUser)=>{
         try {
           const userInfo = await this.getUserInfoByUid(currentUser.uid);
           this.userInfoService.update(userInfo[0].id, this.name.value, this.lastname.value, this.cellphone.value);

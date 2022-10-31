@@ -39,8 +39,8 @@ export class LoginPage implements OnInit {
   async login(){
     if(this.loginForm.valid){
       const user: User = {
-        email: this.loginForm.value.email,
-        password: this.loginForm.value.password
+        email: this.email.value,
+        password: this.password.value
       };
 
       try {

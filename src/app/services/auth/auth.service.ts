@@ -19,7 +19,7 @@ export class AuthService {
   }
 
   async sendEmailVerification() {
-    const currentUser = await this.auth.currentUser;
+    const currentUser = await this.getCurrentUser();
     currentUser.sendEmailVerification();
   }
 
@@ -27,15 +27,23 @@ export class AuthService {
     return this.auth.signOut();
   }
 
-  getCurrentUser(){
+  getAuthState(){
     return this.auth.authState;
   }
 
   async updatePassword(user:User, password:string){
     const credential = firebase.auth.EmailAuthProvider.credential(user.email, user.password);
-    const currentUser = await this.auth.currentUser;
-    await currentUser.reauthenticateWithCredential(credential)
+    const currentUser = await this.getCurrentUser();
+    await currentUser.reauthenticateWithCredential(credential);
     await currentUser.updatePassword(password);
+  }
+
+  getCurrentUser(){
+    return this.auth.currentUser;
+  }
+
+  sendPasswordResetEmail(email:string){
+    this.auth.sendPasswordResetEmail(email);
   }
 
 }

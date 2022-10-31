@@ -10,7 +10,7 @@ export class AppComponent {
   showTabs: boolean;
 
   constructor(private authService: AuthService) {
-    this.authService.getCurrentUser().subscribe(currentUser=>{
+    this.authService.getAuthState().subscribe(currentUser=>{
       if(currentUser && currentUser.emailVerified){
         this.showTabs = true;
       }

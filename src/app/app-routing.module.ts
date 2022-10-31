@@ -44,6 +44,10 @@ const routes: Routes = [
     loadChildren: () => import('./edit-account/edit-account.module').then( m => m.EditAccountPageModule),
     canLoad: [AuthGuard]
   },
+  {
+    path: 'reset-password',
+    loadChildren: () => import('./reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
+  },
 ];
 @NgModule({
   imports: [

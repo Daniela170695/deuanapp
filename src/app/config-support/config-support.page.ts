@@ -38,7 +38,7 @@ export class ConfigSupportPage implements OnInit {
 
   sendPqrs(){
     if(this.pqrsForm.valid){
-      this.authService.getCurrentUser().pipe(take(1)).subscribe(async(currentUser)=>{
+      this.authService.getAuthState().pipe(take(1)).subscribe(async(currentUser)=>{
         try {
           const pqrs: Pqrs = {
             uid: currentUser.uid,
