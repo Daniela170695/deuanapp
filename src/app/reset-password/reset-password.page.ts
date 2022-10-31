@@ -34,7 +34,7 @@ export class ResetPasswordPage implements OnInit {
     try{
       await this.authService.sendPasswordResetEmail(this.email.value);
       const toast = await this.toastController.create({
-        message: 'te hemos enviado un email para validar tu identidad y reestablecer tu contraseña',
+        message: 'Te hemos enviado un email para validar tu identidad y reestablecer tu contraseña',
         duration: 1500,
         position: 'top'
       });
@@ -47,6 +47,7 @@ export class ResetPasswordPage implements OnInit {
         buttons: ['OK'],
       });
       await alert.present();
+      console.log("e");
     }
 
   }

@@ -68,4 +68,10 @@ export class LoginPage implements OnInit {
     }
   }
 
+  openRestorePassword(){
+    console.log("orp");
+    this.router.navigate(['reset-password']);
+  }
+
+
 }

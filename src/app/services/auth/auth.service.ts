@@ -43,7 +43,7 @@ export class AuthService {
   }
 
   sendPasswordResetEmail(email:string){
-    this.auth.sendPasswordResetEmail(email);
+    return this.auth.sendPasswordResetEmail(email);
   }
 
 }

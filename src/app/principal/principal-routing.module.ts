@@ -40,7 +40,7 @@ const routes: Routes = [
     path: 'tracking-courier-messaging/:id',
     loadChildren: () => import('../tracking-courier-messaging/tracking-courier-messaging.module').then( m => m.TrackingCourierMessagingPageModule)
   },
-
+  
 ];
 
 @NgModule({
