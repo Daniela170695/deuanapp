@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Request } from '../interfaces/request';
 import { TrackingRequest } from '../interfaces/tracking-request';
 import { RequestService } from '../services/request/request.service';
@@ -17,7 +18,8 @@ export class HistoryPage implements OnInit {
   constructor(
     private requestService:RequestService,
     private trackingRequestService: TrackingRequestService,
-    private authService: AuthService) {
+    private authService: AuthService,
+    private router: Router) {
     this.requests = [];
     this.getRequests();
   }
@@ -38,6 +40,10 @@ export class HistoryPage implements OnInit {
         }
       })
     });
+  }
+
+  openDetailRequest(requestId:string){
+    this.router.navigate(['principal/history/detail-request', requestId])
   }
 
 

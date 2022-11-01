@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: HistoryPage
-  }
+  },
+  {
+    path: 'detail-request',
+    loadChildren: () => import('../detail-request/detail-request.module').then( m => m.DetailRequestPageModule)
+  },
 ];
 
 @NgModule({
