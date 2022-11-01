@@ -57,22 +57,21 @@ export class EditProfilePage implements OnInit {
     return this.profileForm.get('cellphone');
   }
 
-  update(){
+  async update(){
     if(this.profileForm.valid){
-      this.authService.getAuthState().pipe(take(1)).subscribe(async(currentUser)=>{
-        try {
-          const userInfo = await this.getUserInfoByUid(currentUser.uid);
-          this.userInfoService.update(userInfo[0].id, this.name.value, this.lastname.value, this.cellphone.value);
-          const toast = await this.toastController.create({
-            message: 'Perfil actualizado con exito',
-            duration: 1500,
-            position: 'top'
-          });
-          await toast.present();
-        } catch (error) {
-          console.log(error);
-        }
-      })
+      try {
+        const currentUser = await this.authService.getCurrentUser();
+        const userInfo = await this.getUserInfoByUid(currentUser.uid);
+        this.userInfoService.update(userInfo[0].id, this.name.value, this.lastname.value, this.cellphone.value);
+        const toast = await this.toastController.create({
+          message: 'Perfil actualizado con exito',
+          duration: 1500,
+          position: 'top'
+        });
+        await toast.present();
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 
-import { take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import { TypeRequest } from '../../interfaces/type-request';

@@ -12,11 +12,11 @@ import { Purchase } from '../interfaces/purchase';
 import { CityService } from '../services/city/city.service';
 import { RequestService } from '../services/request/request.service';
 import { TrackingRequestService } from '../services/tracking-request/tracking-request.service';
-import { TypeRequestService } from '../services/type-request/type-request.service';
 import { AuthService } from '../services/auth/auth.service';
 import { CategoryProductService } from '../services/category-product/category-product.service';
 import { ProductService } from '../services/product/product.service';
 import { PurchaseService } from '../services/purchase/purchase.service';
+import { TypeRequestPriceService } from '../services/type-request-price/type-request-price.service';
 
 import { take } from 'rxjs/operators';
 
@@ -48,11 +48,11 @@ export class PurchasePage implements OnInit {
     private cityService: CityService,
     private requestService: RequestService,
     private trackingRequestService: TrackingRequestService,
-    private typeRequestService: TypeRequestService,
     private authService: AuthService,
     private categoryProductService: CategoryProductService,
     private productService: ProductService,
-    private purchaseService: PurchaseService) {
+    private purchaseService: PurchaseService,
+    private typeRequestPriceService: TypeRequestPriceService) {
     this.cityService.getAllCities().then(data=>{
       this.cities = data;
     })
@@ -134,57 +134,56 @@ export class PurchasePage implements OnInit {
     }
   }
 
-  register(){
+  async register(){
     if(this.productsPurchase.length===0){
       this.displayError = true;
     }
     else{
       if(this.requestForm.valid){
-        this.authService.getAuthState().pipe(take(1)).subscribe(async(currentUser)=>{
-          try {
-            const idTypeRequest = "jgavhKqRjwRkPcCJzAAm";
-            const typeRequest = await this.typeRequestService.getTypeRequest(idTypeRequest);
-            const now = new Date();
-            const request:Request = {
-              uid: currentUser.uid,
-              courier: null,
-              type_request: idTypeRequest,
-              price: typeRequest.price,
-              city_delivered: this.cityDelivered.value,
-              address_delivered: this.addressDelivered.value,
-              cellphone_delivered: this.cellphoneDelivered.value,
-              description: this.description.value,
-              created_datetime: now
-            };
-            const doc = await this.requestService.add(request);
-            const requestId = doc.id;
-            const trackingRequest:TrackingRequest = {
+        try {
+          const typeRequest = 3;
+          const currentUser = await this.authService.getCurrentUser();
+          const typeRequestPrice = await this.typeRequestPriceService.getTypeRequestPrice(typeRequest);
+          const now = new Date();
+          const request:Request = {
+            uid: currentUser.uid,
+            courier: null,
+            type_request: typeRequest,
+            price: typeRequestPrice[0].price,
+            city_delivered: this.cityDelivered.value,
+            address_delivered: this.addressDelivered.value,
+            cellphone_delivered: this.cellphoneDelivered.value,
+            description: this.description.value,
+            created_datetime: now
+          };
+          const doc = await this.requestService.add(request);
+          const requestId = doc.id;
+          const trackingRequest:TrackingRequest = {
+            request: requestId,
+            cancelled: false,
+            accepted: false,
+            received: false,
+            bought: false,
+            delivered: false,
+            cancelled_datetime: null,
+            accepted_datetime: null,
+            received_datetime: null,
+            bought_datetime: null,
+            delivered_datetime: null
+          };
+          this.trackingRequestService.add(trackingRequest);
+          this.productsPurchase.forEach(product => {
+            const purchase:Purchase = {
               request: requestId,
-              cancelled: false,
-              accepted: false,
-              received: false,
-              bought: false,
-              delivered: false,
-              cancelled_datetime: null,
-              accepted_datetime: null,
-              received_datetime: null,
-              bought_datetime: null,
-              delivered_datetime: null
+              product: product.idProduct,
+              quantity: product.quantity
             };
-            this.trackingRequestService.add(trackingRequest);
-            this.productsPurchase.forEach(product => {
-              const purchase:Purchase = {
-                request: requestId,
-                product: product.idProduct,
-                quantity: product.quantity
-              };
-              this.purchaseService.add(purchase);
-            });
-            this.router.navigate(['principal/tracking-purchase', requestId])
-          } catch (error) {
-            console.log(error);
-          }
-        });
+            this.purchaseService.add(purchase);
+          });
+          this.router.navigate(['principal/tracking-purchase', requestId])
+        } catch (error) {
+          console.log(error);
+        }
       }
     }
   }

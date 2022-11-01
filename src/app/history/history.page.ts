@@ -18,6 +18,7 @@ export class HistoryPage implements OnInit {
     private requestService:RequestService,
     private trackingRequestService: TrackingRequestService,
     private authService: AuthService) {
+    this.requests = [];
     this.getRequests();
   }
 
@@ -32,7 +33,7 @@ export class HistoryPage implements OnInit {
       this.trackingRequestService.getByRequest(element.id).pipe(take(1)).subscribe((trackingRequest:TrackingRequest[])=>{
         const cancelled = trackingRequest[0].cancelled;
         const delivered = trackingRequest[0].delivered;
-        if(cancelled && delivered){
+        if(cancelled || delivered){
           this.requests.push(element);
         }
       })

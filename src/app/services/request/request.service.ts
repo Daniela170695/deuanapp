@@ -30,7 +30,7 @@ export class RequestService {
   }
 
   getAll(uid:string){
-    this.requestCollection = this.afs.collection<Request>('Request', ref=>ref.where("uid","==", uid));
+    this.requestCollection = this.afs.collection<Request>('Request', ref=>ref.where("uid","==", uid).orderBy("created_datetime", "desc"));
     this.requests = this.requestCollection.valueChanges({idField: 'id'});
     return this.requests.pipe(take(1)).toPromise();
   }

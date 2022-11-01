@@ -2,7 +2,7 @@ export interface Request {
   id?: string;
   uid: string;
   courier: string;
-  type_request: string;
+  type_request: number;
   price: number;
   city_received?: string;
   address_received?: string;

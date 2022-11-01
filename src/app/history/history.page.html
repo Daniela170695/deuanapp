@@ -1,9 +1,21 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>history</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [showBack]="false" [showConfig]="true" [urlBack]="null" [showLogo]="true"></app-header>
 
 <ion-content>
-
+  <div class="title-tertiary">
+    <p>Historial</p>
+  </div>
+  <ion-list>
+    <div *ngFor="let request of requests; let i = index">
+      <ion-item>
+        <ion-label>
+          <h1>{{request.id}}</h1>
+          <p *ngIf="request.type_request==1">Paqueteria y mensajeria</p>
+          <p *ngIf="request.type_request==2">Favores</p>
+          <p *ngIf="request.type_request==1">Compras</p>
+          <p *ngIf="request.type_request==1">Rinoceronte</p>
+          <ion-button shape="round">Detalles</ion-button>
+        </ion-label>
+      </ion-item>
+    </div>
+  </ion-list>
 </ion-content>
