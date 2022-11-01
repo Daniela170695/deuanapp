@@ -1,9 +1,13 @@
+ion-content{
+  --background: url("../../assets/img/welcome/fondo.png") no-repeat center/cover fixed;
+}
+
 ion-button{
   --ion-color-contrast: var(--ion-color-tertiary) !important;
 }
 
 #title{
-  width: 242px;
+  width: 100%;
   height: 40px;
   margin-left: auto;
   margin-right: auto;
@@ -35,8 +39,12 @@ ion-button{
 
 #actions{
   margin-top: 100px;
-  padding-left:20px;
-  padding-right:20px
+}
+
+#help{
+  text-align: center;
+  font-size: 12px;
+  color: #ffffff;
 }
 
 #network{

@@ -31,25 +31,25 @@ export class ResetPasswordPage implements OnInit {
   }
 
   async resetPassword(email:string){
-    try{
-      await this.authService.sendPasswordResetEmail(this.email.value);
-      const toast = await this.toastController.create({
-        message: 'Te hemos enviado un email para validar tu identidad y reestablecer tu contraseña',
-        duration: 1500,
-        position: 'top'
-      });
-      await toast.present();
+    if(this.resetPasswordForm.valid){
+      try{
+        await this.authService.sendPasswordResetEmail(this.email.value);
+        const toast = await this.toastController.create({
+          message: 'Te hemos enviado un email para validar tu identidad y reestablecer tu contraseña',
+          duration: 1500,
+          position: 'top'
+        });
+        await toast.present();
+      }
+      catch(e){
+        const alert = await this.alertController.create({
+          header: ':(',
+          message: 'Correo invalido, revisa e intentalo de nuevo',
+          buttons: ['OK'],
+        });
+        await alert.present();
+      }
     }
-    catch(e){
-      const alert = await this.alertController.create({
-        header: ':(',
-        message: 'Correo invalido, revisa e intentalo de nuevo',
-        buttons: ['OK'],
-      });
-      await alert.present();
-      console.log("e");
-    }
-
   }
 
 

@@ -1,16 +1,19 @@
 ion-content{
-  --padding-start: 20px;
-  --padding-end: 20px;
-  --background: var(--ion-color-gray-3);
+  --background: url("../../assets/img/login/fondo.png") no-repeat center/cover fixed;
 }
 
 #logo{
   text-align: center;
-  margin-top: 90px;
+  margin-top: 120px;
 }
 
 #logo img{
   width: 150px;
+}
+
+form{
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 ion-item{
