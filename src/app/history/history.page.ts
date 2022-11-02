@@ -46,5 +46,4 @@ export class HistoryPage implements OnInit {
     this.router.navigate(['principal/history/detail-request', requestId])
   }
 
-
 }
