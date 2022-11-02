@@ -1,4 +1,9 @@
+ion-content{
+  --padding-start: 20px;
+  --padding-end: 20px;
+}
+
 ion-item {
-  --padding-end: 16px;
-  --inner-padding-end: 16px;
+  --padding-start: 0px;
+  --inner-padding-start: 0px;
 }
