@@ -1,7 +1,7 @@
 <app-header [showBack]="false" [showConfig]="true" [urlBack]="null" [showLogo]="true"></app-header>
 <ion-content>
   <div style="padding-left:20px; padding-right:20px">
-    <ion-button shape="round" expand="block">Pedido en curso</ion-button>
+    <ion-button shape="round" expand="block" (click)="openTracking()">Pedido en curso</ion-button>
     <div class="title-tertiary">
       <p>¿Que quieres hacer?</p>
     </div>
