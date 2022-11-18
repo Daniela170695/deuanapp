@@ -77,32 +77,31 @@ export class TrackingProceduresPage implements OnInit {
       const addressDelivery = await this.getAddressComplete(request.city_delivered, request.address_delivered);
 
       // Obtenemos coordenadas del lugar de recibida y entrega
-      // let options: NativeGeocoderOptions = {
-      //   useLocale: true,
-      //   maxResults: 1
-      // };
-      // const coordsReceive:NativeGeocoderResult[] = await this.nativeGeocoder.forwardGeocode(addressReceive, options)
-      // const coordsDelivery:NativeGeocoderResult[] = await this.nativeGeocoder.forwardGeocode(addressDelivery, options)
-
+      let options: NativeGeocoderOptions = {
+        useLocale: true,
+        maxResults: 1
+      };
+      const coordsReceive:NativeGeocoderResult[] = await this.nativeGeocoder.forwardGeocode(addressReceive, options)
+      const coordsDelivery:NativeGeocoderResult[] = await this.nativeGeocoder.forwardGeocode(addressDelivery, options)
+      console.log(coordsDelivery[0]);
       // Creacion del mapa
       // await this.createMap(coordsReceive[0]);
-      this.newMap = await GoogleMap.create({
-        id: 'my-map',
-        element:this.mapRef.nativeElement,
-        apiKey: environment.GoogleMapsApiKey,
-        config: {
-          center: {
-            lat: 10,
-            lng: 1,
-          },
-          zoom: 8,
-        },
-      });
+      // this.newMap = await GoogleMap.create({
+      //   id: 'my-map',
+      //   element:this.mapRef.nativeElement,
+      //   apiKey: environment.GoogleMapsApiKey,
+      //   config: {
+      //     center: {
+      //       lat: coordsReceive[0].latitude,
+      //       lng: coordsReceive[0].longitude,
+      //     },
+      //     zoom: 8,
+      //   },
+      // });
       // Añadimos marcadores
       // this.markerReceive = await this.addMarker(coordsReceive[0]);
       // this.markerDelivery = await this.addMarker(coordsDelivery[0]);
-      this.markerReceive = await this.addMarker({latitude:10, longitude:1});
-      this.markerDelivery = await this.addMarker({latitude:10, longitude:2});
+
     })
   }
 
