@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
+
 import { Request } from '../interfaces/request';
 import { TrackingRequest } from '../interfaces/tracking-request';
+
 import { RequestService } from '../services/request/request.service';
 import { TrackingRequestService } from '../services/tracking-request/tracking-request.service';
 import { AuthService } from '../services/auth/auth.service';
@@ -20,7 +23,8 @@ export class PrincipalPage implements OnInit {
     private router:Router,
     private requestService: RequestService,
     private trackingRequestService:TrackingRequestService,
-    private authService: AuthService) {
+    private authService: AuthService,
+    private iab: InAppBrowser) {
     this.validateRequestInProgress();
   }
 
@@ -74,6 +78,10 @@ export class PrincipalPage implements OnInit {
     else{
       this.router.navigate(['principal/tracking-rhinoceros', this.requestId]);
     }
+  }
+
+  openStore(){
+    this.iab.create('https://deunastore.com');
   }
 
 }

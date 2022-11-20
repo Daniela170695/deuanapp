@@ -19,6 +19,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { NativeGeocoder } from '@awesome-cordova-plugins/native-geocoder/ngx';
 
+import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -36,7 +38,8 @@ import { NativeGeocoder } from '@awesome-cordova-plugins/native-geocoder/ngx';
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy
     },
-    NativeGeocoder
+    NativeGeocoder,
+    InAppBrowser
   ],
   bootstrap: [AppComponent],
   schemas: [
