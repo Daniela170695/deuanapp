@@ -98,7 +98,8 @@ export class ProceduresPage implements OnInit {
           address_delivered: this.addressDelivered.value,
           cellphone_delivered: this.cellphoneDelivered.value,
           content: this.content.value,
-          created_datetime: now,
+          description: null,
+          created_datetime: now 
         };
         const doc = await this.requestService.add(request);
         const requestId = doc.id;

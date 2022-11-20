@@ -53,60 +53,7 @@
       <div *ngIf="description.errors?.['required']" class="errors">
         <ion-note>Descripcion requerida</ion-note>
       </div>
-    </div>
-    <div formGroupName="productsPurchase" style="margin-top:40px">
-      <ion-item>
-        <img src="assets/img/shared/lapiz-01.png">
-        <ion-select placeholder="Categoria del producto" (ionChange)="handleChangeCategory($event)">
-          <div *ngFor="let category of categoriesProducts">
-            <ion-select-option [value]="category">{{category.name}}</ion-select-option>
-          </div>
-        </ion-select>
-      </ion-item>
-      <br>
-      <ion-item>
-        <img src="assets/img/shared/lapiz-01.png">
-        <ion-select placeholder="Producto" (ionChange)="handleChangeProduct($event)">
-          <div *ngFor="let product of products">
-            <ion-select-option [value]="product">{{product.name}}</ion-select-option>
-          </div>
-        </ion-select>
-      </ion-item>
-      <br>
-      <ion-item>
-        <img src="assets/img/shared/lapiz-01.png">
-        <ion-input type="number" formControlName="quantity" placeholder="Cantidad"></ion-input>
-      </ion-item>
-      <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" >
-        <div *ngIf="quantity.errors?.['pattern']" class="errors">
-          <ion-note>Cantidad errada</ion-note>
-        </div>
-      </div>
-      <br>
-      <ion-button shape="round" (click)="addProduct()">Agregar</ion-button>
-      <div *ngIf="displayError" class="errors">
-        <ion-note>No hay productos</ion-note>
-      </div>
-      <div style="margin-top:40px;">
-        <div *ngFor="let product of productsPurchase" style="margin-bottom:40px">
-          <ion-item>
-            <ion-select [disabled]="true" value="product.nameCategory">
-              <ion-select-option value="product.nameCategory">{{product.nameCategory}}</ion-select-option>
-            </ion-select>
-          </ion-item>
-          <br>
-          <ion-item>
-            <ion-select [disabled]="true" [value]="product.idProduct">
-              <ion-select-option [value]="product.idProduct">{{product.nameProduct}}</ion-select-option>
-            </ion-select>
-          </ion-item>
-          <br>
-          <ion-item>
-            <ion-input type="number" [disabled]="true">{{product.quantity}}</ion-input>
-          </ion-item>
-        </div>
-      </div>
-    </div>
+    </div> 
     <br>
     <ion-button shape="round" type="submit" expand="block">Solicitar Servicio</ion-button>
   </form>

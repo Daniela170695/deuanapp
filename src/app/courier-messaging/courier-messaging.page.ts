@@ -96,6 +96,7 @@ export class CourierMessagingPage implements OnInit {
           address_delivered: this.addressDelivered.value,
           cellphone_delivered: this.cellphoneDelivered.value,
           content: this.content.value,
+          description: null,
           created_datetime: now,
         };
         const doc = await this.requestService.add(request);
