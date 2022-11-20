@@ -21,10 +21,6 @@ const routes: Routes = [
     loadChildren: () => import('../rhinoceros/rhinoceros.module').then( m => m.RhinocerosPageModule)
   },
   {
-    path: 'config-support',
-    loadChildren: () => import('../config-support/config-support.module').then(m => m.ConfigSupportPageModule)
-  },
-  {
     path: 'tracking-rhinoceros/:id',
     loadChildren: () => import('../tracking-rhinoceros/tracking-rhinoceros.module').then( m => m.TrackingRhinocerosPageModule)
   },
@@ -40,7 +36,7 @@ const routes: Routes = [
     path: 'tracking-courier-messaging/:id',
     loadChildren: () => import('../tracking-courier-messaging/tracking-courier-messaging.module').then( m => m.TrackingCourierMessagingPageModule)
   },
-  
+
 ];
 
 @NgModule({
