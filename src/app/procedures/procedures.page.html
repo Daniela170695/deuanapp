@@ -9,7 +9,7 @@
       <img src="assets/img/shared/lapiz-01.png">
       <ion-select placeholder="Ciudad recogida" formControlName="cityReceived">
         <div *ngFor="let city of cities">
-          <ion-select-option [value]="city.c_digo_dane_del_municipio">{{city.departamento}} - {{city.municipio}}</ion-select-option>
+          <ion-select-option [value]="city.id">{{city.departmentName}} - {{city.name}}</ion-select-option>
         </div>
       </ion-select>
     </ion-item>
@@ -49,7 +49,7 @@
       <img src="assets/img/shared/lapiz-01.png">
       <ion-select placeholder="Ciudad entrega" formControlName="cityDelivered">
         <div *ngFor="let city of cities">
-          <ion-select-option [value]="city.c_digo_dane_del_municipio">{{city.departamento}} - {{city.municipio}}</ion-select-option>
+          <ion-select-option [value]="city.id">{{city.departamentName}} - {{city.name}}</ion-select-option>
         </div>
       </ion-select>
     </ion-item>

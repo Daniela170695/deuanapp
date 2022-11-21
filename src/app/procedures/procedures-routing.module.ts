@@ -9,8 +9,8 @@ const routes: Routes = [
     component: ProceduresPage
   },
   {
-    path: 'tracking-procedures/:id',
-    loadChildren: () => import('../tracking-procedures/tracking-procedures.module').then( m => m.TrackingProceduresPageModule)
+    path: 'tracking-request/:id',
+    loadChildren: () => import('../tracking-request/tracking-request.module').then( m => m.TrackingRequestPageModule)
   },
 ];
 

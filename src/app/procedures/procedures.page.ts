@@ -11,6 +11,7 @@ import { RequestService } from '../services/request/request.service';
 import { TrackingRequestService } from '../services/tracking-request/tracking-request.service';
 import { AuthService } from '../services/auth/auth.service';
 import { TypeRequestPriceService } from '../services/type-request-price/type-request-price.service';
+import { DepartmentService } from '../services/department/department.service';
 
 import { take } from 'rxjs/operators';
 
@@ -31,10 +32,16 @@ export class ProceduresPage implements OnInit {
     private requestService: RequestService,
     private trackingRequestService: TrackingRequestService,
     private authService: AuthService,
-    private typeRequestPriceService:TypeRequestPriceService) {
+    private typeRequestPriceService: TypeRequestPriceService,
+    private departmentService: DepartmentService) {
 
-    this.cityService.getAllCities().then(data=>{
-      this.cities = data;
+    this.cityService.getAll().then(cities=>{
+      cities.forEach(city => {
+        this.departmentService.getOne(city.department).then(data=>{
+          city.departmentName = data.name;
+        })
+      });
+      this.cities = cities;
     })
 
   }
@@ -99,7 +106,7 @@ export class ProceduresPage implements OnInit {
           cellphone_delivered: this.cellphoneDelivered.value,
           content: this.content.value,
           description: null,
-          created_datetime: now 
+          created_datetime: now
         };
         const doc = await this.requestService.add(request);
         const requestId = doc.id;
@@ -117,7 +124,7 @@ export class ProceduresPage implements OnInit {
           delivered_datetime: null
         };
         this.trackingRequestService.add(trackingRequest);
-        this.router.navigate(['principal/tracking-procedures', requestId])
+        this.router.navigate(['principal/tracking-request', requestId])
       } catch (error) {
         console.log(error);
       }

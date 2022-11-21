@@ -11,6 +11,7 @@ import { RequestService } from '../services/request/request.service';
 import { TypeRequestPriceService } from '../services/type-request-price/type-request-price.service';
 import { TrackingRequestService } from '../services/tracking-request/tracking-request.service';
 import { AuthService } from '../services/auth/auth.service';
+import { DepartmentService } from '../services/department/department.service';
 
 import { take } from 'rxjs/operators';
 
@@ -31,9 +32,16 @@ export class CourierMessagingPage implements OnInit {
     private requestService: RequestService,
     private authService: AuthService,
     private typeRequestPriceService: TypeRequestPriceService,
-    private trackingRequestService: TrackingRequestService) {
-      this.cityService.getAllCities().then(data=>{
-        this.cities = data;
+    private trackingRequestService: TrackingRequestService,
+    private departmentService:DepartmentService) {
+
+      this.cityService.getAll().then(cities=>{
+        cities.forEach(city => {
+          this.departmentService.getOne(city.department).then(data=>{
+            city.departmentName = data.name;
+          })
+        });
+        this.cities = cities;
       })
     }
 
@@ -115,7 +123,7 @@ export class CourierMessagingPage implements OnInit {
           delivered_datetime: null
         };
         this.trackingRequestService.add(trackingRequest);
-        this.router.navigate(['principal/tracking-courier-messaging', requestId])
+        this.router.navigate(['principal/tracking-request', requestId])
 
       } catch (error) {
           console.log(error);

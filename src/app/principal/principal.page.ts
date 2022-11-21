@@ -15,7 +15,7 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['./principal.page.scss'],
 })
 export class PrincipalPage implements OnInit {
-  display: boolean;
+  display: boolean = false;
   requestId: string;
   requestType: number;
 
@@ -41,12 +41,10 @@ export class PrincipalPage implements OnInit {
         const delivered = trackingRequest[0].delivered;
         if(cancelled==false && delivered == false){
           this.requestId = request.id;
-          this.requestType = request.type_request;
           this.display = true;
         }
         else{
           this.requestId = null;
-          this.requestType = null;
           this.display = false;
         }
       })
@@ -61,23 +59,8 @@ export class PrincipalPage implements OnInit {
     this.router.navigate(['principal/type-service'])
   }
 
-  openConfigSupport(){
-    this.router.navigate(['principal/config-support'])
-  }
-
   openTracking(){
-    if(this.requestType==1){
-      this.router.navigate(['principal/tracking-courier-messaging', this.requestId]);
-    }
-    else if(this.requestType==2){
-      this.router.navigate(['principal/tracking-procedures', this.requestId]);
-    }
-    else if(this.requestType==3){
-      this.router.navigate(['principal/tracking-procedures', this.requestId]);
-    }
-    else{
-      this.router.navigate(['principal/tracking-rhinoceros', this.requestId]);
-    }
+   this.router.navigate(['principal/tracking-request', this.requestId]);
   }
 
   openStore(){

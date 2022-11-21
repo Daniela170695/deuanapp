@@ -8,6 +8,10 @@ const routes: Routes = [
     path: '',
     component: RhinocerosPage
   },
+  {
+    path: 'tracking-request/:id',
+    loadChildren: () => import('../tracking-request/tracking-request.module').then( m => m.TrackingRequestPageModule)
+  },
 ];
 
 @NgModule({

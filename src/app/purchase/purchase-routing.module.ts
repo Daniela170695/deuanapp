@@ -9,8 +9,8 @@ const routes: Routes = [
     component: PurchasePage
   },
   {
-    path: 'tracking-purchase/:id',
-    loadChildren: () => import('../tracking-purchase/tracking-purchase.module').then( m => m.TrackingPurchasePageModule)
+    path: 'tracking-request/:id',
+    loadChildren: () => import('../tracking-request/tracking-request.module').then( m => m.TrackingRequestPageModule)
   },
 ];
 

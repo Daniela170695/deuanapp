@@ -9,8 +9,8 @@ const routes: Routes = [
     component: CourierMessagingPage
   },
   {
-    path: 'tracking-courier-messaging/:id',
-    loadChildren: () => import('../tracking-courier-messaging/tracking-courier-messaging.module').then( m => m.TrackingCourierMessagingPageModule)
+    path: 'tracking-request/:id',
+    loadChildren: () => import('../tracking-request/tracking-request.module').then( m => m.TrackingRequestPageModule)
   },
 ];
 

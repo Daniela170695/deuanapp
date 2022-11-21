@@ -11,15 +11,9 @@ import { RequestService } from '../services/request/request.service';
 import { TrackingRequestService } from '../services/tracking-request/tracking-request.service';
 import { AuthService } from '../services/auth/auth.service';
 import { TypeRequestPriceService } from '../services/type-request-price/type-request-price.service';
+import { DepartmentService } from '../services/department/department.service';
 
 import { take } from 'rxjs/operators';
-
-export interface ProductPurchase{
-  idProduct:string,
-  nameProduct:string,
-  nameCategory:string,
-  quantity:number
-}
 
 @Component({
   selector: 'app-purchase',
@@ -38,9 +32,15 @@ export class PurchasePage implements OnInit {
     private requestService: RequestService,
     private trackingRequestService: TrackingRequestService,
     private authService: AuthService,
-    private typeRequestPriceService: TypeRequestPriceService) {
-    this.cityService.getAllCities().then(data=>{
-      this.cities = data;
+    private typeRequestPriceService: TypeRequestPriceService,
+    private departmentService: DepartmentService) {
+    this.cityService.getAll().then(cities=>{
+     cities.forEach(city => {
+       this.departmentService.getOne(city.department).then(data=>{
+         city.departmentName = data.name;
+       })
+     });
+     this.cities = cities;
     })
 
     this.displayError = false;
@@ -112,12 +112,12 @@ export class PurchasePage implements OnInit {
             delivered_datetime: null
           };
           this.trackingRequestService.add(trackingRequest);
-          this.router.navigate(['principal/tracking-purchase', requestId])
+          this.router.navigate(['principal/tracking-request', requestId])
         } catch (error) {
           console.log(error);
         }
       }
 
   }
- 
+
 }

@@ -1,23 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { take } from 'rxjs/operators';
 import { City } from '../../interfaces/city';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CityService {
+  private cityCollection: AngularFirestoreCollection<City>;
+  private cities: Promise<City[]>;
+  private cityDoc: AngularFirestoreDocument<City>;
+  private city: Promise<City>;
 
-  private api = "https://www.datos.gov.co/resource/xdk5-pm3f.json";
+  constructor(private afs: AngularFirestore) { }
 
-  constructor(private httpClient: HttpClient) { }
-
-  getAllCities(){
-    const path = `${this.api}`;
-    return this.httpClient.get<City[]>(path).toPromise();
+  getAll(){
+    this.cityCollection = this.afs.collection<City>('City');
+    this.cities = this.cityCollection.valueChanges({idField: 'id'}).pipe(take(1)).toPromise();
+    return this.cities;
   }
 
-  getOneCity(cod:string){
-    const path = `${this.api}?c_digo_dane_del_municipio=${cod}`;
-    return this.httpClient.get<City>(path).toPromise();
+  getOne(id:string){
+    this.cityDoc = this.afs.doc<City>('City/'+id);
+    this.city = this.cityDoc.valueChanges({idField: 'id'}).pipe(take(1)).toPromise();
+    return this.city;
   }
+
 }
