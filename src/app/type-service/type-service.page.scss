@@ -6,7 +6,6 @@ ion-content{
 
 ion-select {
   width: 100%;
-  justify-content: center;
 }
 
 ion-select::part(placeholder),
@@ -24,4 +23,5 @@ ion-item{
   --highlight-color-valid: var(--ion-color-gray-2);
   --highlight-color-invalid: var(--ion-color-gray-2);
   font-size: 13px;
+  text-align: center;
 }
