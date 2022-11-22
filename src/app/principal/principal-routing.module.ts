@@ -21,7 +21,7 @@ const routes: Routes = [
     loadChildren: () => import('../rhinoceros/rhinoceros.module').then( m => m.RhinocerosPageModule)
   },
   {
-    path: 'tracking-request',
+    path: 'tracking-request/:id',
     loadChildren: () => import('../tracking-request/tracking-request.module').then( m => m.TrackingRequestPageModule)
   },
 ];
